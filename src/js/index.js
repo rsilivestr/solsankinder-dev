@@ -1,7 +1,8 @@
 import '../sass/index.scss';
 
 // declare UI elements
-const UImenuBtn = document.querySelector('#menu-btn');
+// const UImenuBtn = document.querySelector('.menu-btn');
+const UIbread = document.querySelector('.bread');
 const UInavPrimary = document.querySelector('.nav-primary');
 const UInavLinks = document.querySelectorAll('.navlink');
 const UIsubNavs = document.querySelectorAll('.subnav');
@@ -19,38 +20,97 @@ const UIlowVisionSpan = document.querySelector('.toggle-low-vision__span');
 // const UIcontactSubmit = document.querySelector('.contact-form__submit');
 
 // handle menu-btn click
-if (UImenuBtn) {
-  UImenuBtn.addEventListener('click', function (e) {
-    UInavPrimary.classList.toggle('visible');
-    // document.body.classList.toggle('no-scroll');
-    UImenuBtn.classList.toggle('is-open');
+// if (UImenuBtn) {
+//   UImenuBtn.addEventListener('click', function (e) {
+//     UInavPrimary.classList.toggle('visible');
+//     // document.body.classList.toggle('no-scroll');
+//     UImenuBtn.classList.toggle('is-open');
+//     e.preventDefault();
+//   });
+// }
+
+const SolSanKinder = (() => {
+  const UIselectors = {
+    bread: '.bread',
+    navPrimary: '.nav-primary',
+    npLink: '.nav-primary__link',
+    npSubnav: '.np-subnav',
+  };
+
+  const toggleMenu = (e) => {
+    const btn = e.target.closest('.menu-btn');
+    if (btn) {
+      document
+        .querySelector(UIselectors.navPrimary)
+        .classList.toggle('visible');
+    }
+  };
+
+  const toggleSubnav = (e) => {
     e.preventDefault();
-  });
-}
+
+    const link = e.target.closest('.has-subnav');
+
+    if (link) {
+      const subnav = link.nextElementSibling;
+
+      // show subnav, hide others
+      document.querySelectorAll(UIselectors.npSubnav).forEach((item) => {
+        if (item !== subnav) item.classList.remove('visible');
+      });
+
+      // toggle arrows
+      document.querySelectorAll(UIselectors.npLink).forEach((item) => {
+        if (item !== link) item.classList.remove('subnav-open');
+      });
+
+      subnav.classList.toggle('visible');
+      link.classList.toggle('subnav-open');
+    }
+  };
+
+  const init = () => {
+    // menu btn click
+    document
+      .querySelector(UIselectors.bread)
+      .addEventListener('click', toggleMenu);
+
+    // nav-primary click
+    document
+      .querySelector(UIselectors.navPrimary)
+      .addEventListener('click', toggleSubnav);
+  };
+
+  return {
+    init,
+  };
+})();
+
+SolSanKinder.init();
 
 // handle navlink click
-UInavPrimary.addEventListener('click', function (e) {
-  if (e.target.classList.contains('has-subnav')) {
-    for (let i = UIsubNavs.length; i--; i == 0) {
-      // if subnav not next after clicked navlink hide it
-      if (UIsubNavs[i] !== e.target.nextElementSibling) {
-        UIsubNavs[i].classList.remove('visible');
-      } else {
-        UIsubNavs[i].classList.toggle('visible');
-        // toggle navlink arrow
-        e.target.classList.toggle('subnav-opened');
-        // toggle other navlinks arrows
-        UInavLinks.forEach(function (navlink) {
-          if (navlink !== e.target) {
-            navlink.classList.remove('subnav-opened');
-          }
-        });
-      }
-    }
-    // prevent page reload if subnav triggered
-    e.preventDefault();
-  }
-});
+// UInavPrimary.addEventListener('click', function (e) {
+//   if (e.target.classList.contains('has-subnav')) {
+//     for (let i = UIsubNavs.length; i--; i == 0) {
+//       // if subnav not next after clicked navlink hide it
+//       if (UIsubNavs[i] !== e.target.nextElementSibling) {
+//         UIsubNavs[i].classList.remove('visible');
+//       } else {
+//         UIsubNavs[i].classList.toggle('visible');
+//         // toggle navlink arrow
+//         e.target.classList.toggle('subnav-opened');
+//         // toggle other navlinks arrows
+//         UInavLinks.forEach(function (navlink) {
+//           if (navlink !== e.target) {
+//             navlink.classList.remove('subnav-opened');
+//           }
+//         });
+//       }
+//     }
+//     // prevent page reload if subnav triggered
+//     e.preventDefault();
+//   }
+// });
 
 // hide subnav when clicked outside
 document.addEventListener('click', function (e) {

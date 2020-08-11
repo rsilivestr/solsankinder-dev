@@ -4,10 +4,13 @@
 // layout
 @use './layout/header';
 @use './layout/bread';
+@use './layout/main';
 @use './layout/footer';
 
 // blocks;
 @use './blocks/action-btn';
+@use './blocks/menu-btn';
+@use './blocks/table.scss';
 
 // pages
 @use './pages/cards';
@@ -17,3 +20,4 @@
 // misc
 @use './misc/icons';
 @use './misc/print';
+@use './misc/visibility.scss';

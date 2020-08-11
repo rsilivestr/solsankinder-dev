@@ -7,28 +7,30 @@
   margin: 0 auto 2.5rem;
   border: 1px solid #ccc;
   max-width: 900px;
-}
-input,
-button {
-  display: inline-block;
-  padding: 0.75rem;
-  font-size: 1.25rem;
-  overflow: auto;
-}
-input {
-  flex: 9 5 auto;
-}
-button {
-  flex: 1 1 auto;
-  min-width: 90px;
-  background-color: colors.$yellow-vivid;
-  cursor: pointer;
 
-  &:hover {
-    background-color: colors.$yellow-darker;
+  input,
+  button {
+    display: inline-block;
+    padding: 0.75rem;
+    font-size: 1.25rem;
+    overflow: auto;
+  }
+
+  input {
+    flex: 9 5 auto;
+  }
+
+  button {
+    flex: 1 1 auto;
+    min-width: 90px;
+    background-color: colors.$yellow-vivid;
+    cursor: pointer;
+
+    &:hover {
+      background-color: colors.$yellow-darker;
+    }
   }
 }
-
 // результаты поиска
 .search section .nav {
   font-size: 1.25rem;
