@@ -1,6 +1,3 @@
-@use './colors';
-@use './common';
-
 // layout
 @use './layout/header';
 @use './layout/bread';
@@ -14,10 +11,12 @@
 
 // pages
 @use './pages/cards';
+@use './pages/blog-post';
 @use './pages/home';
 @use './pages/search';
 
 // misc
+@use './misc/common';
 @use './misc/icons';
 @use './misc/print';
 @use './misc/visibility.scss';

@@ -1,12 +1,12 @@
-@use '../colors';
+@use 'ScssUtil/forward' as fw;
 
 .footer {
-  margin-top: 1.5rem;
+  // margin-top: 1.5rem;
   text-align: center;
 
   &-nav {
     padding: 24px 12px 12px;
-    background-color: colors.$footer-color;
+    background-color: fw.$footer-color;
 
     &__link {
       display: inline-block;
@@ -25,7 +25,7 @@
     position: relative;
     padding: 0.75rem 0.75rem 1rem;
     // text-align: center;
-    background-color: colors.$footer-color;
+    background-color: fw.$footer-color;
 
     &__banner {
       display: inline-block;
@@ -37,7 +37,7 @@
   }
 
   &-copy {
-    background-color: colors.$yellow-vivid;
+    background-color: fw.$yellow-vivid;
 
     &__para {
       line-height: 3rem;

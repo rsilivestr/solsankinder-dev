@@ -1,33 +1,31 @@
-@use '../colors';
+@use 'ScssUtil/forward' as fw;
 
 // поиск
 .search-form {
   display: flex;
   flex-flow: row nowrap;
-  margin: 0 auto 2.5rem;
+  margin-bottom: 3rem;
   border: 1px solid #ccc;
-  max-width: 900px;
 
-  input,
-  button {
-    display: inline-block;
+  &__input,
+  &__submit {
     padding: 0.75rem;
     font-size: 1.25rem;
     overflow: auto;
   }
 
-  input {
+  &__input {
     flex: 9 5 auto;
   }
 
-  button {
+  &__submit {
     flex: 1 1 auto;
     min-width: 90px;
-    background-color: colors.$yellow-vivid;
+    background-color: fw.$yellow-vivid;
     cursor: pointer;
 
     &:hover {
-      background-color: colors.$yellow-darker;
+      background-color: fw.$yellow-darker;
     }
   }
 }

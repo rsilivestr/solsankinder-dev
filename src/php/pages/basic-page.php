@@ -1,13 +1,17 @@
 <?php namespace ProcessWire;
 
-$content = "<section" . ($page->wideContent ? " class='section--wide' " : "") . ">
-  <h2>$title</h2>
-  $page->body
-</section>";
+$aClass = "article article--type_basic";
+if ($page->wideContent) $aClass .= " article--wide";
 
-// галерея
+$content = "<article class='$aClass'>
+  <h1>$title</h1>
+  $page->body
+</article>";
+
+// basic-page gallery
 if($page->renderGallery && $page->images->count()) {
   $content .= "<div class='basic-gallery'><div class='gallery-thumbs'>";
+
   foreach($page->images as $image) {
     $thumb = $image->size('160', '120');
     $xs = $image->size('400', '300');
@@ -23,6 +27,7 @@ if($page->renderGallery && $page->images->count()) {
       sizes='(min-width: 320px) 160px'
       data-caption='$image->description'>";
   }
+
   $content .= "</div><img width='100%'
     class='gallery-current'
     src='{$page->images->first()->size("600", "450")->url}'

@@ -1,4 +1,4 @@
-@use '../colors';
+@use 'ScssUtil/forward' as fw;
 
 .card-tiles {
   flex-flow: row wrap;
@@ -7,7 +7,7 @@
   &__tile {
     width: 100%;
     margin: 0.75rem 0;
-    border: 2px solid colors.$yellow-pale;
+    border: 2px solid fw.$yellow-pale;
     text-align: center;
   }
   img {
@@ -16,7 +16,7 @@
   }
   div {
     padding: 0.5rem 0;
-    background: colors.$yellow-pale;
+    background: fw.$yellow-pale;
     overflow: auto;
   }
 }

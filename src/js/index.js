@@ -1,4 +1,4 @@
-import '../sass/index.scss';
+import '../scss/index.scss';
 
 // declare UI elements
 // const UImenuBtn = document.querySelector('.menu-btn');

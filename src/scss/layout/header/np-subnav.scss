@@ -1,5 +1,4 @@
-@use '../../colors';
-@use '../../misc/sizes';
+@use 'ScssUtil/forward' as fw;
 
 $lhMobile: 2rem;
 $lhDesktop: 1.25rem;
@@ -79,7 +78,6 @@ $lhDesktop: 1.25rem;
 
     &.active {
       color: orangered;
-      // text-decoration: underline;
     }
 
     &:hover {

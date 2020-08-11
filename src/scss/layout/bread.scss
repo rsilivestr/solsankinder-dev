@@ -1,5 +1,4 @@
-@use '../misc/sizes';
-@use '../colors';
+@use 'ScssUtil/forward' as fw;
 
 .bread {
   position: fixed;
@@ -7,8 +6,8 @@
   display: flex;
   flex-flow: row wrap;
   padding: 0 0.75rem;
-  line-height: sizes.$breadHeight_m;
-  background: colors.$yellow-vivid;
+  line-height: fw.$breadHeight_m;
+  background: fw.$yellow-vivid;
   border-bottom: 2px solid #333;
   z-index: 9;
 
@@ -67,44 +66,3 @@
     text-decoration: underline;
   }
 }
-//   span,
-//   a {
-//     padding: 0.25rem 0;
-//     margin-right: 0.25rem;
-//     color: #333;
-//   }
-//   span:last-of-type {
-//     font-weight: bold;
-//   }
-
-//   span:not(:last-of-type),
-//   a {
-//     // display: none;
-//   }
-// }
-
-// @media screen and (min-width: 768px) {
-//   .home #bread {
-//     display: none;
-//   }
-
-//   #bread {
-//     position: relative;
-//     width: auto;
-//     background-color: rgba(50, 40, 0, 0.1);
-//     padding: 0.25rem 1.5rem;
-//     justify-content: center;
-//     border-bottom: 1px solid #ccc;
-//     z-index: 8;
-//   }
-
-//   span,
-//   a {
-//     display: inline-block;
-//   }
-
-//   a {
-//     text-decoration: underline;
-//   }
-
-// }

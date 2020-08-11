@@ -3,23 +3,25 @@
 $formAction = $pages->get('template=search')->url;
 $formValue = $sanitizer->entities($input->whitelist('q'));
 
-$content = "<section>
+$content = "<section class='section section--type_basic'>
 	<h1>$title</h1>
 	<form class='search-form' action='$formAction' method='get'>
-		<input 
-			type='text' 
-			name='q' 
-			placeholder='Что ищем?' 
-			value='$formValue' 
+		<input
+			type='text'
+			name='query'
+			class='search-form__input'
+			placeholder='Что ищем?'
+			value='$formValue'
 		/>
-		<button type='submit' name='submit'>Найти</button>
-	</form>";
+		<button type='submit' class='search-form__submit'>Найти</button>
+	</form>
+</section>";
 
 // search.php template file
 // See README.txt for more information.
 
 // look for a GET variable named 'q' and sanitize it
-$q = $sanitizer->text($input->get->q);
+$q = $sanitizer->text($input->get->query);
 
 // did $q have anything in it?
 if($q) {
@@ -62,17 +64,14 @@ if($q) {
 			$pageCase = "а";
 			$foundCase = "а";
 		}
-		$searchResults = "<h2>Нашл${foundCase}сь $count страниц$pageCase по вашему запросу:</h2>";
+		$searchResults = "<section class='section section--type_basic'><h2>Нашл${foundCase}сь $count страниц$pageCase по вашему запросу:</h2>";
 		// we'll use our renderNav function (in _func.php) to render the navigation
 		$searchResults .= renderNav($matches);
-		$content .= $searchResults;
+		$content .= $searchResults . "</section>";
 	} else {
 		// we didn't find any
-		$content .= "<h2>Поиск по вашему запросу не дал результатов</h2>";
+		$content .= "<section class='section section--type_basic'>
+			<h2>Поиск по вашему запросу не дал результатов</h2>
+		</section>";
 	}
-
 } 
-// else {
-// 	no search terms provided
-// 	$content = "<h2>Please enter a search term in the search box (upper right corner)</h2>";
-// }

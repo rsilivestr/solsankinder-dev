@@ -43,7 +43,7 @@ module.exports = {
       },
       {
         test: /\.scss$/i,
-        include: path.resolve(__dirname, 'src/sass'),
+        include: path.resolve(__dirname, 'src/scss'),
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -68,5 +68,15 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    alias: {
+      Scss: path.resolve(__dirname, 'src/scss/'),
+      ScssBlocks: path.resolve(__dirname, 'src/scss/blocks'),
+      ScssLayout: path.resolve(__dirname, 'src/scss/layout'),
+      ScssMisc: path.resolve(__dirname, 'src/scss/misc'),
+      ScssPages: path.resolve(__dirname, 'src/scss/pages'),
+      ScssUtil: path.resolve(__dirname, 'src/scss/util'),
+    },
   },
 };

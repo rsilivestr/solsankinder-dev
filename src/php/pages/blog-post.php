@@ -1,14 +1,21 @@
 <?php namespace ProcessWire;
 
-$content = "<section class='blog-post-full'><h1>$title</h1>$page->body<p>$page->postDate</p>";
+$content = "<article class='article article--type_basic blog-post'>
+  <h1>$title</h1>
+  $page->body
+  <p class='blog-post__date'>$page->postDate</p>";
+
 // галерея
 if($page->renderGallery && $page->images->count()) {
-  $content .= "<div class='basic-gallery'><div class='gallery-thumbs'>";
+  $content .= "<div class='basic-gallery'>
+    <div class='gallery-thumbs'>";
+
   foreach($page->images as $image) {
     $thumb = $image->height('120');
     $xs = $image->width('400');
     $sm = $image->width('600');
     $md = $image->width('800');
+
     $content .= "<img 
       class='gallery-thumb lazy'
       src='$image->url'
@@ -19,7 +26,9 @@ if($page->renderGallery && $page->images->count()) {
       sizes='(min-width: 320px) 160px'
       data-caption='$image->description'>";
   }
-  $content .= "</div><img width='100%'
+
+  $content .= "</div>
+  <img width='100%'
     class='gallery-current'
     src='{$page->images->first()->width("600")->url}'
     sizes='(max-width: 400px) 400px,
@@ -27,20 +36,10 @@ if($page->renderGallery && $page->images->count()) {
     (min-width: 625px) 800px'>";
     
   if($page->images->first()->description) {
-    $content .= "<figcaption>" . $page->images->first()->description . "</figcaption>";
+    $content .= "<figcaption>{$page->images->first()->description}</figcaption>";
   }
+
   $content .= "</div>";
 }
-// $content .= "<h1>";
-// if ($page->headline) { $content .= $page->headline; } 
-// else {$content .= $page->title;}
-// $content .= "</h1>";
 
-// foreach ($page->images as $image) {
-//   $content .= "<img
-//     class='align_left'
-//     src='$image->url'
-//   >"; 
-// }
-
-$content .= "</section>";
+$content .= "</article>";
