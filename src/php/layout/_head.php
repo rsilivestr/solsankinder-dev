@@ -37,7 +37,7 @@
           // render top-level navigation links
           echo "<a class='$class' href='$navItem->url'>$navItem->title</a>";
           // render subnav if exists
-          if($navItem !== $homepage && $navItem->children) {
+          if($navItem !== $homepage && $navItem->children->count) {
             // subnav
             echo "<nav class='np-subnav'>";
             // subnav columns
@@ -67,13 +67,17 @@
 
       <a href='<?php echo $page->url ?>' class="nav-primary__link toggle-low-vision hide-sm">
         <i class='icon-low-vision'></i>
-        <span class='toggle-low-vision__span hide-md'><?php echo $lowVisionText ?></span>
+        <span class='toggle-low-vision__span'><?php echo $lowVisionText ?></span>
       </a>
-
     </nav>
 
+      <!-- кнопка мобильного меню -->
+      <button class="menu-btn hide-lg">
+        <i class="menu-btn__icon icon-menu"></i>
+      </button>
+
     <?php if ($page->template->name === "home"): ?>
-    <a class="header__register-btn action-btn" href="/check-in-form">Записаться на заезд</a>
+    <a class="header__register-btn action-btn hide-sm" href="/check-in-form">Записаться на заезд</a>
 
     <?php endif; ?>
 
@@ -87,10 +91,6 @@
   ?>
     <span><?php echo $page->title ?></span>
     <?php if($page->editable()) echo "<a class='page-edit-link' href='$page->editUrl'>Редактировать страницу</a>"; ?>
-    <!-- кнопка мобильного меню -->
-    <button class="menu-btn hide-lg">
-      <i class="menu-btn__icon icon-menu"></i>
-    </button>
   </div>
 
   <main class="main">

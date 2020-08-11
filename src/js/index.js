@@ -31,6 +31,7 @@ const UIlowVisionSpan = document.querySelector('.toggle-low-vision__span');
 
 const SolSanKinder = (() => {
   const UIselectors = {
+    header: '.main-header',
     bread: '.bread',
     navPrimary: '.nav-primary',
     npLink: '.nav-primary__link',
@@ -43,15 +44,23 @@ const SolSanKinder = (() => {
       document
         .querySelector(UIselectors.navPrimary)
         .classList.toggle('visible');
+
+      document
+        .querySelectorAll(UIselectors.npSubnav)
+        .forEach((item) => item.classList.remove('visible'));
+
+      document
+        .querySelectorAll(UIselectors.npLink)
+        .forEach((item) => item.classList.remove('subnav-open'));
     }
   };
 
   const toggleSubnav = (e) => {
-    e.preventDefault();
-
     const link = e.target.closest('.has-subnav');
 
     if (link) {
+      e.preventDefault();
+
       const subnav = link.nextElementSibling;
 
       // show subnav, hide others
@@ -66,19 +75,25 @@ const SolSanKinder = (() => {
 
       subnav.classList.toggle('visible');
       link.classList.toggle('subnav-open');
+    } else if (!e.target.closest(UIselectors.npSubnav)) {
+      document
+        .querySelectorAll(UIselectors.npSubnav)
+        .forEach((item) => item.classList.remove('visible'));
+
+      document
+        .querySelectorAll(UIselectors.npLink)
+        .forEach((item) => item.classList.remove('subnav-open'));
     }
   };
 
   const init = () => {
     // menu btn click
     document
-      .querySelector(UIselectors.bread)
+      .querySelector(UIselectors.header)
       .addEventListener('click', toggleMenu);
 
     // nav-primary click
-    document
-      .querySelector(UIselectors.navPrimary)
-      .addEventListener('click', toggleSubnav);
+    document.body.addEventListener('click', toggleSubnav);
   };
 
   return {

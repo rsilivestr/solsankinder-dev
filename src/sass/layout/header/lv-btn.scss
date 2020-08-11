@@ -1,0 +1,7 @@
+.toggle-low-vision__span {
+  margin-left: 0.5rem;
+
+  @media screen and (max-width: 1100px) {
+    display: none;
+  }
+}

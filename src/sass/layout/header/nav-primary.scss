@@ -1,0 +1,117 @@
+@use '../../colors';
+@use '../../misc/sizes';
+
+.nav-primary {
+  position: relative;
+  display: none;
+  padding: 0.75rem;
+  background-color: #fff;
+  z-index: 10;
+
+  @media screen and (max-width: 767px) {
+    &.visible {
+      display: block;
+      position: fixed;
+      width: 100%;
+      top: 3.25rem;
+      bottom: 0;
+      overflow: auto;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0;
+    background-color: #fff;
+    // border-bottom: 1px solid #ccc;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  // .nav-primary__logo
+  &__logo {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+      height: sizes.$nplHeight_d + 0.25rem;
+      padding: 0.75rem 1rem;
+      background-color: #fff;
+    }
+  }
+
+  // .nav-primary__link
+  &__link {
+    display: block;
+    line-height: sizes.$nplHeight_m;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.5rem;
+
+    &.active {
+      color: orangered;
+      font-weight: 700;
+    }
+
+    &:after {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    &.has-subnav::after {
+      content: '▼';
+    }
+
+    &.subnav-open::after {
+      content: '▲';
+    }
+
+    @media screen and (min-width: 768px) {
+      padding: 0 1rem;
+      line-height: sizes.$nplHeight_d;
+      background-color: #fff;
+      border-bottom: 0.25rem solid transparent;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: #eee;
+      }
+
+      &:after {
+        margin-left: 0.5rem;
+      }
+
+      &.active {
+        color: #333;
+        font-weight: 400;
+
+        &:nth-of-type(1) {
+          border-color: colors.$red-vivid;
+        }
+
+        &:nth-of-type(2) {
+          border-color: colors.$yellow-vivid;
+        }
+
+        &:nth-of-type(3) {
+          border-color: colors.$green-vivid;
+        }
+
+        &:nth-of-type(4) {
+          border-color: colors.$blue-vivid;
+        }
+
+        &:nth-of-type(5) {
+          border-color: colors.$violet-vivid;
+        }
+      }
+    }
+  }
+}
