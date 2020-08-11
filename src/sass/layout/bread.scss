@@ -1,58 +1,110 @@
+@use '../misc/sizes';
 @use '../colors';
 
-#bread {
+.bread {
   position: fixed;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  padding: 0.75rem;
+  padding: 0 0.75rem;
+  line-height: sizes.$breadHeight_m;
   background: colors.$yellow-vivid;
   border-bottom: 2px solid #333;
   z-index: 9;
 
-  span,
-  a {
-    padding: 0.25rem 0;
-    margin-right: 0.25rem;
-    color: #333;
-  }
-  span:last-of-type {
-    font-weight: bold;
-  }
-
-  span:not(:last-of-type),
-  a {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .home #bread {
-    display: none;
-  }
-
-  #bread {
+  @media screen and (min-width: 768px) {
     position: relative;
     width: auto;
-    background-color: rgba(50, 40, 0, 0.1);
-    padding: 0.25rem 1.5rem;
     justify-content: center;
+    background-color: rgba(50, 40, 0, 0.1);
+    padding: 0;
+    line-height: 2;
     border-bottom: 1px solid #ccc;
     z-index: 8;
   }
 
-  span,
-  a {
-    display: inline-block;
+  &__link {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+      text-decoration: underline;
+    }
   }
 
-  a {
-    text-decoration: underline;
+  &__separator {
+    display: none;
+    margin: 0 4px;
+    line-height: 2;
+    cursor: default;
+
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+    }
   }
 
-  // ссылка изменить странцу
-  .page-edit-link {
-    position: absolute;
-    right: 1rem;
+  &__current {
+    font-weight: 700;
   }
 }
+
+// don't show on homepage
+@media screen and (min-width: 768px) {
+  .home .bread {
+    display: none;
+  }
+}
+
+// edit page link
+.page-edit-link {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    position: absolute;
+    right: 1rem;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+}
+//   span,
+//   a {
+//     padding: 0.25rem 0;
+//     margin-right: 0.25rem;
+//     color: #333;
+//   }
+//   span:last-of-type {
+//     font-weight: bold;
+//   }
+
+//   span:not(:last-of-type),
+//   a {
+//     // display: none;
+//   }
+// }
+
+// @media screen and (min-width: 768px) {
+//   .home #bread {
+//     display: none;
+//   }
+
+//   #bread {
+//     position: relative;
+//     width: auto;
+//     background-color: rgba(50, 40, 0, 0.1);
+//     padding: 0.25rem 1.5rem;
+//     justify-content: center;
+//     border-bottom: 1px solid #ccc;
+//     z-index: 8;
+//   }
+
+//   span,
+//   a {
+//     display: inline-block;
+//   }
+
+//   a {
+//     text-decoration: underline;
+//   }
+
+// }

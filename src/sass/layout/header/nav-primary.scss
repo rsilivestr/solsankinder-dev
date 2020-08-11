@@ -61,7 +61,7 @@
     }
 
     &:after {
-      margin-left: 0.5rem;
+      margin-left: 0.25rem;
       font-size: 1rem;
     }
 
@@ -74,7 +74,7 @@
     }
 
     @media screen and (min-width: 768px) {
-      padding: 0 1rem;
+      padding: 0 0.75rem;
       line-height: sizes.$nplHeight_d;
       background-color: #fff;
       border-bottom: 0.25rem solid transparent;

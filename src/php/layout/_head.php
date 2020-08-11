@@ -21,7 +21,7 @@
 </head>
 <body class="<?php echo $page->template . ' ' . $isLowVisionActive; ?>">
   <header class="main-header">
-    <!-- main navigation bar -->
+    <!-- Main navigation bar -->
     <nav class="nav-primary">
       <img 
         class="nav-primary__logo"
@@ -30,20 +30,20 @@
       >
       <?php
         foreach($homepage->and($homepage->children) as $navItem) {
-          // set top-level navigation link classes
+          // Set top-level navigation link classes
           $class='nav-primary__link';
           if($navItem !== $homepage && count($navItem->children) > 0) $class .= ' has-subnav';
           if($navItem->id == $page->rootParent->id) $class .= ' active';
-          // render top-level navigation links
+          // Render top-level navigation links
           echo "<a class='$class' href='$navItem->url'>$navItem->title</a>";
-          // render subnav if exists
+          // Render subnav if exists
           if($navItem !== $homepage && $navItem->children->count) {
-            // subnav
+            // Subnav
             echo "<nav class='np-subnav'>";
-            // subnav columns
+            // Subnav columns
             foreach($navItem->children as $subnavTitle) {
               echo "<div class='np-subnav__column'><h4 class='np-subnav__column-heading'>$subnavTitle->title</h4>";
-              // subnav links
+              // Subnav links
               foreach($subnavTitle->children as $subnavItem) {
                 $icon = "";
                 if ($subnavItem->template->name === "external-link") {
@@ -55,48 +55,49 @@
                 }
                 echo "<a class='$subLinkClass' href='$subnavItem->url'>$subnavItem->title $icon</a>";
               }
-              // end subnav columns
+              // End subnav columns
               echo "</div>";
             }
-            // end subnav
+            // End subnav
             echo "</nav>";
           }
         }
         $lowVisionText = $_SESSION['lowVision'] ? ' обычная версия' : ' версия для слабовидящих';
       ?>
-
+      <!-- Low-vision button -->
       <a href='<?php echo $page->url ?>' class="nav-primary__link toggle-low-vision hide-sm">
         <i class='icon-low-vision'></i>
         <span class='toggle-low-vision__span'><?php echo $lowVisionText ?></span>
       </a>
     </nav>
 
-      <!-- кнопка мобильного меню -->
-      <button class="menu-btn hide-lg">
-        <i class="menu-btn__icon icon-menu"></i>
-      </button>
+    <!-- Navigation menu button (mobile) -->
+    <button class="menu-btn hide-lg">
+      <i class="menu-btn__icon icon-menu"></i>
+    </button>
 
+    <!-- Homepage register button (desktop) -->
     <?php if ($page->template->name === "home"): ?>
-    <a class="header__register-btn action-btn hide-sm" href="/check-in-form">Записаться на заезд</a>
-
+      <a class="header__register-btn action-btn hide-sm" href="/check-in-form/">Записаться на заезд</a>
     <?php endif; ?>
 
   </header>
-
+  <!-- Breadcrumbs (parents pages) -->
   <div id="bread" class="bread">
   <?php
     foreach($page->parents as $breadItem) {
-      echo "<a href='$breadItem->url'>$breadItem->title</a><span>/</span>";
+      echo "<a class='bread__link' href='$breadItem->url'>$breadItem->title</a><span class='bread__separator'>/</span>";
     }
   ?>
-    <span><?php echo $page->title ?></span>
-    <?php if($page->editable()) echo "<a class='page-edit-link' href='$page->editUrl'>Редактировать страницу</a>"; ?>
+    <span class="bread__current"><?php echo $page->title ?></span>
+    <!-- Edit in admin panel link -->
+    <?php if($page->editable()) echo "<a class='page-edit-link' href='$page->editUrl'>Править</a>"; ?>
   </div>
 
   <main class="main">
 
+  <!-- Homepage register button (mobile) -->
   <?php if ($page->template->name === "home"): ?>
-    <!-- ВОЛШЕБНАЯ КНОПКА -->
     <section class="register-section hide-lg">
       <a class="action-btn" href="/check-in-form">Записаться на заезд</a>
     </section>
