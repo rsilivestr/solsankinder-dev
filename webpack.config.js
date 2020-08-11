@@ -1,0 +1,72 @@
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  mode: 'production',
+  entry: {
+    app: './src/js/index.js',
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'scripts/app.min.js',
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: 'static', to: path.resolve(__dirname, 'dist') },
+        {
+          from: 'src/php/**/*',
+          to: path.resolve(__dirname, 'dist'),
+          flatten: true,
+        },
+      ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles/styles.min.css',
+      ignoreOrder: false,
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
+        test: /\.scss$/i,
+        include: path.resolve(__dirname, 'src/sass'),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: path.resolve(__dirname, 'dist/styles'),
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+            },
+          },
+          // {
+          //   loader: "postcss-loader",
+          //   options: {
+          //     ident: "postcss",
+          //     plugins: [require("autoprefixer")],
+          //   },
+          // },
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+};

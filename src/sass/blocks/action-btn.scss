@@ -1,0 +1,23 @@
+.action-btn {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  background-color: #fb0;
+  color: #fff;
+  border-radius: 0.25rem;
+
+  &--secondary {
+    background-color: #50c0e0;
+    padding: 0.75rem 1rem;
+    margin: auto;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  &:hover {
+    background-color: #30a0c0;
+  }
+}

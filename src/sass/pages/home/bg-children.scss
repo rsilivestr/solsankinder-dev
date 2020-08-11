@@ -1,0 +1,22 @@
+#bg-children-1 {
+  background-image: url('/site/assets/images/bg-children-1.jpg');
+}
+
+#bg-children-2 {
+  background-image: url('/site/assets/images/bg-children-2.jpg');
+}
+
+.bg-children {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .bg-children {
+    display: flex;
+    align-items: center;
+    height: 15rem;
+    margin: 1.5rem 0;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}

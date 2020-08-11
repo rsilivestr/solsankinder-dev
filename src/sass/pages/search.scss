@@ -1,0 +1,49 @@
+@use '../colors';
+
+// поиск
+.search-form {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0 auto 2.5rem;
+  border: 1px solid #ccc;
+  max-width: 900px;
+}
+input,
+button {
+  display: inline-block;
+  padding: 0.75rem;
+  font-size: 1.25rem;
+  overflow: auto;
+}
+input {
+  flex: 9 5 auto;
+}
+button {
+  flex: 1 1 auto;
+  min-width: 90px;
+  background-color: colors.$yellow-vivid;
+  cursor: pointer;
+
+  &:hover {
+    background-color: colors.$yellow-darker;
+  }
+}
+
+// результаты поиска
+.search section .nav {
+  font-size: 1.25rem;
+
+  .summary {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  li {
+    line-height: 2;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

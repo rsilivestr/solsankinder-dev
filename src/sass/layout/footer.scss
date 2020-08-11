@@ -1,0 +1,66 @@
+@use '../colors';
+
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+
+  &-nav {
+    padding: 24px 12px 12px;
+    background-color: colors.$footer-color;
+
+    &__link {
+      display: inline-block;
+      padding: 4px;
+      margin: 0 12px;
+      line-height: 1.5rem;
+      color: #fff;
+
+      &:hover {
+        color: #cfe2e8;
+      }
+    }
+  }
+
+  &-officials {
+    position: relative;
+    padding: 0.75rem 0.75rem 1rem;
+    // text-align: center;
+    background-color: colors.$footer-color;
+
+    &__banner {
+      display: inline-block;
+      height: 100px;
+      margin: 0.25rem;
+      border: 1px solid #e0e0e0;
+      max-width: 100%;
+    }
+  }
+
+  &-copy {
+    background-color: colors.$yellow-vivid;
+
+    &__para {
+      line-height: 3rem;
+    }
+  }
+}
+#ban_gu {
+  width: 235px;
+  background: url('/site/assets/images/ban1.png') 0 0;
+}
+#ban_miac {
+  width: 300px;
+  background: url('/site/assets/images/ban1.png') -235px 0;
+}
+#ban_poll {
+  width: 355px;
+  background: url('/site/assets/images/ban1.png') -535px 0;
+}
+@media screen and (min-width: 768px) {
+  .low-vision {
+    .footer-nav__link,
+    .footer-copy__para {
+      font-size: 1.5rem;
+    }
+  }
+}

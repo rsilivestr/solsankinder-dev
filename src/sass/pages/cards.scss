@@ -1,0 +1,22 @@
+@use '../colors';
+
+.card-tiles {
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  &__tile {
+    width: 100%;
+    margin: 0.75rem 0;
+    border: 2px solid colors.$yellow-pale;
+    text-align: center;
+  }
+  img {
+    display: block;
+    width: 100%;
+  }
+  div {
+    padding: 0.5rem 0;
+    background: colors.$yellow-pale;
+    overflow: auto;
+  }
+}
