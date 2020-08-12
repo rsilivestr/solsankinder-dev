@@ -1,0 +1,42 @@
+@use 'ScssUtil/forward' as fw;
+
+.iconic-links-row {
+  display: flex;
+  flex-flow: row wrap;
+  text-transform: uppercase;
+  justify-content: flex-start;
+  padding-top: 1rem;
+}
+
+.iconic-link {
+  width: 50%;
+  padding: 0 0 2rem 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  word-break: break-word;
+  border-radius: 1.5rem;
+  color: #333;
+
+  @media screen and (min-width: 768px) {
+    width: 33.33%;
+  }
+  @media screen and (min-width: 900px) {
+    width: 25%;
+  }
+  @media screen and (min-width: 1050px) {
+    width: 20%;
+  }
+
+  &:hover {
+    background: rgba(155, 100, 0, 0.05);
+  }
+
+  svg {
+    fill: #ffc0a0;
+  }
+
+  .iconic-link__caption {
+    display: block;
+    padding: 0 1rem;
+  }
+}

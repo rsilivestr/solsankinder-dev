@@ -1,11 +1,11 @@
 <?php namespace ProcessWire;
 
-$content = "<section>{$page->sections[0]->body}</section>";
+$content = "<section class='section--basic'>{$page->sections[0]->body}</section>";
 
 // <p><strong>На данный момент в санатории<br>на лечении находится детей: $patientCountArray[0]</strong><br>Число взято из медицинской информационной системы \"САМСОН-ВИСТА\"<br>и обновляется каждый час.</p>
 
 //профили санатория
-$content .= "<section id='unit-iconic-links'>
+$content .= "<section id='unit-iconic-links' class='section--basic'>
 	<h2>Профили лечения</h2>
 	<div class='iconic-links-row flex-container'>
 		<a class='iconic-link' href='/info/courses/gastroenterology/'>
@@ -43,14 +43,14 @@ $content .= "<section id='unit-iconic-links'>
 
 // фото детей 1
 $content .= "<div id='bg-children-1' class='bg-children hide-sm'>
-	<a class='action-btn action-btn--secondary' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
+	<a class='action-btn action-btn--secondary btn-color-second' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
 		Анкета оценки качества оказания услуг
 	</a>
 </div>";
 
 // галерея
 $pwpswp = $modules->get('MarkupProcesswirePhotoswipe');
-$content .="<section>
+$content .="<section class='section--basic'>
 	{$pwpswp->renderGallery($page->gallery)}
 	<a href='#' class='gal-control gal-prev'><span></span></a>
 	<a  href='#' class='gal-control gal-next'><span></span></a>
@@ -58,47 +58,58 @@ $content .="<section>
 
 // фото детей 2
 $content .= "<div id='bg-children-2' class='bg-children hide-sm'>
-	<a class='action-btn action-btn--secondary' href='https://bus.gov.ru/pub/info-card/170512?activeTab=5'>
+	<a class='action-btn action-btn--secondary btn-color-second' href='https://bus.gov.ru/pub/info-card/170512?activeTab=5'>
 		Оставьте отзыв о работе санатория
 	</a>
 </div>";
 
 // блок новостей
-$content .= "<section id='blog-spotlight'><h2>Новости</h2><div class='flex-container'>";
-foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost){
-	// подготовка картинок
-	if($blogPost->images->count()){
-		$previewImg = $blogPost->images->first();
-		$previewAlt = $previewImg->description ? $previewImg->description : "превью новости";
-		$thumb_sm = $previewImg->size('444', '333');
-		
-		$content .= "<article class='blog-post-preview'>
-		<h3><a href='$blogPost->url'>$blogPost->title</a></h3>
-		<img class='lazy'
-			src='{$previewImg->url}'
-			srcset='{$config->urls->assets}images/4x3.png'
-			data-srcset='$thumb_sm->url 440w'
-			alt='$previewAlt'
-		><p>$blogPost->summary</p>
-		<p class='blog-date'>$blogPost->postDate</p>
-		</article>";
-	}
-}
+$content .= "<section class='home-news section--basic'>
+	<h2 class='home-news__title'>Новости</h2>
+	<div class='home-news__content'>";
+
+		foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost) {
+			if($blogPost->images->count()){
+				$previewImg = $blogPost->images->first();
+				$previewAlt = $previewImg->description ? $previewImg->description : "превью новости";
+				$thumb_sm = $previewImg->size('444', '333');
+				
+				$content .= "<article class='post-card'>
+					<h3 class='post-card__title'><a href='$blogPost->url'>$blogPost->title</a></h3>
+					<div class='post-card__body'>
+						<div class='post-card__image-container'>
+							<img class='post-card__image lazy'
+								src='{$previewImg->url}'
+								srcset='{$config->urls->assets}images/4x3.png'
+								data-srcset='$thumb_sm->url 440w'
+								alt='$previewAlt'
+							></div>
+						<div class='post-card__content'>
+							<p class='post-card__summary'>$blogPost->summary</p>
+							<p class='post-card__date'>$blogPost->postDate</p>
+						</div>
+					</div>
+				</article>";
+			}
+		}
 $content .= "</div></section>";
 
 // видео
-$content .= "<section id='video-description'>
-	<div class='align_left'>
-	<iframe
-		class='lazy'
-		width='560'
-		height='315'
-		data-src='https://www.youtube-nocookie.com/embed/WNi9F3brZJM'
-		frameborder='0'
-		allow='accelerometer; encrypted-media; gyroscope;'>
-	</iframe>
+$content .= "<section class='home-about section--basic'>
+	<h2 class='home-about__title'>О санатории</h2>
+
+	<div class='home-about__content'>
+		<div class='home-about__video'>
+			<iframe
+				class='lazy'
+				width='560'
+				height='315'
+				data-src='https://www.youtube-nocookie.com/embed/WNi9F3brZJM'
+			></iframe>
+		</div>
+		<div class='home-about__text-content'>
+			<p class='home-about__desctiption'>СПб ГБУЗ «Детский санаторий «Солнечное» располагается в поселке Солнечное Курортного района Санкт-Петербурга в 33 зданиях и сооружениях на территории 45 гектаров.</p>
+			<a class='home-about__btn action-btn btn-color-main' href='/info/common/about/'>Подробнее</a>
+		</div>
 	</div>
-	<h2>О санатории</h2>
-	<p>СПб ГБУЗ «Детский санаторий «Солнечное» располагается в поселке Солнечное Курортного района Санкт-Петербурга в 33 зданиях и сооружениях на территории 45 гектаров.</p>
-	<p><a href='/info/common/about/'>Подробнее</a></p>
 </section>";

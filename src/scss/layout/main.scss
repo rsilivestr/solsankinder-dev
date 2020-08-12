@@ -1,5 +1,5 @@
 @use 'ScssUtil/forward' as fw;
-@use './main/article';
+@use 'ScssBlocks/article';
 
 .main {
   flex: auto;

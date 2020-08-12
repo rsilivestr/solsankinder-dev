@@ -21,9 +21,9 @@
   <script async src="<?php echo $config->urls->templates; ?>scripts/app.min.js"></script>
 </head>
 <body class="<?php echo $page->template . ' ' . $isLowVisionActive; ?>">
-  <header class="main-header">
+  <header class="main-header<?php if ($page->template->name === "home") echo " main-header--home" ?>">
     <!-- Main navigation bar -->
-    <nav class="nav-primary">
+    <nav class="nav-primary<?php if ($page->template->name === "home") echo " nav-primary--home" ?>">
       <img 
         class="nav-primary__logo"
         src='<?php echo $config->urls->assets ?>images/logo2.svg'
@@ -79,7 +79,7 @@
 
     <!-- Homepage register button (desktop) -->
     <?php if ($page->template->name === "home"): ?>
-      <a class="header__register-btn action-btn hide-sm" href="/check-in-form/">Записаться на заезд</a>
+      <a class="main-header__register-btn action-btn btn-color-second hide-sm" href="/check-in-form/">Записаться на заезд</a>
     <?php endif; ?>
 
   </header>
@@ -97,9 +97,9 @@
 
   <main class="main">
 
-  <!-- Homepage register button (mobile) -->
+  <!-- Homepage register button (mobile, low vision) -->
   <?php if ($page->template->name === "home"): ?>
     <section class="register-section hide-lg">
-      <a class="action-btn" href="/check-in-form">Записаться на заезд</a>
+      <a class="action-btn btn-color-main" href="/check-in-form">Записаться на заезд</a>
     </section>
   <?php endif; ?>
