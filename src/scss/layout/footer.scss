@@ -1,19 +1,22 @@
 @use 'ScssUtil/forward' as fw;
 
 .footer {
-  // margin-top: 1.5rem;
   text-align: center;
 
-  &-nav {
-    padding: 24px 12px 12px;
+  &__top {
+    padding: 1.5rem 0.75rem;
     background-color: fw.$footer-color;
+  }
+
+  &-nav {
+    margin-bottom: 1.5rem;
 
     &__link {
       display: inline-block;
-      padding: 4px;
-      margin: 0 12px;
-      line-height: 1.5rem;
+      margin: 0 1rem;
+      line-height: 1.75;
       color: #fff;
+      text-decoration: none;
 
       &:hover {
         color: #cfe2e8;
@@ -23,9 +26,9 @@
 
   &-officials {
     position: relative;
-    padding: 0.75rem 0.75rem 1rem;
-    // text-align: center;
-    background-color: fw.$footer-color;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 
     &__banner {
       display: inline-block;
@@ -40,7 +43,8 @@
     background-color: fw.$yellow-vivid;
 
     &__para {
-      line-height: 3rem;
+      margin: 0;
+      padding: 1.5rem 0.75rem;
     }
   }
 }

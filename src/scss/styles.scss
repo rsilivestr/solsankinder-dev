@@ -106,10 +106,10 @@ $footer-color: #2f4248;
 //   }
 // }
 
-.flex-container {
-  @extend %flexbox;
-  flex-direction: column;
-}
+// .flex-container {
+//   @extend %flexbox;
+//   flex-direction: column;
+// }
 
 // .file-pdf::before,
 // .file-word::before,
@@ -167,15 +167,15 @@ $footer-color: #2f4248;
 //   content: '\f08e';
 // }
 
-.map-link {
-  display: block;
-  width: 100%;
+// .map-link {
+//   display: block;
+//   width: 100%;
 
-  img {
-    display: block;
-    width: 100%;
-  }
-}
+//   img {
+//     display: block;
+//     width: 100%;
+//   }
+// }
 
 // .action-btn {
 //   position: relative;
@@ -335,6 +335,7 @@ $footer-color: #2f4248;
 .header__register-btn {
   display: none;
 }
+
 // горизонтальная навигация / заголовок
 // #bread {
 //   position: fixed;
@@ -865,47 +866,47 @@ main .blog-post,
 // }
 
 // галерея на базовых страницах
-.basic-gallery {
-  position: relative;
-  padding: 0.75rem;
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+// .basic-gallery {
+//   position: relative;
+//   padding: 0.75rem;
+//   max-width: 800px;
+//   margin: 0 auto;
+//   text-align: center;
 
-  figcaption {
-    display: block;
-    position: absolute;
-    bottom: 1rem;
-    left: 0.75rem;
-    right: 0.75rem;
-    padding: 16px 8px;
-    font-weight: bold;
-    color: #fff;
-    background: rgba(0, 0, 0, 0.5);
-  }
-}
+//   figcaption {
+//     display: block;
+//     position: absolute;
+//     bottom: 1rem;
+//     left: 0.75rem;
+//     right: 0.75rem;
+//     padding: 16px 8px;
+//     font-weight: bold;
+//     color: #fff;
+//     background: rgba(0, 0, 0, 0.5);
+//   }
+// }
 
-.gallery-thumbs {
-  @extend %flexbox;
-  flex-flow: row wrap;
-  height: 100%;
-  justify-content: center;
-  padding-bottom: 0.75rem;
+// .gallery-thumbs {
+//   @extend %flexbox;
+//   flex-flow: row wrap;
+//   height: 100%;
+//   justify-content: center;
+//   padding-bottom: 0.75rem;
 
-  img {
-    min-width: 80px;
-    max-width: 24%;
-  }
+//   img {
+//     min-width: 80px;
+//     max-width: 24%;
+//   }
 
-  img:not(:last-child) {
-    margin-right: 1%;
-  }
-}
+//   img:not(:last-child) {
+//     margin-right: 1%;
+//   }
+// }
 
-.gallery-current {
-  width: 100%;
-  max-width: 800px;
-}
+// .gallery-current {
+//   width: 100%;
+//   max-width: 800px;
+// }
 
 // // страница карточек
 // .card-tiles {
@@ -951,52 +952,52 @@ main .blog-post {
 }
 
 // номера страниц
-.MarkupPagerNav {
-  @extend %flexbox;
-  flex-flow: row nowrap;
-  justify-content: center;
-  // отступы верхней строки страниц
-  &:nth-of-type(1) {
-    margin: 1.5rem 0 1rem;
-  }
-  // отступы нижней строки страниц
-  &:nth-of-type(2) {
-    margin: 1.5rem 0 0.5rem;
-  }
-  // номера
-  li {
-    list-style: none;
-    padding: 0;
-    margin-right: 0.5rem;
+// .MarkupPagerNav {
+//   @extend %flexbox;
+//   flex-flow: row nowrap;
+//   justify-content: center;
+//   // отступы верхней строки страниц
+//   &:nth-of-type(1) {
+//     margin: 1.5rem 0 1rem;
+//   }
+//   // отступы нижней строки страниц
+//   &:nth-of-type(2) {
+//     margin: 1.5rem 0 0.5rem;
+//   }
+//   // номера
+//   li {
+//     list-style: none;
+//     padding: 0;
+//     margin-right: 0.5rem;
 
-    a,
-    &.MarkupPagerNavSeparator {
-      display: block;
-      padding: 6px 13px;
-      border-radius: 50%;
-      color: #303030;
-      background: #ffc044;
-      font-size: 16px;
-      font-weight: bold;
-      text-transform: uppercase;
-      border: 1px solid $c0;
-      // text-decoration: none;
-    }
+//     a,
+//     &.MarkupPagerNavSeparator {
+//       display: block;
+//       padding: 6px 13px;
+//       border-radius: 50%;
+//       color: #303030;
+//       background: #ffc044;
+//       font-size: 16px;
+//       font-weight: bold;
+//       text-transform: uppercase;
+//       border: 1px solid $c0;
+//       // text-decoration: none;
+//     }
 
-    &.MarkupPagerNavSeparator {
-      color: #777;
-      background: #d2e4ea;
-      padding-left: 3px;
-      padding-right: 3px;
-    }
-  }
-}
-.MarkupPagerNav li.MarkupPagerNavOn a,
-.MarkupPagerNav li a:hover {
-  color: #fff;
-  background: #db1174;
-  background: #ff4500;
-}
+//     &.MarkupPagerNavSeparator {
+//       color: #777;
+//       background: #d2e4ea;
+//       padding-left: 3px;
+//       padding-right: 3px;
+//     }
+//   }
+// }
+// .MarkupPagerNav li.MarkupPagerNavOn a,
+// .MarkupPagerNav li a:hover {
+//   color: #fff;
+//   background: #db1174;
+//   background: #ff4500;
+// }
 
 // страница статьи блога
 .img-row {
@@ -1008,23 +1009,23 @@ main .blog-post {
   }
 }
 
-.hide-sm {
-  display: none;
-}
+// .hide-sm {
+//   display: none;
+// }
 
-.hide-md {
-  display: none;
-}
+// .hide-md {
+//   display: none;
+// }
 
 // стили для десктопа
 @media screen and (min-width: 768px) {
-  .hide-sm {
-    display: block;
-  }
+  // .hide-sm {
+  //   display: block;
+  // }
 
-  .hide-lg {
-    display: none;
-  }
+  // .hide-lg {
+  //   display: none;
+  // }
 
   // header {
   //   min-height: 0;
@@ -1055,57 +1056,57 @@ main .blog-post {
   //   box-shadow: 0 0 2.5rem #303030 inset;
   // }
 
-  #welcome-title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 150%;
-    position: absolute;
-    text-align: left;
-    color: $yellow-pale;
-    font-weight: 900;
-    bottom: 105px;
-    left: 205px;
-    -webkit-text-stroke: 1px #ff8544;
-  }
+  // #welcome-title {
+  //   font-family: 'Times New Roman', Times, serif;
+  //   font-size: 150%;
+  //   position: absolute;
+  //   text-align: left;
+  //   color: $yellow-pale;
+  //   font-weight: 900;
+  //   bottom: 105px;
+  //   left: 205px;
+  //   -webkit-text-stroke: 1px #ff8544;
+  // }
 
-  #welcome-title h1 {
-    margin-top: 20px;
-    margin-left: 30px;
-  }
+  // #welcome-title h1 {
+  //   margin-top: 20px;
+  //   margin-left: 30px;
+  // }
 
-  #welcome-title h1::first-letter {
-    color: transparent;
-    -webkit-text-stroke: transparent;
-    font-size: 1px;
-  }
+  // #welcome-title h1::first-letter {
+  //   color: transparent;
+  //   -webkit-text-stroke: transparent;
+  //   font-size: 1px;
+  // }
 
-  #welcome-title h2 {
-    margin-left: 38px;
-  }
+  // #welcome-title h2 {
+  //   margin-left: 38px;
+  // }
 
-  #logo-wrap *::selection {
-    background: transparent;
-    color: inherit;
-  }
+  // #logo-wrap *::selection {
+  //   background: transparent;
+  //   color: inherit;
+  // }
 
-  .map-link {
-    width: 50%;
-    max-width: 600px;
-  }
+  // .map-link {
+  //   width: 50%;
+  //   max-width: 600px;
+  // }
 
-  #logo-wrap {
-    display: block;
-    position: relative;
-    height: 100%;
-    min-height: 600px;
+  // #logo-wrap {
+  //   display: block;
+  //   position: relative;
+  //   height: 100%;
+  //   min-height: 600px;
 
-    img {
-      position: absolute;
-      left: 0;
-      bottom: 70px;
-      height: 200px;
-      padding: 0 1rem;
-    }
-  }
+  //   img {
+  //     position: absolute;
+  //     left: 0;
+  //     bottom: 70px;
+  //     height: 200px;
+  //     padding: 0 1rem;
+  //   }
+  // }
 
   // волшебная кнопка
   .register-section {
@@ -1264,38 +1265,38 @@ main .blog-post {
   //   right: 1rem;
   // }
 
-  main {
-    margin-top: 0;
-  }
+  // main {
+  //   margin-top: 0;
+  // }
 
-  section {
-    padding: 1.5rem 0;
+  // section {
+  //   padding: 1.5rem 0;
 
-    h1 {
-      margin-bottom: 2.5rem;
-    }
+  //   h1 {
+  //     margin-bottom: 2.5rem;
+  //   }
 
-    ul {
-      margin-left: 2rem;
-    }
-  }
+  //   ul {
+  //     margin-left: 2rem;
+  //   }
+  // }
 
-  #logo-wrap,
-  section {
-    width: calc(100% - 3rem);
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  // #logo-wrap,
+  // section {
+  //   width: calc(100% - 3rem);
+  //   max-width: 900px;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  // }
 
-  .section--wide {
-    max-width: 1400px;
-  }
+  // .section--wide {
+  //   max-width: 1400px;
+  // }
 
-  .blog section {
-    max-width: 900px;
-    line-height: 1.5;
-  }
+  // .blog section {
+  //   max-width: 900px;
+  //   line-height: 1.5;
+  // }
 
   // #bg-children-1,
   // #bg-children-2 {
@@ -1315,9 +1316,9 @@ main .blog-post {
   //   background-image: url('/site/assets/images/bg-children-1.jpg');
   // }
 
-  #bg-children-2 {
-    background-image: url('/site/assets/images/bg-children-2.jpg');
-  }
+  // #bg-children-2 {
+  //   background-image: url('/site/assets/images/bg-children-2.jpg');
+  // }
 
   // галерея на главной
   .pwpswp-gallery__inner {
@@ -1392,6 +1393,7 @@ main .blog-post {
 
       img {
         flex: 1 1 160px;
+        max-height: 300px;
       }
 
       div {

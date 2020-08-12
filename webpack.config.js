@@ -57,13 +57,14 @@ module.exports = {
               url: false,
             },
           },
-          // {
-          //   loader: "postcss-loader",
-          //   options: {
-          //     ident: "postcss",
-          //     plugins: [require("autoprefixer")],
-          //   },
-          // },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              // plugins: [require('autoprefixer')],
+              plugins: (loader) => [require('postcss-preset-env')()],
+            },
+          },
           'sass-loader',
         ],
       },

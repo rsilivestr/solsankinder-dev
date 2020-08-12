@@ -6,11 +6,13 @@
 
 // blocks;
 @use './blocks/action-btn';
+@use './blocks/basic-gallery';
 @use './blocks/menu-btn';
 @use './blocks/table.scss';
 
 // pages
 @use './pages/cards';
+@use './pages/blog';
 @use './pages/blog-post';
 @use './pages/home';
 @use './pages/search';
@@ -20,4 +22,5 @@
 @use './misc/common';
 @use './misc/links';
 @use './misc/print';
+@use './misc/typo';
 @use './misc/visibility.scss';

@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?php echo $title; ?></title>
   <meta name="description" content="<?php echo $page->summary; ?>" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" > 
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/styles.min.css" />
   <?php

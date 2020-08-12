@@ -10,15 +10,16 @@ $content = "<article class='$aClass'>
 
 // basic-page gallery
 if($page->renderGallery && $page->images->count()) {
-  $content .= "<div class='basic-gallery'><div class='gallery-thumbs'>";
+  $thumbs = "";
 
   foreach($page->images as $image) {
     $thumb = $image->size('160', '120');
     $xs = $image->size('400', '300');
     $sm = $image->size('600', '450');
     $md = $image->size('800', '600');
-    $content .= "<img 
-      class='gallery-thumb lazy'
+
+    $thumbs .= "<img 
+      class='basic-gallery__thumb lazy'
       src='$image->url'
       data-srcset='$thumb->url 160w,
         $xs->url 400w,
@@ -28,12 +29,20 @@ if($page->renderGallery && $page->images->count()) {
       data-caption='$image->description'>";
   }
 
-  $content .= "</div><img width='100%'
-    class='gallery-current'
-    src='{$page->images->first()->size("600", "450")->url}'
-    sizes='(max-width: 400px) 400px,
-    (max-width: 624px) 600px,
-    (min-width: 625px) 800px'>";
-    
-  $content .= "<figcaption>" . $page->images->first()->description . "</figcaption></div>";
+  $content .= "<div class='basic-gallery'>
+    <div class='basic-gallery__thumbs'>
+      $thumbs
+    </div>
+    <div class='basic-gallery__display'>
+      <img width='100%'
+        class='basic-gallery__current'
+        src='{$page->images->first()->size("600", "450")->url}'
+        sizes='(max-width: 400px) 400px,
+        (max-width: 624px) 600px,
+        (min-width: 625px) 800px'>
+      <figcaption class='basic-gallery__caption'>
+        {$page->images->first()->description}
+      </figcaption>
+    </div>
+  </div>";
 }
