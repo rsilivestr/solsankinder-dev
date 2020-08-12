@@ -1,6 +1,6 @@
 <?php namespace ProcessWire;
 
-$content = "<article class='article article--type_basic blog-post'>
+$content = "<article class='article article--basic blog-post'>
   <h1>$title</h1>
   $page->body
   <p class='blog-post__date'>$page->postDate</p>";

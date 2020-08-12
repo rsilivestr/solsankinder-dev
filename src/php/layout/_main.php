@@ -9,7 +9,6 @@ if(isset($_POST['lowVision'])) {
 	$_SESSION['lowVision'] = !($_SESSION['lowVision']);
 }
 
-// if (!$_POST['fetch']) {
 if (!$config->ajax) {
 	include('_head.php');
 

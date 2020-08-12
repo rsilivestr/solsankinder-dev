@@ -336,96 +336,96 @@ $footer-color: #2f4248;
   display: none;
 }
 // горизонтальная навигация / заголовок
-#bread {
-  position: fixed;
-  width: 100%;
-  @extend %flexbox;
-  flex-flow: row wrap;
-  padding: 0.75rem;
-  background: $yellow-vivid;
-  border-bottom: 2px solid #333;
-  z-index: 9;
+// #bread {
+//   position: fixed;
+//   width: 100%;
+//   @extend %flexbox;
+//   flex-flow: row wrap;
+//   padding: 0.75rem;
+//   background: $yellow-vivid;
+//   border-bottom: 2px solid #333;
+//   z-index: 9;
 
-  span,
-  a {
-    padding: 0.25rem 0;
-    margin-right: 0.25rem;
-    color: #333;
-  }
+//   span,
+//   a {
+//     padding: 0.25rem 0;
+//     margin-right: 0.25rem;
+//     color: #333;
+//   }
 
-  span:last-of-type {
-    font-weight: bold;
-  }
+//   span:last-of-type {
+//     font-weight: bold;
+//   }
 
-  span:not(:last-of-type),
-  a {
-    display: none;
-  }
-}
+//   span:not(:last-of-type),
+//   a {
+//     display: none;
+//   }
+// }
 
 // стили статей
-main {
-  flex-grow: 1;
-}
+// main {
+//   flex-grow: 1;
+// }
 
-section {
-  position: relative;
-  padding: 0.75rem;
+// section {
+//   position: relative;
+//   padding: 0.75rem;
 
-  h1 {
-    font-size: 2rem;
-    margin: 1.25rem 0 2rem;
-  }
+//   h1 {
+//     font-size: 2rem;
+//     margin: 1.25rem 0 2rem;
+//   }
 
-  h2 {
-    margin: 0 0 0.75rem;
-  }
+//   h2 {
+//     margin: 0 0 0.75rem;
+//   }
 
-  h3 {
-    margin: 1.25rem 0 0.5rem;
-  }
+//   h3 {
+//     margin: 1.25rem 0 0.5rem;
+//   }
 
-  h4 {
-    margin: 1rem 0 0.25rem;
-  }
+//   h4 {
+//     margin: 1rem 0 0.25rem;
+//   }
 
-  img {
-    max-width: 100%;
-  }
+//   img {
+//     max-width: 100%;
+//   }
 
-  p a,
-  li a {
-    color: #4466c0;
-    text-decoration: underline;
-  }
+//   p a,
+//   li a {
+//     color: #4466c0;
+//     text-decoration: underline;
+//   }
 
-  p,
-  ul,
-  ol {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-  }
+//   p,
+//   ul,
+//   ol {
+//     margin-bottom: 0.5rem;
+//     line-height: 1.5;
+//   }
 
-  ul {
-    margin-left: 1rem;
-    list-style-type: square;
+//   ul {
+//     margin-left: 1rem;
+//     list-style-type: square;
 
-    &.nav-list li {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
-      text-decoration: underline;
-    }
-  }
+//     &.nav-list li {
+//       padding-top: 0.25rem;
+//       padding-bottom: 0.25rem;
+//       text-decoration: underline;
+//     }
+//   }
 
-  ol {
-    margin-left: 2rem;
-  }
+//   ol {
+//     margin-left: 2rem;
+//   }
 
-  li {
-    line-height: 1.5;
-    padding-left: 0.5rem;
-  }
-}
+//   li {
+//     line-height: 1.5;
+//     padding-left: 0.5rem;
+//   }
+// }
 
 // .footer {
 //   margin-top: 1.5rem;
@@ -648,26 +648,26 @@ main .blog-post,
 }
 
 // карта сайта
-.sitemap section {
-  a {
-    text-decoration: underline;
-  }
+// .sitemap section {
+//   a {
+//     text-decoration: underline;
+//   }
 
-  > a {
-    display: inline-block;
-    color: blue;
-    margin-bottom: 2.5rem;
-  }
+//   > a {
+//     display: inline-block;
+//     color: blue;
+//     margin-bottom: 2.5rem;
+//   }
 
-  > ul {
-    margin: 0;
-    list-style-type: none;
+//   > ul {
+//     margin: 0;
+//     list-style-type: none;
 
-    > li {
-      padding: 0;
-    }
-  }
-}
+//     > li {
+//       padding: 0;
+//     }
+//   }
+// }
 
 // // поиск
 // .search-form {
@@ -721,148 +721,148 @@ main .blog-post,
 // }
 
 // широкие таблицы
-table {
-  border-collapse: collapse;
-}
+// table {
+//   border-collapse: collapse;
+// }
 
 // мобильные версии таблиц
-@media screen and (max-width: 1400px) {
-  table.table-responsive {
-    display: block;
-    margin: 1.5rem 0;
+// @media screen and (max-width: 1400px) {
+//   table.table-responsive {
+//     display: block;
+//     margin: 1.5rem 0;
 
-    tbody {
-      display: block;
-      // width: 100%;
-    }
+//     tbody {
+//       display: block;
+//       // width: 100%;
+//     }
 
-    tr {
-      display: -webkit-box;
-      display: -moz-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      flex-flow: row wrap;
-      border-bottom: 1px solid #ccc;
+//     tr {
+//       display: -webkit-box;
+//       display: -moz-box;
+//       display: -webkit-flex;
+//       display: -ms-flexbox;
+//       display: flex;
+//       flex-flow: row wrap;
+//       border-bottom: 1px solid #ccc;
 
-      td:first-child {
-        padding-top: 12px;
-      }
+//       td:first-child {
+//         padding-top: 12px;
+//       }
 
-      td:last-child {
-        padding-bottom: 12px;
-      }
-    }
+//       td:last-child {
+//         padding-bottom: 12px;
+//       }
+//     }
 
-    thead {
-      display: none;
-    }
+//     thead {
+//       display: none;
+//     }
 
-    td {
-      // display: block;
-      padding: 4px 0;
-      width: 100%;
+//     td {
+//       // display: block;
+//       padding: 4px 0;
+//       width: 100%;
 
-      &:before {
-        font-weight: bold;
-        overflow: auto;
-      }
-    }
-  }
+//       &:before {
+//         font-weight: bold;
+//         overflow: auto;
+//       }
+//     }
+//   }
 
-  // таблица персонала
-  .table-staff {
-    tr td:first-child {
-      font-size: 125%;
-      font-weight: bold;
-    }
+//   // таблица персонала
+//   .table-staff {
+//     tr td:first-child {
+//       font-size: 125%;
+//       font-weight: bold;
+//     }
 
-    tr td:nth-child(2)::before {
-      content: 'Должность: ';
-    }
+//     tr td:nth-child(2)::before {
+//       content: 'Должность: ';
+//     }
 
-    tr td:nth-child(3)::before {
-      content: 'Образование: ';
-    }
+//     tr td:nth-child(3)::before {
+//       content: 'Образование: ';
+//     }
 
-    tr td:nth-child(5)::before {
-      content: 'Специальность: ';
-    }
+//     tr td:nth-child(5)::before {
+//       content: 'Специальность: ';
+//     }
 
-    tr td:nth-child(6)::before {
-      content: 'Год окончания: ';
-    }
+//     tr td:nth-child(6)::before {
+//       content: 'Год окончания: ';
+//     }
 
-    tr td:nth-child(7)::before {
-      content: 'Категория: ';
-    }
+//     tr td:nth-child(7)::before {
+//       content: 'Категория: ';
+//     }
 
-    tr td:nth-child(8)::before {
-      content: 'Сертификат: ';
-    }
-    tr:last-child {
-      border-bottom: 0;
-    }
-  }
+//     tr td:nth-child(8)::before {
+//       content: 'Сертификат: ';
+//     }
+//     tr:last-child {
+//       border-bottom: 0;
+//     }
+//   }
 
-  // таблица диагнозов по профилю
-  .table-diagnoses {
-    tr td:nth-child(1) {
-      display: none;
-    }
+//   // таблица диагнозов по профилю
+//   .table-diagnoses {
+//     tr td:nth-child(1) {
+//       display: none;
+//     }
 
-    tr td:nth-child(2)::before {
-      content: 'Код МКБ 10: ';
-    }
+//     tr td:nth-child(2)::before {
+//       content: 'Код МКБ 10: ';
+//     }
 
-    tr td:nth-child(3)::before {
-      content: 'Наименование: ';
-    }
+//     tr td:nth-child(3)::before {
+//       content: 'Наименование: ';
+//     }
 
-    tr td:nth-child(4)::before {
-      content: 'Форма, стадия, фаза, степень тяжести: ';
-    }
-  }
+//     tr td:nth-child(4)::before {
+//       content: 'Форма, стадия, фаза, степень тяжести: ';
+//     }
+//   }
 
-  // таблица вакансий
-  .table-jobs {
-    tr td:nth-child(1)::before {
-      content: 'Наименование профессии (специальности, должности): ';
-    }
+//   // таблица вакансий
+//   .table-jobs {
+//     tr td:nth-child(1)::before {
+//       content: 'Наименование профессии (специальности, должности): ';
+//     }
 
-    tr td:nth-child(2)::before {
-      content: 'Необходимое количество работников: ';
-    }
+//     tr td:nth-child(2)::before {
+//       content: 'Необходимое количество работников: ';
+//     }
 
-    tr td:nth-child(3)::before {
-      content: 'Квалификация: ';
-    }
+//     tr td:nth-child(3)::before {
+//       content: 'Квалификация: ';
+//     }
 
-    tr td:nth-child(4)::before {
-      content: 'Уровень заработной платы, руб.: ';
-    }
+//     tr td:nth-child(4)::before {
+//       content: 'Уровень заработной платы, руб.: ';
+//     }
 
-    tr td:nth-child(5)::before {
-      content: 'Меры социальной поддержки: ';
-    }
+//     tr td:nth-child(5)::before {
+//       content: 'Меры социальной поддержки: ';
+//     }
 
-    tr td:nth-child(6)::before {
-      content: 'График работы: ';
-    }
-  }
-}
+//     tr td:nth-child(6)::before {
+//       content: 'График работы: ';
+//     }
+//   }
+// }
 
-@media screen and (min-width: 1401px) {
-  thead * {
-    font-weight: bold;
-  }
+// @media screen and (min-width: 1401px) {
+//   thead * {
+//     font-weight: bold;
+//   }
 
-  table th,
-  table td {
-    border: 1px solid #888;
-    padding: 0.25rem 0.5rem;
-  }
-}
+//   table th,
+//   table td {
+//     border: 1px solid #888;
+//     padding: 0.25rem 0.5rem;
+//   }
+// }
 
 // галерея на базовых страницах
 .basic-gallery {
@@ -1562,17 +1562,17 @@ main .blog-post {
 }
 
 // таблица персонала на базовых страницах
-.table--style_unit-staff {
-  width: 100%;
-  max-width: 600px;
+// .table--style_unit-staff {
+//   width: 100%;
+//   max-width: 600px;
 
-  td {
-    border: none;
-    padding: 0 0 1rem 0;
-    vertical-align: top;
-    line-height: 1.8;
-  }
-}
+//   td {
+//     border: none;
+//     padding: 0 0 1rem 0;
+//     vertical-align: top;
+//     line-height: 1.8;
+//   }
+// }
 
 // версия для слабовидящих
 @media screen and (min-width: 768px) {
@@ -1703,11 +1703,11 @@ main .blog-post {
   }
 }
 
-@media print {
-  nav,
-  #menu-btn,
-  #bread,
-  footer {
-    display: none;
-  }
-}
+// @media print {
+//   nav,
+//   #menu-btn,
+//   #bread,
+//   footer {
+//     display: none;
+//   }
+// }

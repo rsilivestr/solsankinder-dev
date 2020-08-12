@@ -1,13 +1,13 @@
 <?php
 
 $content .= '
-<section id="check-in-form-section">
-  <h2>Форма предварительной регистрации на заезд</h2>
+<section id="check-in-form-section" class="section section--basic">
+  <h1>'.$page->title.'</h1>
   <p>Регистрация действительна только для пациентов, получивших санаторно-курортную карту в поликлинике</p>
 </section>
 
 <noscript>
-  <section>
+  <section class="section section--type_basic">
     <h3 style="color:red">Для корректной работы формы необходим браузер с поддержкой JavaScript</h3>
   </section>
 </noscript>

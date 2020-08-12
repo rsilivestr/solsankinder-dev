@@ -3,7 +3,7 @@
 $formAction = $pages->get('template=search')->url;
 $formValue = $sanitizer->entities($input->whitelist('q'));
 
-$content = "<section class='section section--type_basic'>
+$content = "<section class='section section--basic'>
 	<h1>$title</h1>
 	<form class='search-form' action='$formAction' method='get'>
 		<input
@@ -64,13 +64,13 @@ if($q) {
 			$pageCase = "а";
 			$foundCase = "а";
 		}
-		$searchResults = "<section class='section section--type_basic'><h2>Нашл${foundCase}сь $count страниц$pageCase по вашему запросу:</h2>";
+		$searchResults = "<section class='section section--basic'><h2>Нашл${foundCase}сь $count страниц$pageCase по вашему запросу:</h2>";
 		// we'll use our renderNav function (in _func.php) to render the navigation
 		$searchResults .= renderNav($matches);
 		$content .= $searchResults . "</section>";
 	} else {
 		// we didn't find any
-		$content .= "<section class='section section--type_basic'>
+		$content .= "<section class='section section--basic'>
 			<h2>Поиск по вашему запросу не дал результатов</h2>
 		</section>";
 	}

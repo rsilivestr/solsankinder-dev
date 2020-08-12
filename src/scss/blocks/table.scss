@@ -1,0 +1,175 @@
+@use 'ScssUtil/forward' as fw;
+
+@mixin table-mobile {
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: flex;
+    flex-flow: row wrap;
+    border-bottom: 1px solid #ccc;
+    margin-top: 2rem;
+  }
+
+  td {
+    padding-bottom: 0.5rem;
+    width: 100%;
+
+    &:last-child {
+      padding-bottom: 2rem;
+    }
+
+    &:before {
+      font-weight: 700;
+      overflow: auto;
+    }
+  }
+}
+
+@mixin table-desktop {
+  th,
+  td {
+    border: 1px solid #888;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead * {
+  text-align: left;
+  font-weight: bold;
+}
+
+// таблица диагнозов по профилю
+.table-diagnoses {
+  $break: '1024px';
+  $break_m: '<=' + $break;
+  $break_d: '>' + $break;
+
+  @include fw.media($break_m) {
+    @include table-mobile;
+
+    td:nth-child(1) {
+      display: none;
+    }
+
+    td:nth-child(2)::before {
+      content: 'Код МКБ 10: ';
+    }
+
+    td:nth-child(3)::before {
+      content: 'Наименование: ';
+    }
+
+    td:nth-child(4)::before {
+      content: 'Форма, стадия, фаза, степень тяжести: ';
+    }
+  }
+
+  @include fw.media($break_d) {
+    @include table-desktop;
+  }
+}
+
+// таблица персонала
+.table-staff {
+  $break: '1400px';
+  $break_m: '<=' + $break;
+  $break_d: '>' + $break;
+
+  @include fw.media($break_m) {
+    @include table-mobile;
+
+    tr td:first-child {
+      font-size: 125%;
+      font-weight: bold;
+    }
+
+    tr td:nth-child(2)::before {
+      content: 'Должность: ';
+    }
+
+    tr td:nth-child(3)::before {
+      content: 'Образование: ';
+    }
+
+    tr td:nth-child(5)::before {
+      content: 'Специальность: ';
+    }
+
+    tr td:nth-child(6)::before {
+      content: 'Год окончания: ';
+    }
+
+    tr td:nth-child(7)::before {
+      content: 'Категория: ';
+    }
+
+    tr td:nth-child(8)::before {
+      content: 'Сертификат: ';
+    }
+    tr:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @include fw.media($break_d) {
+    @include table-desktop;
+  }
+}
+
+// таблица вакансий
+.table-jobs {
+  $break: '1024px';
+  $break_m: '<=' + $break;
+  $break_d: '>' + $break;
+
+  @include fw.media($break_m) {
+    @include table-mobile;
+
+    tr td:nth-child(1)::before {
+      content: 'Наименование профессии (специальности, должности): ';
+    }
+
+    tr td:nth-child(2)::before {
+      content: 'Необходимое количество работников: ';
+    }
+
+    tr td:nth-child(3)::before {
+      content: 'Квалификация: ';
+    }
+
+    tr td:nth-child(4)::before {
+      content: 'Уровень заработной платы, руб.: ';
+    }
+
+    tr td:nth-child(5)::before {
+      content: 'Меры социальной поддержки: ';
+    }
+
+    tr td:nth-child(6)::before {
+      content: 'График работы: ';
+    }
+  }
+
+  @include fw.media($break_d) {
+    @include table-desktop;
+  }
+}
+
+// таблицы на страницах отделений
+.table-unit-staff {
+  width: 100%;
+  max-width: 600px;
+
+  td {
+    border: none;
+    padding: 0 0 1rem 0;
+    vertical-align: top;
+    line-height: 1.8;
+  }
+}

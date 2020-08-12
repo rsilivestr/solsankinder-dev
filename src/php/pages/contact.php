@@ -4,7 +4,7 @@ include(dirname(__FILE__) . "/../../vendor/vlucas/valitron/src/Valitron/Validato
 
 $dice = $modules->get("FormDiceCaptcha");
 
-$content = "<section><h1>$title</h1>";
+$content = "<section class='section section--basic'><h1>$title</h1>";
 
 $name = $_POST['name'];
 $email = $_POST['email'];

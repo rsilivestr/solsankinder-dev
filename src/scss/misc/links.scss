@@ -1,21 +1,17 @@
-.file-pdf::before,
-.file-word::before,
-.file-excel::before,
-.external-url::before,
-.internal-url::before,
-.mail-url::before,
-.phone-url::before {
-  font-family: 'fontello';
-  display: inline-block;
-  margin-right: 0.25rem;
-}
-
 .file-pdf,
 .file-word,
 .file-excel,
 .external-url,
-.internal-url {
+.internal-url,
+.mail-url,
+.phone-url {
   text-decoration: underline;
+
+  &:before {
+    font-family: 'fontello';
+    display: inline-block;
+    margin-right: 0.25rem;
+  }
 }
 
 .file-pdf {
@@ -41,14 +37,21 @@
   }
 }
 
-.mail-url::before {
+// .mail-url,
+// .phone-url,
+// .internal-url,
+// .external-url {
+//   color: #4466c0;
+// }
+
+.mail-url:before {
   content: '\e800';
 }
 
-.phone-url::before {
+.phone-url:before {
   content: '\e803';
 }
 
-.external-url::before {
+.external-url:before {
   content: '\f08e';
 }

@@ -14,9 +14,10 @@
 @use './pages/blog-post';
 @use './pages/home';
 @use './pages/search';
+@use './pages/sitemap';
 
 // misc
 @use './misc/common';
-@use './misc/icons';
+@use './misc/links';
 @use './misc/print';
 @use './misc/visibility.scss';

@@ -1,7 +1,7 @@
 <?php
 
 if (!$user->hasRole('check-in')) {
-  $content = '<section>
+  $content = '<section class="section section--basic">
     <h2>Доступ запрещен. Войдите под учетной записью с соответствующими 
     правами доступа для просмотра данной страницы.</h2>
     <a class="check-in-login-btn" href="/adm/">Войти</a>

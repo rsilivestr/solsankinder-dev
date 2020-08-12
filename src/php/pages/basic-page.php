@@ -1,6 +1,6 @@
 <?php namespace ProcessWire;
 
-$aClass = "article article--type_basic";
+$aClass = "article article--basic";
 if ($page->wideContent) $aClass .= " article--wide";
 
 $content = "<article class='$aClass'>

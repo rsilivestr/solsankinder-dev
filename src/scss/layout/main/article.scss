@@ -4,29 +4,36 @@
 .article {
   line-height: 1.5;
 
-  h1,
-  h2,
-  h3 {
-    font-family: 'Times New Roman', Times, serif;
-  }
-
   h1 {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 2.25rem;
     margin-bottom: 3rem;
   }
 
+  h2,
+  h3,
+  h4 {
+    font-weight: 700;
+  }
+
   h2 {
     font-size: 1.75rem;
-    margin: 1rem 0;
+    margin: 3rem 0 1rem;
   }
 
   h3 {
-    font-size: 1.5rem;
-    margin: 1rem 0;
+    font-size: 1.1rem;
+    margin: 2rem 0 0.75rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    margin: 1rem 0 0.5rem;
   }
 
   p,
-  ul {
+  ul,
+  ol {
     margin-top: 0.5rem;
   }
 
@@ -39,7 +46,16 @@
     padding-left: 0.5rem;
   }
 
-  &--type_basic {
+  img {
+    max-width: 100%;
+  }
+
+  // a {
+  //   color: #4466c0;
+  //   text-decoration: underline;
+  // }
+
+  &--basic {
     max-width: 1024px;
     padding: 0 0.75rem;
     margin: 0 auto;

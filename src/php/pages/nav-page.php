@@ -1,8 +1,14 @@
 <?php namespace ProcessWire;
 
-$content = "<section><h1>$title</h1><ul class='nav-list'>";
+$list = "";
 
 foreach($page->children as $child){
-  $content .= "<li><a href='$child->url'>$child->title</a></li>";
+  $list .= "<li><a href='$child->url'>$child->title</a></li>";
 }
-$content .= "</ul></section>";
+
+$content = "<section class='section section--basic'>
+  <h1>$title</h1>
+  <ul class='nav-list'>
+    $list
+  </ul>
+</section>";

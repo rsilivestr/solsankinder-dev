@@ -1,3 +1,7 @@
 <?php namespace ProcessWire;
 
-$content = "<section><h1>$title</h1><a href='/sitemap.xml'>XML карта сайта</a>".renderNavTree($homepage, 4)."</section>";
+$content = "<section class='section section--basic'>
+  <h1>$title</h1>
+  <p class='mb-3'><a href='/sitemap.xml'>XML карта сайта</a></p>"
+  .renderNavTree($homepage, 4)
+."</section>";
