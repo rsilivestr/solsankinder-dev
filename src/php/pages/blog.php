@@ -39,10 +39,11 @@ foreach($blogPosts as $blogPost) {
       </a>
     </h2>
     <div class='post-card__body'>
-      <div class='post-card__image-container'>
-        $imageHTML
-      </div>
-      <div class='post-card__content'>
+      " 
+      . ( $blogPost->images->count() ?
+        "<a href='{$blogPost->url}' class='post-card__image-container'>$imageHTML</a>" :
+        "" )
+      . "<div class='post-card__content'>
         <p class='post-card__summary'>$blogPost->summary</p>
         <p class='post-card__date'>$blogPost->postDate</p>
       </div>
@@ -50,7 +51,7 @@ foreach($blogPosts as $blogPost) {
   </article>";
 }
 
-$content = "<section class='section section--basic'>
+$content = "<section class='section section--width_m'>
   <h1>$page->title</h1>
   $pagination
   <div class='posts-page'>

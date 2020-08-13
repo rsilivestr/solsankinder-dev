@@ -1,64 +1,8 @@
 @use 'ScssUtil/forward' as fw;
-@use '../blocks/pagination.scss';
+
+@use 'ScssBlocks/pagination';
+@use 'ScssBlocks/post-card';
 
 .posts-page {
   margin: 3rem 0;
-}
-
-.post-card {
-  + .post-card {
-    margin-top: 3rem;
-  }
-
-  &__title {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.5rem;
-    margin: 0 0 0.5rem;
-
-    a {
-      color: #333;
-      text-decoration: underline dotted;
-    }
-  }
-
-  &__body {
-    display: flex;
-    flex-direction: column;
-
-    @include fw.media('>tablet') {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  }
-
-  &__image-container {
-    display: inline-flex;
-    width: 100%;
-
-    @include fw.media('>tablet') {
-      flex: 1 1 220px;
-    }
-  }
-
-  &__image {
-    width: 100%;
-  }
-
-  &__content {
-    margin: 1rem 0 0 0;
-
-    @include fw.media('>tablet') {
-      margin: 0 0 0 1rem;
-      flex: 3 3 220px;
-    }
-  }
-
-  &__summary {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  &__date {
-    color: #888;
-  }
 }

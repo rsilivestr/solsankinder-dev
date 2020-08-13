@@ -2,7 +2,7 @@
 
 // include('_bread.php');
 
-$content = "<section><h1>$title</h1><div class='card-tiles flex-container'>";
+$content = "<section class='section section--width_m'><h1>$title</h1><div class='card-tiles flex-container'>";
 
 foreach($page->cards as $card) {
   $content .= "<figure class='card-tiles__tile'>";

@@ -30,8 +30,8 @@
 @mixin table-desktop {
   th,
   td {
+    padding: 0.25rem;
     border: 1px solid #888;
-    padding: 0.25rem 0.5rem;
   }
 }
 
@@ -97,6 +97,10 @@ thead * {
       content: 'Образование: ';
     }
 
+    tr td:nth-child(4)::before {
+      content: 'Учебное заведение: ';
+    }
+
     tr td:nth-child(5)::before {
       content: 'Специальность: ';
     }
@@ -118,6 +122,8 @@ thead * {
   }
 
   @include fw.media($break_d) {
+    font-size: 90%;
+
     @include table-desktop;
   }
 }

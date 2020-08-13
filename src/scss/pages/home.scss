@@ -1,65 +1,19 @@
 @use 'ScssUtil/forward' as fw;
 
-@use './home/bg-children';
-@use './home/home-gallery';
-@use './home/home-register';
-@use './home/home-units';
+@use 'ScssBlocks/home/about';
+@use 'ScssBlocks/home/children';
+@use 'ScssBlocks/home/gallery';
+@use 'ScssBlocks/home/register';
+@use 'ScssBlocks/home/units';
 
-.home-news,
-.home-about {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-
-  &__title {
-    margin-top: 0;
-  }
-}
-
-.home-about {
-  &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    @include fw.media('>tablet') {
-      flex-direction: row;
-    }
+.home {
+  h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
   }
 
-  &__video {
-    width: 100%;
-    height: 0;
-    position: relative;
-    padding-top: 56.25%;
-
-    @include fw.media('>tablet') {
-      flex: 1 1 0;
-      padding-top: 28.125%;
-    }
-
-    iframe {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &__text-content {
-    margin-top: 2rem;
-
-    @include fw.media('>tablet') {
-      flex: 1 1 0;
-      margin: 0 0 0 2rem;
-    }
-
-    p {
-      margin-top: 0;
-    }
-  }
-
-  &__btn {
-    margin: 2rem auto 0;
+  .section + .section {
+    margin-top: 6rem;
   }
 }

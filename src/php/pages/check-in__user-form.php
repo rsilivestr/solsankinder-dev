@@ -1,7 +1,7 @@
 <?php
 
 $content .= '
-<section id="check-in-form-section" class="section section--basic">
+<section id="check-in-form-section" class="section section--width_m">
   <h1>'.$page->title.'</h1>
   <p>Регистрация действительна только для пациентов, получивших санаторно-курортную карту в поликлинике</p>
 </section>

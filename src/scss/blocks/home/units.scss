@@ -1,0 +1,41 @@
+@use 'ScssUtil/forward' as fw;
+
+.home-units {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+
+  &__link {
+    width: 50%;
+    padding: 0 0 2rem 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    word-break: break-word;
+    border-radius: 0.5rem;
+    color: #333;
+
+    &:hover {
+      background: rgba(155, 100, 0, 0.05);
+    }
+
+    @include fw.media('>tablet') {
+      width: 33.33%;
+    }
+    @include fw.media('>900px') {
+      width: 25%;
+    }
+    @include fw.media('>1024px') {
+      width: 20%;
+    }
+  }
+
+  &__icon {
+    fill: #ffc0a0;
+  }
+
+  &__caption {
+    display: block;
+    padding: 0 1rem;
+    text-transform: uppercase;
+  }
+}
