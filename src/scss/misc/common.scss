@@ -32,14 +32,14 @@
   margin-bottom: 3rem;
 }
 
-html,
-body {
-  min-height: 100vh;
+html {
+  font-size: 16px;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   color: #333;
 }

@@ -1,7 +1,6 @@
 @use 'ScssUtil/forward' as fw;
 
 .register-section {
-  margin-top: 5rem;
   text-align: center;
 
   @include fw.media('>tablet') {

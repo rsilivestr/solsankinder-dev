@@ -1,25 +1,7 @@
 @use 'ScssUtil/forward' as fw;
 
-@use 'ScssBlocks/home/about';
-@use 'ScssBlocks/home/children';
-@use 'ScssBlocks/home/gallery';
-@use 'ScssBlocks/home/register';
-@use 'ScssBlocks/home/units';
-
 .home {
-  h2 {
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 400;
-    margin: 0 0 1rem 0;
-  }
-
-  .section + .section {
+  .section {
     margin-top: 6rem;
-  }
-
-  &.low-vision h2 {
-    font-size: fw.$lvh2;
-    font-weight: 700;
-    font-family: Arial, Helvetica, sans-serif;
   }
 }

@@ -10,7 +10,14 @@
 @use './blocks/basic-gallery';
 @use './blocks/menu-btn';
 @use './blocks/section';
-@use './blocks/table.scss';
+@use './blocks/table';
+
+// homepage blocks
+@use './blocks/home/about';
+@use './blocks/home/children';
+@use './blocks/home/gallery';
+@use './blocks/home/register';
+@use './blocks/home/units';
 
 // layout
 @use './layout/header';

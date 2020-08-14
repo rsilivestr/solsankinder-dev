@@ -7,7 +7,7 @@
 .phone-url {
   text-decoration: underline;
 
-  &:before {
+  &::before {
     font-family: 'fontello';
     display: inline-block;
     margin-right: 0.25rem;
@@ -17,14 +17,14 @@
 .file-pdf {
   color: red;
 
-  &:before {
+  &::before {
     content: '\f1c1';
   }
 }
 .file-word {
   color: blue;
 
-  &:before {
+  &::before {
     content: '\f1c2';
   }
 }
@@ -32,19 +32,19 @@
 .file-excel {
   color: green;
 
-  &:before {
+  &::before {
     content: '\f1c3';
   }
 }
 
-.mail-url:before {
+.mail-url::before {
   content: '\e800';
 }
 
-.phone-url:before {
+.phone-url::before {
   content: '\e803';
 }
 
-.external-url:before {
+.external-url::before {
   content: '\f08e';
 }

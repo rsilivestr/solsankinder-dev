@@ -1,13 +1,16 @@
-h1 {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 2.25rem;
-  margin-bottom: 3rem;
-}
-
+h1,
 h2,
 h3,
-h4 {
+h4,
+h5,
+h6 {
+  font-family: 'Times New Roman', Times, serif;
   font-weight: 700;
+}
+
+h1 {
+  font-size: 2.25rem;
+  margin: 0 0 3rem;
 }
 
 h2 {
@@ -16,11 +19,17 @@ h2 {
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   margin: 2rem 0 0.75rem;
 }
 
 h4 {
+  font-size: 1.125rem;
+  margin: 1rem 0 0.5rem;
+}
+
+h5,
+h6 {
   font-size: 1rem;
   margin: 1rem 0 0.5rem;
 }
@@ -28,12 +37,23 @@ h4 {
 p,
 ul,
 ol {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+ol,
+ul {
+  margin-left: 2rem;
 }
 
 ul {
   list-style-type: square;
-  margin-left: 2rem;
+}
+
+li::marker {
+  position: absolute;
+  left: 0;
+  // width: 2rem;
+  // text-align: left;
 }
 
 li {

@@ -22,7 +22,7 @@ $content = $page->body;
 $sidebar = $page->sidebar;
 
 // Body low-vision class is stored in session
-$isLowVisionActive = $_SESSION['lowVision'] ? 'low-vision' : '';
+$isLowVisionActive = $_SESSION['lowVision'];
 
 // Get children
 $patientCountArray = explode(',', file_get_contents("../assets/files/n-children"));
