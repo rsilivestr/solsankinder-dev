@@ -8,6 +8,7 @@
 @use './blocks/action-btn';
 @use './blocks/basic-gallery';
 @use './blocks/menu-btn';
+@use './blocks/section';
 @use './blocks/table.scss';
 
 // pages
@@ -24,4 +25,7 @@
 @use './misc/links';
 @use './misc/print';
 @use './misc/typo';
-@use './misc/visibility.scss';
+@use './misc/visibility';
+
+// themes
+@use './themes/low-vision';

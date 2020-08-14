@@ -1,24 +1,37 @@
 @use 'ScssUtil/forward' as fw;
 
 .card-tiles {
-  flex-flow: row wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template: auto / auto;
+  gap: 1rem;
 
-  &__tile {
-    width: 100%;
-    margin: 0.75rem 0;
-    border: 2px solid fw.$yellow-pale;
-    text-align: center;
+  @include fw.media('>480px') {
+    grid-template-columns: 1fr 1fr;
   }
 
-  img {
+  @include fw.media('>960px') {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.card-tile {
+  border: 1px solid #eee;
+  box-shadow: 0 0.25rem 0.5rem #ddd;
+  border-radius: 4px;
+
+  &__image {
     display: block;
     width: 100%;
+    padding: 0.5rem;
   }
 
-  div {
-    padding: 0.5rem 0;
-    background: fw.$yellow-pale;
-    overflow: auto;
+  &__text-content {
+    padding: 1rem;
+    text-align: center;
+
+    h3 {
+      margin: 0;
+    }
   }
 }

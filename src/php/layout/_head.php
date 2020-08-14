@@ -97,9 +97,3 @@
 
   <main class="main">
 
-  <!-- Homepage register button (mobile, low vision) -->
-  <?php if ($page->template->name === "home"): ?>
-    <section class="register-section hide-lg">
-      <a class="action-btn btn-color-main" href="/check-in-form">Записаться на заезд</a>
-    </section>
-  <?php endif; ?>

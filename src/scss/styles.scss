@@ -999,15 +999,15 @@ figure {
 //   background: #ff4500;
 // }
 
-// страница статьи блога
-.img-row {
-  padding: 0.5rem 0;
+// // страница статьи блога
+// .img-row {
+//   padding: 0.5rem 0;
 
-  img {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-}
+//   img {
+//     width: 100%;
+//     margin-bottom: 0.5rem;
+//   }
+// }
 
 // .hide-sm {
 //   display: none;
@@ -1109,9 +1109,9 @@ figure {
   // }
 
   // волшебная кнопка
-  .register-section {
-    justify-content: flex-start;
-  }
+  // .register-section {
+  //   justify-content: flex-start;
+  // }
 
   //------------------//
   //  меню навигации  //
@@ -1343,14 +1343,14 @@ figure {
   // }
 
   /* новости на главной */
-  .blog-post-preview {
-    img {
-      height: 15rem;
-      width: auto;
-      float: left;
-      margin-right: 1.5rem;
-    }
-  }
+  // .blog-post-preview {
+  //   img {
+  //     height: 15rem;
+  //     width: auto;
+  //     float: left;
+  //     margin-right: 1.5rem;
+  //   }
+  // }
 
   // // видео на главной
   // #video-description iframe {
@@ -1358,27 +1358,27 @@ figure {
   // }
 
   /* страница карточек */
-  .card-tiles::after {
-    content: '';
-    display: block;
-    flex: 1 1 auto;
-  }
+  // .card-tiles::after {
+  //   content: '';
+  //   display: block;
+  //   flex: 1 1 auto;
+  // }
 
-  .card-tiles__tile {
-    width: calc(50% - 0.75rem);
-    padding: 0.5rem;
-    border: 2px solid;
-    border-radius: 0.25rem;
-    background-color: #fff;
+  // .card-tiles__tile {
+  //   width: calc(50% - 0.75rem);
+  //   padding: 0.5rem;
+  //   border: 2px solid;
+  //   border-radius: 0.25rem;
+  //   background-color: #fff;
 
-    div {
-      background: #fff;
-    }
+  //   div {
+  //     background: #fff;
+  //   }
 
-    &:last-child {
-      margin-left: 1.5rem;
-    }
-  }
+  //   &:last-child {
+  //     margin-left: 1.5rem;
+  //   }
+  // }
 
   // страница блога
   // main .blog-post {
@@ -1449,10 +1449,10 @@ figure {
   //   display: inline;
   // }
 
-  /* страница карточек */
-  .card-tiles__tile {
-    width: calc(33.33% - 1rem);
-  }
+  // /* страница карточек */
+  // .card-tiles__tile {
+  //   width: calc(33.33% - 1rem);
+  // }
 
   /* новости на главной */
   // #blog-spotlight .flex-container {
@@ -1482,10 +1482,10 @@ figure {
 @media (min-width: calc(1400px + 3rem)) {
   /* отступы */
 
-  /* новости на главной */
-  .blog-post-preview {
-    margin: 0;
-  }
+  // /* новости на главной */
+  // .blog-post-preview {
+  //   margin: 0;
+  // }
 }
 
 // // форма обратной связи
@@ -1557,12 +1557,12 @@ figure {
 //   }
 // }
 
-#counter {
-  h2 {
-    color: #aa6000;
-    font-weight: bolder;
-  }
-}
+// #counter {
+//   h2 {
+//     color: #aa6000;
+//     font-weight: bolder;
+//   }
+// }
 
 // таблица персонала на базовых страницах
 // .table--style_unit-staff {

@@ -1,5 +1,4 @@
 @use 'ScssUtil/forward' as fw;
-@use 'ScssBlocks/section';
 
 .main {
   flex: auto;
@@ -9,5 +8,11 @@
   @include fw.media('>tablet') {
     margin-top: 0;
     padding: 3rem 0;
+  }
+}
+
+.home .main {
+  @include fw.media('>tablet') {
+    padding-top: 0;
   }
 }

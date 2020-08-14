@@ -1,8 +1,5 @@
 @use 'ScssUtil/forward' as fw;
 
-$lhMobile: 2rem;
-$lhDesktop: 1.25rem;
-
 .np-subnav {
   display: none;
   z-index: -1;
@@ -15,20 +12,19 @@ $lhDesktop: 1.25rem;
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @include fw.media('>tablet') {
+    position: absolute;
+    top: -1000px;
     display: flex;
     flex-flow: row nowrap;
-    position: absolute;
-
-    top: -1000px;
     margin-top: 0.5rem;
-    transition: top 0.5s ease-in-out, margin 0.2s ease-in 0.5s;
-
     padding: 1.5rem 0.5rem;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 5px 10px #0002;
+
+    transition: top 0.5s ease-in-out, margin 0.2s ease-in 0.5s;
 
     &.visible {
       top: 5rem;
@@ -39,12 +35,10 @@ $lhDesktop: 1.25rem;
   // .np-subnav__column
   &__column {
     display: flex;
-    flex-flow: row nowrap;
     flex-direction: column;
+    align-items: flex-start;
 
     @media screen and (min-width: 768px) {
-      display: flex;
-      flex-direction: column;
       padding: 0 1rem;
     }
 

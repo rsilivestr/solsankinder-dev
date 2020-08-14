@@ -1,6 +1,11 @@
 <?php namespace ProcessWire;
 
-$content = "<section class='section section--width_m'>{$page->sections[0]->body}</section>";
+// Homepage register button (mobile, low vision)
+	$content = "<section class='section section--width_m register-section hide-lg'>
+		<a class='action-btn btn-color-main' href='/check-in-form'>Записаться на заезд</a>
+	</section>";
+
+$content .= "<section class='section section--width_m'>{$page->sections[0]->body}</section>";
 
 // <p><strong>На данный момент в санатории<br>на лечении находится детей: $patientCountArray[0]</strong><br>Число взято из медицинской информационной системы \"САМСОН-ВИСТА\"<br>и обновляется каждый час.</p>
 

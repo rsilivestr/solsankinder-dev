@@ -1,7 +1,7 @@
 @use 'ScssUtil/forward' as fw;
 
-@use './header/nav-primary.scss';
-@use './header/np-subnav.scss';
+@use 'ScssBlocks/header/nav-primary';
+@use 'ScssBlocks/header/np-subnav';
 
 .main-header {
   position: relative;
@@ -12,7 +12,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      min-height: 600px;
+      height: 600px;
       background-image: url('/site/assets/images/bg-header-2560.jpg');
       background-position: center;
       box-shadow: 0 0 2.5rem #303030 inset;
@@ -29,25 +29,21 @@
   }
 }
 
-// .header__register-btn {
-// }
-
-// @include fw.media('>tablet') {
-//   .header__register-btn {
-//     display: block;
-//     bottom: 5rem;
-//     background-color: #50c0e0;
-
-//     &:hover {
-//       background-color: #30a0c0;
-//     }
-//   }
-// }
-
 .toggle-low-vision__span {
   margin-left: 0.5rem;
 
   @media screen and (max-width: 1100px) {
+    display: none;
+  }
+}
+
+.low-vision {
+  .main-header--home {
+    background: none;
+    height: auto;
+  }
+
+  .main-header__register-btn {
     display: none;
   }
 }

@@ -1,16 +1,16 @@
 <?php namespace ProcessWire;
 
-// include('_bread.php');
-
-$content = "<section class='section section--width_m'><h1>$title</h1><div class='card-tiles flex-container'>";
+$cardsHTML = "";
 
 foreach($page->cards as $card) {
-  $content .= "<figure class='card-tiles__tile'>";
+  $imageHTML = "<img class='card-tile__image' src='{$config->urls->assets}images/no-photo.png' />";
+
   if($card->cardPhoto) {
     $xs = $card->cardPhoto->size('400', '300');
     $sm = $card->cardPhoto->size('600', '450');
     $md = $card->cardPhoto->size('800', '600');
-    $content .= "<img class='lazy'
+
+    $imageHTML = "<img class='card-tile__image lazy'
       src='{$card->cardPhoto->url}'
       srcset='/site/assets/images/4x3.png'
       data-srcset='
@@ -23,10 +23,19 @@ foreach($page->cards as $card) {
         (max-width: 824px) 800px,
         (min-width: 825px) 400px
       '>";
-  } else {
-    $content .= "<img src='{$config->urls->assets}images/photoPlaceholder.jpg' />";
   }
 
-  $content .= "<div>$card->body</div></figure>";
+  $cardsHTML .= "<div class='card-tile'>
+    $imageHTML
+    <div class='card-tile__text-content'>
+      $card->body
+    </div>
+  </div>";
 }
-$content .= "</div></section>";
+
+$content = "<section class='section section--width_m'>
+  <h1>$title</h1>
+  <div class='card-tiles'>
+    $cardsHTML
+  </div>
+</section>";
