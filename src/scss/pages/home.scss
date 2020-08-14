@@ -16,4 +16,10 @@
   .section + .section {
     margin-top: 6rem;
   }
+
+  &.low-vision h2 {
+    font-size: fw.$lvh2;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }

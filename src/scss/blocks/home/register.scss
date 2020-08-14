@@ -1,8 +1,15 @@
 @use 'ScssUtil/forward' as fw;
 
 .register-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-top: 5rem;
+  text-align: center;
+
+  @include fw.media('>tablet') {
+    display: none;
+    text-align: left;
+  }
+}
+
+.low-vision .register-section {
+  display: inherit;
 }

@@ -56,3 +56,11 @@
     color: #888;
   }
 }
+
+.low-vision {
+  .post-card {
+    &__title {
+      font-size: 1.75rem;
+    }
+  }
+}

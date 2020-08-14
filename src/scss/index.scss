@@ -1,8 +1,9 @@
-// layout
-@use './layout/header';
-@use './layout/bread';
-@use './layout/main';
-@use './layout/footer';
+// misc
+@use './misc/common';
+@use './misc/links';
+@use './misc/print';
+@use './misc/typo';
+@use './misc/visibility';
 
 // blocks;
 @use './blocks/action-btn';
@@ -10,6 +11,12 @@
 @use './blocks/menu-btn';
 @use './blocks/section';
 @use './blocks/table.scss';
+
+// layout
+@use './layout/header';
+@use './layout/bread';
+@use './layout/main';
+@use './layout/footer';
 
 // pages
 @use './pages/cards';
@@ -19,13 +26,6 @@
 @use './pages/home';
 @use './pages/search';
 @use './pages/sitemap';
-
-// misc
-@use './misc/common';
-@use './misc/links';
-@use './misc/print';
-@use './misc/typo';
-@use './misc/visibility';
 
 // themes
 @use './themes/low-vision';

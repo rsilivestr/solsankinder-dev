@@ -1,7 +1,7 @@
 <?php namespace ProcessWire;
 
 // Homepage register button (mobile, low vision)
-	$content = "<section class='section section--width_m register-section hide-lg'>
+	$content = "<section class='section section--width_m register-section'>
 		<a class='action-btn btn-color-main' href='/check-in-form'>Записаться на заезд</a>
 	</section>";
 
