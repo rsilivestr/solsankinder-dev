@@ -1,4 +1,27 @@
+import Glide from '@glidejs/glide';
 import '../scss/index.scss';
+
+if (document.querySelector('.glide')) {
+  new Glide('.glide', {
+    type: 'carousel',
+    startAt: 0,
+    perView: 3,
+  }).mount();
+}
+
+// if (homeGal) {
+//   const track = homeGal.firstElementChild;
+//   track.classList.add('glide__track');
+//   track.dataset['glide-el'] = 'track';
+
+//   const slides = track.firstElementChild;
+//   console.log(slides);
+//   slides.classList.add('glide__slides');
+
+//   const slidesArr = Array.from(slides.childNodes);
+//   slidesArr.forEach((node) => console.log(node));
+
+// }
 
 // declare UI elements
 // const UImenuBtn = document.querySelector('.menu-btn');

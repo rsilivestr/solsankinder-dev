@@ -1,9 +1,9 @@
 <?php namespace ProcessWire;
 
-// Homepage register button (mobile, low vision)
-	$content = "<section class='section section--width_m register-section'>
-		<a class='action-btn action-btn--color_yellow' href='/check-in-form'>Записаться на заезд</a>
-	</section>";
+/* ссылка на форму регистрации */
+$content = "<section class='section section--width_m register-section'>
+	<a class='action-btn action-btn--color_yellow' href='/check-in-form'>Записаться на заезд</a>
+</section>";
 
 $content .= "<section class='section section--width_m'>
 	<h1>Добро пожаловать в санаторий «Солнечное»</h1>
@@ -12,7 +12,7 @@ $content .= "<section class='section section--width_m'>
 
 // <p><strong>На данный момент в санатории<br>на лечении находится детей: $patientCountArray[0]</strong><br>Число взято из медицинской информационной системы \"САМСОН-ВИСТА\"<br>и обновляется каждый час.</p>
 
-//профили санатория
+/* профили санатория */
 $content .= "<section class='section section--width_m'>
 	<h2>Профили лечения</h2>
 	<div class='home-units'>
@@ -49,29 +49,67 @@ $content .= "<section class='section section--width_m'>
 	</div>
 </section>";
 
-// фото детей 1
+/* фото детей */
 $content .= "<div id='home-children-1' class='home-children section hide-sm'>
 	<a class='action-btn action-btn--size_s action-btn--color_cyan' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
 		Анкета оценки качества оказания услуг
 	</a>
 </div>";
 
-// галерея
-$pwpswp = $modules->get('MarkupProcesswirePhotoswipe');
-$content .="<section class='section section--width_m'>
-	{$pwpswp->renderGallery($page->gallery)}
-	<a href='#' class='gal-control gal-prev'><span></span></a>
-	<a  href='#' class='gal-control gal-next'><span></span></a>
+/* галерея PhotoSwipe */
+// $pwpswp = $modules->get('MarkupProcesswirePhotoswipe');
+// $content .= "<section class='section section--width_m'>
+// 	<div class='glide'>
+// 		{$pwpswp->renderGallery($page->gallery)}
+// 		<a href='#' class='gal-control gal-prev'><span></span></a>
+// 		<a  href='#' class='gal-control gal-next'><span></span></a>
+// 	</div>
+// </section>";
+
+/* галерея glidejs */
+$galItemsHTML = "";
+
+// print_r($page->gallery);
+
+foreach ($page->gallery as $image) {
+	$xs = $image->width('400');
+	$sm = $image->width('600');
+	$md = $image->width('800');
+
+	$galItemsHTML .= "<li class='glide__slide'
+	><img class='glide__image lazy'
+		src='$sm->url'
+		srcset='{$config->urls->assets}images/4x3.png'
+		data-srcset='$xs->url 400w, $sm->url 600w, $md->url 800w'
+		sizes='400px'
+		alt='$image->description'
+	></li>";
+}
+
+$content .= "<section class='section section--width_m'>
+	<div class='glide'>
+		<div data-glide-el='track' class='glide__track'>
+			<ul class='glide__slides'>"	. $galItemsHTML .	"</ul>
+		</div>
+		<div class='glide__arrows' data-glide-el='controls'>
+			<button class='glide__arrow glide__arrow--left' data-glide-dir='<'>
+				<i class='fas fa-arrow-left'></i>
+			</button>
+			<button class='glide__arrow glide__arrow--right' data-glide-dir='>'>
+				<i class='fas fa-arrow-right'></i>
+			</button>
+  	</div>
+	</div>
 </section>";
 
-// фото детей 2
+/* фото детей 2 */
 $content .= "<div id='home-children-2' class='home-children section hide-sm'>
 	<a class='action-btn action-btn--size_s action-btn--color_cyan' href='https://bus.gov.ru/pub/info-card/170512?activeTab=5'>
 		Оставьте отзыв о работе санатория
 	</a>
 </div>";
 
-// блок новостей
+/* новости */
 $content .= "<section class='home-news section section--width_m'>
 	<h2 class='home-news__title'>Новости</h2>
 	<div class='home-news__content'>";
@@ -92,6 +130,7 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
 						src='{$previewImg->url}'
 						srcset='{$config->urls->assets}images/4x3.png'
 						data-srcset='$thumb_sm->url 440w'
+						sizes='440px'
 						alt='$previewAlt'
 				></a>
 				<div class='post-card__content'>
@@ -105,10 +144,9 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
 
 $content .= "</div></section>";
 
-// видео
+/* о санатории, видео */
 $content .= "<section class='home-about section section--width_m'>
 	<h2 class='home-about__title'>О санатории</h2>
-
 	<div class='home-about__content'>
 		<div class='home-about__video'>
 			<iframe
