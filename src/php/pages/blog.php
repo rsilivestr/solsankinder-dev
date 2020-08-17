@@ -7,15 +7,16 @@ $pagination = $blogPosts->renderPager(array(
   'previousItemLabel' => "<",
   'listClass' => "pager-nav",
   'currentItemClass' => "pager-nav__item--current",
-  // 'firstItemClass' => "",
-  // 'firstNumberItemClass' => "",
-  // 'lastItemClass' => "",
-  // 'nextItemClass ' => "",
-  // 'previousItemClass' => "",
-  // 'separatorItemClass' => "",
+  'currentLinkMarkup' => "<span class='pager-nav__link'>{out}</span>",
+  'firstItemClass' => "pager-nav__item--first",
+  'firstNumberItemClass' => "pager-nav__item--first-number",
+  'lastItemClass' => "pager-nav__item--last",
+  'nextItemClass ' => "pager-nav__item--next",
+  'previousItemClass' => "pager-nav__item--prev",
+  'separatorItemClass' => "pager-nav__item--separator",
   // 'listMarkup' => "<ul class='MarkupPagerNav pager-nav'>{out}</ul>",
-  'itemMarkup' => "<li class='pager-nav__item {class}'>{out}</li>",
-  'linkMarkup' => "<a class='pager-nav__link' href='{url}'><span class='pager-nav__content'>{out}</span></a>"
+  'itemMarkup' => "<li class='pager-nav__item {class}' aria-label='{aria-label}'>{out}</li>",
+  'linkMarkup' => "<a class='pager-nav__link' href='{url}'>{out}</a>"
 ));
 
 $postsHTML = "";
