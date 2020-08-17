@@ -49,6 +49,7 @@
   // .nav-primary__link
   &__link {
     display: block;
+    padding: 0 0.75rem;
     line-height: $nplHeight_m;
     text-transform: uppercase;
     text-decoration: none;
@@ -74,7 +75,6 @@
     }
 
     @include media('>tablet') {
-      padding: 0 0.75rem;
       line-height: $nplHeight_d;
       background-color: #fff;
       border-bottom: 0.25rem solid transparent;
@@ -116,10 +116,16 @@
   }
 }
 
+.toggle-low-vision__span {
+  margin-left: 0.5rem;
+
+  @include media('>tablet', '<1100px') {
+    display: none;
+  }
+}
+
 .low-vision .nav-primary {
   $nplHeight_lw: $nplHeight_d * 1.25;
-
-  // height: $nplHeight_lw;
 
   @include media('>tablet') {
     &::after {
@@ -140,5 +146,11 @@
 
   &__logo {
     height: $nplHeight_lw;
+  }
+
+  .toggle-low-vision__span {
+    @include media('>tablet', '<1400px') {
+      display: none;
+    }
   }
 }

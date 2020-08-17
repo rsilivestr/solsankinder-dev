@@ -40,6 +40,7 @@ const SolSanKinder = (() => {
 
   const toggleMenu = (e) => {
     const btn = e.target.closest('.menu-btn');
+
     if (btn) {
       document
         .querySelector(UIselectors.navPrimary)
@@ -52,6 +53,8 @@ const SolSanKinder = (() => {
       document
         .querySelectorAll(UIselectors.npLink)
         .forEach((item) => item.classList.remove('subnav-open'));
+
+      btn.blur();
     }
   };
 
