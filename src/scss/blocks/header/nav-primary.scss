@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .nav-primary {
   position: relative;
@@ -7,7 +7,7 @@
   background-color: #fff;
   z-index: 10;
 
-  @include fw.media('<=tablet') {
+  @include media('<=tablet') {
     &.visible {
       display: block;
       position: fixed;
@@ -18,14 +18,13 @@
     }
   }
 
-  @include fw.media('>tablet') {
+  @include media('>tablet') {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     width: 100%;
     padding: 0;
     background-color: #fff;
-    // border-bottom: 1px solid #ccc;
 
     &:after {
       content: '';
@@ -35,16 +34,13 @@
     }
   }
 
-  &--home {
-  }
-
   // .nav-primary__logo
   &__logo {
     display: none;
 
-    @include fw.media('>tablet') {
+    @include media('>tablet') {
       display: inline-block;
-      height: fw.$nplHeight_d + 0.25rem;
+      height: $nplHeight_d + 0.25rem;
       padding: 0.75rem 1rem;
       background-color: #fff;
     }
@@ -53,7 +49,7 @@
   // .nav-primary__link
   &__link {
     display: block;
-    line-height: fw.$nplHeight_m;
+    line-height: $nplHeight_m;
     text-transform: uppercase;
     text-decoration: none;
     font-size: 1.5rem;
@@ -77,9 +73,9 @@
       content: '▲';
     }
 
-    @include fw.media('>tablet') {
+    @include media('>tablet') {
       padding: 0 0.75rem;
-      line-height: fw.$nplHeight_d;
+      line-height: $nplHeight_d;
       background-color: #fff;
       border-bottom: 0.25rem solid transparent;
       font-size: 1rem;
@@ -97,25 +93,52 @@
         font-weight: 400;
 
         &:nth-of-type(1) {
-          border-color: fw.$red-vivid;
+          border-color: $red-vivid;
         }
 
         &:nth-of-type(2) {
-          border-color: fw.$yellow-vivid;
+          border-color: $yellow-vivid;
         }
 
         &:nth-of-type(3) {
-          border-color: fw.$green-vivid;
+          border-color: $green-vivid;
         }
 
         &:nth-of-type(4) {
-          border-color: fw.$blue-vivid;
+          border-color: $blue-vivid;
         }
 
         &:nth-of-type(5) {
-          border-color: fw.$violet-vivid;
+          border-color: $violet-vivid;
         }
       }
     }
+  }
+}
+
+.low-vision .nav-primary {
+  $nplHeight_lw: $nplHeight_d * 1.25;
+
+  // height: $nplHeight_lw;
+
+  @include media('>tablet') {
+    &::after {
+      border-bottom: 2px solid #333;
+    }
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    line-height: $nplHeight_lw;
+    border-bottom: none;
+
+    &.active {
+      color: white;
+      background-color: #333;
+    }
+  }
+
+  &__logo {
+    height: $nplHeight_lw;
   }
 }

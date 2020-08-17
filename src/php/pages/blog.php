@@ -5,9 +5,17 @@ $blogPosts = $page->children("limit=5");
 $pagination = $blogPosts->renderPager(array(
   'nextItemLabel' => ">",
   'previousItemLabel' => "<",
-  'listMarkup' => "<ul class='MarkupPagerNav'>{out}</ul>",
-  'itemMarkup' => "<li class='{class}'>{out}</li>",
-  'linkMarkup' => "<a href='{url}'><span>{out}</span></a>"
+  'listClass' => "pager-nav",
+  'currentItemClass' => "pager-nav__item--current",
+  // 'firstItemClass' => "",
+  // 'firstNumberItemClass' => "",
+  // 'lastItemClass' => "",
+  // 'nextItemClass ' => "",
+  // 'previousItemClass' => "",
+  // 'separatorItemClass' => "",
+  // 'listMarkup' => "<ul class='MarkupPagerNav pager-nav'>{out}</ul>",
+  'itemMarkup' => "<li class='pager-nav__item {class}'>{out}</li>",
+  'linkMarkup' => "<a class='pager-nav__link' href='{url}'><span class='pager-nav__content'>{out}</span></a>"
 ));
 
 $postsHTML = "";

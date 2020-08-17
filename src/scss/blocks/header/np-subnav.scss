@@ -86,3 +86,16 @@
     }
   }
 }
+
+.low-vision .np-subnav {
+  border: 2px solid #333;
+  box-shadow: none;
+
+  &__column-heading {
+    font-size: 1.25rem;
+  }
+
+  &__link {
+    font-size: 1.25rem;
+  }
+}
