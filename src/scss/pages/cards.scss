@@ -1,15 +1,15 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .card-tiles {
   display: grid;
   grid-template: auto / auto;
   gap: 1rem;
 
-  @include fw.media('>480px') {
+  @include media('>500px') {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include fw.media('>960px') {
+  @include media('>960px') {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
   }
@@ -20,11 +20,34 @@
   box-shadow: 0 0.25rem 0.5rem #ddd;
   border-radius: 4px;
 
-  &__image {
-    display: block;
-    width: 100%;
-    padding: 0.5rem;
+  /* smaller vertical images */
+  &__image-container {
+    position: relative;
+    height: 0;
+    margin: 0.5rem;
+    padding-bottom: 66.67%;
   }
+
+  &__image {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  /* full-height vertical images */
+  // &__image-container {
+  //   margin: 0.5rem;
+  //   border-radius: 3px;
+  //   overflow: hidden;
+  // }
+
+  // &__image {
+  //   display: block;
+  //   width: 100%;
+  // }
 
   &__text-content {
     padding: 1rem;

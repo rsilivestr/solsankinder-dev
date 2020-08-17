@@ -6,27 +6,23 @@ foreach($page->cards as $card) {
   $imageHTML = "<img class='card-tile__image' src='{$config->urls->assets}images/no-photo.png' />";
 
   if($card->cardPhoto) {
-    $xs = $card->cardPhoto->size('400', '300');
-    $sm = $card->cardPhoto->size('600', '450');
-    $md = $card->cardPhoto->size('800', '600');
+    $xs = $card->cardPhoto->width('320');
+    $sm = $card->cardPhoto->width('450');
 
     $imageHTML = "<img class='card-tile__image lazy'
       src='{$card->cardPhoto->url}'
       srcset='/site/assets/images/4x3.png'
       data-srcset='
-        $xs->url 400w,
-        $sm->url 600w,
-        $md->url 800w'
-      sizes='
-        (max-width: 424px) 400px,
-        (max-width: 624px) 600px,
-        (max-width: 824px) 800px,
-        (min-width: 825px) 400px
-      '>";
+        $xs->url 320w
+        $sm->url 450w'
+      sizes='(max-width: 352px) 320px, 450px'
+    >";
   }
 
   $cardsHTML .= "<div class='card-tile'>
-    $imageHTML
+    <div class='card-tile__image-container'>
+      $imageHTML
+    </div>
     <div class='card-tile__text-content'>
       $card->body
     </div>

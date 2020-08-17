@@ -2,8 +2,8 @@ import '../scss/index.scss';
 
 // declare UI elements
 // const UImenuBtn = document.querySelector('.menu-btn');
-const UIbread = document.querySelector('.bread');
-const UInavPrimary = document.querySelector('.nav-primary');
+// const UIbread = document.querySelector('.bread');
+// const UInavPrimary = document.querySelector('.nav-primary');
 const UInavLinks = document.querySelectorAll('.navlink');
 const UIsubNavs = document.querySelectorAll('.subnav');
 // const UImain = document.querySelector('main');
