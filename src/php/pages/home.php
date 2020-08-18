@@ -10,8 +10,6 @@ $content .= "<section class='section section--width_m'>
 	{$page->body}
 </section>";
 
-// <p><strong>На данный момент в санатории<br>на лечении находится детей: $patientCountArray[0]</strong><br>Число взято из медицинской информационной системы \"САМСОН-ВИСТА\"<br>и обновляется каждый час.</p>
-
 /* профили санатория */
 $content .= "<section class='section section--width_m'>
 	<h2>Профили лечения</h2>
@@ -69,8 +67,6 @@ $content .= "<div id='home-children-1' class='home-children section hide-sm'>
 /* галерея glidejs */
 $galItemsHTML = "";
 
-// print_r($page->gallery);
-
 foreach ($page->gallery as $image) {
 	$xs = $image->width('400');
 	$sm = $image->width('600');
@@ -81,7 +77,10 @@ foreach ($page->gallery as $image) {
 		src='$sm->url'
 		srcset='{$config->urls->assets}images/4x3.png'
 		data-srcset='$xs->url 400w, $sm->url 600w, $md->url 800w'
-		sizes='400px'
+		sizes='(max-width: 424px) 400px,
+			(max-width: 624px) 600px,
+			(max-width: 824px) 800px,
+			600px'
 		alt='$image->description'
 	></li>";
 }
@@ -120,7 +119,7 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
 		$previewAlt = $previewImg->description ? $previewImg->description : "превью новости";
 		$thumb_sm = $previewImg->size('444', '333');
 		
-		$content .= "<article class='post-card'>
+		$content .= "<article class='home-news__item post-card'>
 			<h3 class='post-card__title'>
 				<a class='post-card__title-link' href='$blogPost->url'>$blogPost->title</a>
 			</h3>

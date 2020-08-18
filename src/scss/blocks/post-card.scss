@@ -57,6 +57,14 @@
   }
 }
 
+.home .post-card {
+  @include media('>=desktop') {
+    &__body {
+      flex-direction: column;
+    }
+  }
+}
+
 .low-vision {
   .post-card {
     &__title {

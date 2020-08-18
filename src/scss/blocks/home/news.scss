@@ -1,0 +1,28 @@
+@use 'ScssUtil/forward' as *;
+
+.home-news {
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    @include media('>=desktop') {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 0;
+    }
+  }
+
+  &__item {
+    flex: 1 1 320px;
+  }
+
+  @include media('>=desktop') {
+    &__item + &__item {
+      margin: 0 0 0 1.5rem;
+    }
+
+    .post-card__content {
+      margin-top: 1rem;
+    }
+  }
+}
