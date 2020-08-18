@@ -2,9 +2,9 @@
 
 ## Description
 
-Main site url [https://solsankinder.ru](solsankinder.ru)
+Main site url [solsankinder.ru](https://solsankinder.ru)
 
-This site is running on [https://processwire.com/](Processwire CMS)
+This site is running on [Processwire CMS](https://processwire.com/)
 
 ## CLI
 
