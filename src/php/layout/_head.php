@@ -18,11 +18,16 @@
   <?php
     if ($page->template->name === 'check-in__user-form'
       || $page->template->name === 'check-in__admin-panel'
-    ) echo '<link rel="stylesheet" href="'.$config->urls->siteModules.'SolCheckIn/styles/checkin.css">';
+    ) echo "<link rel='stylesheet' href='{$config->urls->siteModules}SolCheckIn/styles/checkin.css'>";
   ?>
   <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" />
   <!-- Font Awesome CDN -->
   <script src="https://kit.fontawesome.com/a33cf6c7ed.js" crossorigin="anonymous"></script>
+  <!-- Glidejs slider -->
+  <?php 
+  if ($page->template->name === 'home') {
+    echo "<script defer src='{$config->urls->templates}scripts/glide.min.js'></script>";
+  } ?>
   <!-- Main script -->
   <script defer src="<?php echo $config->urls->templates; ?>scripts/app.min.js"></script>
 </head>

@@ -1,50 +1,13 @@
-import Glide from '@glidejs/glide';
 import '../scss/index.scss';
 
-if (document.querySelector('.glide')) {
-  new Glide('.glide', {
-    type: 'carousel',
-    startAt: 0,
-    perView: 3,
-  }).mount();
-}
-
-// declare UI elements
-// const UImenuBtn = document.querySelector('.menu-btn');
-// const UIbread = document.querySelector('.bread');
-// const UInavPrimary = document.querySelector('.nav-primary');
-const UInavLinks = document.querySelectorAll('.navlink');
-const UIsubNavs = document.querySelectorAll('.subnav');
-// const UImain = document.querySelector('main');
-// const UIfooter = document.querySelector('footer');
-const UIgalleryCurrent = document.querySelector('.gallery-current');
-// const UIgalleryThumbs = document.querySelectorAll('.gallery-thumb');
-const UIgallery = document.querySelector('.basic-gallery');
-const UIlowVisionBtn = document.querySelector('.toggle-low-vision');
-const UIlowVisionSpan = document.querySelector('.toggle-low-vision__span');
-// const UIcontactForm = document.querySelector('.contact-form');
-// const UIcontactName = document.querySelector('.contact-form__name');
-// const UIcontactEmail = document.querySelector('.contact-form__email');
-// const UIcontactMessage = document.querySelector('.contact-form__message');
-// const UIcontactSubmit = document.querySelector('.contact-form__submit');
-
-// handle menu-btn click
-// if (UImenuBtn) {
-//   UImenuBtn.addEventListener('click', function (e) {
-//     UInavPrimary.classList.toggle('visible');
-//     // document.body.classList.toggle('no-scroll');
-//     UImenuBtn.classList.toggle('is-open');
-//     e.preventDefault();
-//   });
-// }
-
 const SolSanKinder = (() => {
+  /* Element selectors here */
   const UIselectors = {
     basicGallery: '.basic-gallery',
-    bread: '.bread',
     header: '.main-header',
     lowVisionBtn: '.toggle-low-vision',
     lowVisionSpan: '.toggle-low-vision__span',
+    menuBtn: '.menu-btn',
     navPrimary: '.nav-primary',
     npLink: '.nav-primary__link',
     npSubnav: '.np-subnav',
@@ -52,17 +15,20 @@ const SolSanKinder = (() => {
 
   /* Toggle mobile navigation */
   const toggleMenu = (e) => {
-    const btn = e.target.closest('.menu-btn');
+    const btn = e.target.closest(UIselectors.menuBtn);
 
     if (btn) {
+      /* Open navigation menu */
       document
         .querySelector(UIselectors.navPrimary)
         .classList.toggle('visible');
 
+      /* Initially hide all subnavs */
       document
         .querySelectorAll(UIselectors.npSubnav)
         .forEach((item) => item.classList.remove('visible'));
 
+      /* Reset arrows indicating subnav status */
       document
         .querySelectorAll(UIselectors.npLink)
         .forEach((item) => item.classList.remove('subnav-open'));
@@ -80,23 +46,27 @@ const SolSanKinder = (() => {
 
       const subnav = link.nextElementSibling;
 
-      /* show subnav, hide others */
+      /* Hide subnavs save for current */
       document.querySelectorAll(UIselectors.npSubnav).forEach((item) => {
         if (item !== subnav) item.classList.remove('visible');
       });
 
-      /* toggle arrows */
+      /* Reset arrows indicating subnav status */
       document.querySelectorAll(UIselectors.npLink).forEach((item) => {
         if (item !== link) item.classList.remove('subnav-open');
       });
 
+      /* Toggle current subnav and arrow */
       subnav.classList.toggle('visible');
       link.classList.toggle('subnav-open');
     } else if (!e.target.closest(UIselectors.npSubnav)) {
+      /* if not clicked inside a subnav or navigation link */
+      /* Hide all subnavs */
       document
         .querySelectorAll(UIselectors.npSubnav)
         .forEach((item) => item.classList.remove('visible'));
 
+      /* Reset all arrows */
       document
         .querySelectorAll(UIselectors.npLink)
         .forEach((item) => item.classList.remove('subnav-open'));
@@ -134,6 +104,7 @@ const SolSanKinder = (() => {
     })
       .then((res) => res.json())
       .then((data) => {
+        /* Toggle body class and button text without page reload */
         document.body.classList.toggle('low-vision');
         const btnText = document.body.classList.contains('low-vision')
           ? 'обычная версия'
@@ -147,47 +118,58 @@ const SolSanKinder = (() => {
    * lazy loading https://css-tricks.com/a-few-functional-uses-for-intersection-observer-to-know-when-an-element-is-in-view/
    */
   const lazyObserver = new IntersectionObserver(
-    function (entries, observer) {
-      entries.forEach(function (entry) {
+    (entries, observer) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          /* replace placeholder src (srcset) from an entry's dataset */
           if (entry.target.dataset.srcset) {
             entry.target.srcset = entry.target.dataset.srcset;
           } else {
             entry.target.src = entry.target.dataset.src;
           }
+          /* stop watching for loaded entry */
           observer.unobserve(entry.target);
         }
       });
     },
-    { rootMargin: '0px 0px 50px 0px' }
+    { rootMargin: '0px 0px 0px 0px' }
   );
 
   /* Public method that initializes event listeners */
   const init = () => {
-    /* navigation menu click */
+    /* Navigation menu button click capture */
     document
       .querySelector(UIselectors.header)
       .addEventListener('click', toggleMenu);
 
-    /* nav-primary click */
+    /* Primary navigation click capture */
     document.body.addEventListener('click', toggleSubnav);
 
-    /* basic gallery click */
+    /* Basic gallery click capture */
     const basicGallery = document.querySelector(UIselectors.basicGallery);
     if (basicGallery) {
       basicGallery.addEventListener('click', handleBasicGallery);
     }
 
-    /* low vision click */
+    /* Low vision toggle button click */
     document
       .querySelector(UIselectors.lowVisionBtn)
       .addEventListener('click', toggleLowVision);
 
-    /* lazy content loading */
+    /* Lazy content loading */
     if (document.querySelector('.lazy')) {
       document.querySelectorAll('.lazy').forEach((lazyItem) => {
         lazyObserver.observe(lazyItem);
       });
+    }
+
+    /* Homepage slider initialization */
+    if (document.querySelector('.glide')) {
+      const homeGlide = new Glide('.glide', {
+        type: 'carousel',
+        startAt: 0,
+        perView: 3,
+      }).mount();
     }
   };
 
