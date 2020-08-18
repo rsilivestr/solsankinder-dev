@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 $btnRad: 2rem;
 
@@ -22,7 +22,7 @@ $btnRad: 2rem;
     font-size: $btnRad * 1.125;
   }
 
-  @include fw.media('>tablet') {
+  @include media('>=tablet') {
     display: none;
   }
 }

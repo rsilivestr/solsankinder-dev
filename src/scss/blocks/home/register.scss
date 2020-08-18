@@ -1,9 +1,9 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .register-section {
   text-align: center;
 
-  @include fw.media('>tablet') {
+  @include media('>=tablet') {
     display: none;
     text-align: left;
   }

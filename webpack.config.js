@@ -62,8 +62,12 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              // plugins: [require('autoprefixer')],
-              plugins: (loader) => [require('postcss-preset-env')()],
+              plugins: (loader) => [
+                require('postcss-sort-media-queries')({
+                  sort: 'mobile-first',
+                }),
+                require('postcss-preset-env')(),
+              ],
             },
           },
           'sass-loader',

@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 // поиск
 .search-form {
@@ -21,11 +21,11 @@
   &__submit {
     flex: 1 1 auto;
     min-width: 90px;
-    background-color: fw.$yellow-vivid;
+    background-color: $yellow-vivid;
     cursor: pointer;
 
     &:hover {
-      background-color: fw.$yellow-darker;
+      background-color: $yellow-darker;
     }
   }
 }

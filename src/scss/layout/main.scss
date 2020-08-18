@@ -1,18 +1,18 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .main {
   flex: auto;
-  margin-top: fw.$breadHeight_m;
+  margin-top: $breadHeight_m;
   padding: 1.5rem 0;
 
-  @include fw.media('>tablet') {
+  @include media('>tablet') {
     margin-top: 0;
     padding: 3rem 0;
   }
 }
 
 .home .main {
-  @include fw.media('>tablet') {
+  @include media('>=tablet') {
     padding-top: 0;
   }
 }

@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .home-units {
   display: flex;
@@ -18,13 +18,13 @@
       background: rgba(155, 100, 0, 0.05);
     }
 
-    @include fw.media('>tablet') {
+    @include media('>=tablet') {
       width: 33.33%;
     }
-    @include fw.media('>900px') {
+    @include media('>=900px') {
       width: 25%;
     }
-    @include fw.media('>1024px') {
+    @include media('>=1024px') {
       width: 20%;
     }
   }

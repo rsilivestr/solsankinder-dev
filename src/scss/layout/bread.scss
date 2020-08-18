@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .bread {
   position: fixed;
@@ -6,12 +6,12 @@
   display: flex;
   flex-flow: row wrap;
   padding: 0 0.75rem;
-  line-height: fw.$breadHeight_m;
-  background: fw.$yellow-vivid;
+  line-height: $breadHeight_m;
+  background: $yellow-vivid;
   border-bottom: 2px solid #333;
   z-index: 9;
 
-  @media screen and (min-width: 768px) {
+  @include media('>=tablet') {
     position: relative;
     width: auto;
     justify-content: center;
@@ -25,7 +25,7 @@
   &__link {
     display: none;
 
-    @media screen and (min-width: 768px) {
+    @include media('>=tablet') {
       display: inline-block;
       text-decoration: underline;
       color: #333;
@@ -38,7 +38,7 @@
     line-height: 2;
     cursor: default;
 
-    @media screen and (min-width: 768px) {
+    @include media('>=tablet') {
       display: inline-block;
     }
   }
@@ -46,21 +46,23 @@
   &__current {
     font-weight: 700;
   }
+
+  @include media('print') {
+    display: none;
+  }
 }
 
 // don't show on homepage
-@media screen and (min-width: 768px) {
+@include media('>=tablet') {
   .home .bread {
     display: none;
   }
 }
 
-// edit page link
-// bread__edit-page
 .page-edit-link {
   display: none;
 
-  @media screen and (min-width: 768px) {
+  @include media('>=tablet') {
     display: inline-block;
     position: absolute;
     right: 1rem;

@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .home {
   .section {
@@ -21,11 +21,6 @@
   &__image {
     display: block;
   }
-
-  // &__arrows {
-  // position: absolute;
-  // width: 100%;
-  // }
 
   &__arrow {
     position: absolute;

@@ -1,7 +1,6 @@
 // misc
 @use './misc/common';
 @use './misc/links';
-@use './misc/print';
 @use './misc/typo';
 @use './misc/visibility';
 
@@ -15,7 +14,6 @@
 // homepage blocks
 @use './blocks/home/about';
 @use './blocks/home/children';
-@use './blocks/home/gallery';
 @use './blocks/home/register';
 @use './blocks/home/units';
 

@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .section {
   margin: 0 auto;
@@ -19,7 +19,7 @@
     &_w {
       padding: 0 0.75rem;
 
-      @include fw.media('>tablet') {
+      @include media('>=tablet') {
         padding: 0 1.5rem;
       }
     }

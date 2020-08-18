@@ -1,10 +1,12 @@
-@media screen and (max-width: 767px) {
+@use 'ScssUtil/forward' as *;
+
+@include media('<tablet') {
   .hide-sm {
     display: none;
   }
 }
 
-@media screen and (min-width: 768px) {
+@include media('>=tablet') {
   .hide-lg {
     display: none;
   }

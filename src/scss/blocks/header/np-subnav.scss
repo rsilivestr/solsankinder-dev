@@ -1,10 +1,10 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .np-subnav {
   display: none;
   z-index: -1;
 
-  @media screen and (max-width: 767px) {
+  @include media('<tablet') {
     display: none;
 
     &.visible {
@@ -12,7 +12,7 @@
     }
   }
 
-  @include fw.media('>tablet') {
+  @include media('>=tablet') {
     position: absolute;
     top: -1000px;
     display: flex;
@@ -38,7 +38,7 @@
     flex-direction: column;
     align-items: flex-start;
 
-    @media screen and (min-width: 768px) {
+    @include media('>=tablet') {
       padding: 0 1rem;
     }
 
@@ -49,7 +49,7 @@
       line-height: 2;
       font-weight: bold;
 
-      @media screen and (min-width: 768px) {
+      @include media('>=tablet') {
         margin-top: 0;
         font-size: 1.1rem;
       }
@@ -79,7 +79,7 @@
       text-decoration: underline;
     }
 
-    @media screen and (min-width: 768px) {
+    @include media('>=tablet') {
       margin-left: 0;
       font-size: 1rem;
       line-height: 1.75;

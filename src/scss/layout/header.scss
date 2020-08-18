@@ -1,4 +1,4 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 @use 'ScssBlocks/header/nav-primary';
 @use 'ScssBlocks/header/np-subnav';
@@ -7,7 +7,7 @@
   position: relative;
 
   &--home {
-    @include fw.media('>tablet') {
+    @include media('>=tablet') {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -22,10 +22,14 @@
   &__register-btn {
     display: none;
 
-    @include fw.media('>tablet') {
+    @include media('>=tablet') {
       display: block;
       bottom: 4rem;
     }
+  }
+
+  @include media('print') {
+    display: none;
   }
 }
 

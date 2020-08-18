@@ -1,11 +1,11 @@
-@use 'ScssUtil/forward' as fw;
+@use 'ScssUtil/forward' as *;
 
 .footer {
   text-align: center;
 
   &__top {
     padding: 1.5rem 0.75rem;
-    background-color: fw.$footer-color;
+    background-color: $footer-color;
   }
 
   &-nav {
@@ -40,14 +40,19 @@
   }
 
   &-copy {
-    background-color: fw.$yellow-vivid;
+    background-color: $yellow-vivid;
 
     &__para {
       margin: 0;
       padding: 1.5rem 0.75rem;
     }
   }
+
+  @include media('print') {
+    display: none;
+  }
 }
+
 #ban_gu {
   width: 235px;
   background: url('/site/assets/images/ban1.png') 0 0;
@@ -56,15 +61,17 @@
   width: 300px;
   background: url('/site/assets/images/ban1.png') -235px 0;
 }
+
 #ban_poll {
   width: 355px;
   background: url('/site/assets/images/ban1.png') -535px 0;
 }
-@media screen and (min-width: 768px) {
-  .low-vision {
-    .footer-nav__link,
-    .footer-copy__para {
-      font-size: 1.5rem;
-    }
-  }
-}
+
+// @include media('>=tablet') {
+//   .low-vision {
+//     .footer-nav__link,
+//     .footer-copy__para {
+//       font-size: 1.5rem;
+//     }
+//   }
+// }
