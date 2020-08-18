@@ -8,6 +8,10 @@ if(!isset($_SESSION)){
 // toggle low-vision
 if(isset($_POST['lowVision'])) {
 	$_SESSION['lowVision'] = !($_SESSION['lowVision']);
+
+	$status = $_SESSION['lowVision'] ? 1 : 0;
+
+	echo '{"lowVision": "'.$status.'"}';
 }
 
 // if not an api call
