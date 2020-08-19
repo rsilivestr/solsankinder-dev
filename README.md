@@ -1,4 +1,4 @@
-# Solsankinder.ru developement version
+# Solsankinder.ru development version
 
 ## Description
 
