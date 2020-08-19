@@ -8,18 +8,11 @@
 
   @include media('>=500px') {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'gv empty';
   }
 
   @include media('>=960px') {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 'gv empty empty';
     gap: 1.5rem;
-  }
-
-  &::before {
-    content: '';
-    grid-area: empty;
   }
 }
 

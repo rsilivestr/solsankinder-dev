@@ -74,7 +74,7 @@ foreach ($page->gallery as $image) {
 
 	$galItemsHTML .= "<li class='glide__slide'
 	><img class='glide__image lazy'
-		src='$sm->url'
+		src='$image->url'
 		srcset='{$config->urls->assets}images/4x3.png'
 		data-srcset='$xs->url 400w, $sm->url 600w, $md->url 800w'
 		sizes='(max-width: 424px) 400px,

@@ -11,11 +11,12 @@ foreach($page->cards as $card) {
 
     $imageHTML = "<img class='card-tile__image lazy'
       src='{$card->cardPhoto->url}'
-      srcset='/site/assets/images/4x3.png'
+      srcset='{$config->urls->assets}images/no-photo.png'
       data-srcset='
-        $xs->url 320w
+        $xs->url 320w,
         $sm->url 450w'
-      sizes='(max-width: 352px) 320px, 450px'
+      sizes='(max-width: 344px) 320px, 450px'
+      alt='$image->description'
     >";
   }
 
