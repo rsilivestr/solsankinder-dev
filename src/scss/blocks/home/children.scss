@@ -1,13 +1,5 @@
 @use 'ScssUtil/forward' as *;
 
-#home-children-1 {
-  background-image: url('/site/assets/images/bg-children-1.jpg');
-}
-
-#home-children-2 {
-  background-image: url('/site/assets/images/bg-children-2.jpg');
-}
-
 .home-children {
   display: none;
 
@@ -17,5 +9,15 @@
     height: 20rem;
     background-attachment: fixed;
     background-size: cover;
+  }
+}
+
+@include media('>=tablet') {
+  #home-children-1 {
+    background-image: url('/site/assets/images/bg-children-1.webp');
+  }
+
+  #home-children-2 {
+    background-image: url('/site/assets/images/bg-children-2.webp');
   }
 }
