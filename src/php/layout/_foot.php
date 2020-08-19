@@ -13,16 +13,19 @@
           class="footer-officials__banner"
           id="ban_gu"
           href="https://gosuslugi.ru/"
+          aria-label="Баннер Госуслуг"
         ></a
         ><a
           class="footer-officials__banner"
           id="ban_miac"
           href="https://spbmiac.ru/"
+          aria-label="Баннер МИАЦ"
         ></a
         ><a
           class="footer-officials__banner"
           id="ban_poll"
           href="http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews"
+          aria-label="Баннер анкеты оценки качества оказанных услуг"
         ></a>
       </div>
     </div>

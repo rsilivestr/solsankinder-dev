@@ -91,10 +91,10 @@ $content .= "<section class='section section--width_m'>
 			<ul class='glide__slides'>"	. $galItemsHTML .	"</ul>
 		</div>
 		<div class='glide__arrows' data-glide-el='controls'>
-			<button class='glide__arrow glide__arrow--left' data-glide-dir='<'>
+			<button class='glide__arrow glide__arrow--left' data-glide-dir='<' aria-label='Листать галерею влево'>
 				<i class='icon-left-big'></i>
 			</button>
-			<button class='glide__arrow glide__arrow--right' data-glide-dir='>'>
+			<button class='glide__arrow glide__arrow--right' data-glide-dir='>' aria-label='Листать галерею вправо'>
 				<i class='icon-right-big'></i>
 			</button>
   	</div>
@@ -149,6 +149,7 @@ $content .= "<section class='home-about section section--width_m'>
 	<div class='home-about__content'>
 		<div class='home-about__video'>
 			<iframe
+				title='Видео о санатории'
 				class='lazy'
 				width='560'
 				height='315'

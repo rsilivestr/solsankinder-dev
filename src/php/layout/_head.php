@@ -85,7 +85,7 @@
     </nav>
 
     <!-- Navigation menu button (mobile) -->
-    <button class="menu-btn">
+    <button class="menu-btn" aria-label="Открыть меню навигации">
       <i class="menu-btn__icon icon-menu"></i>
     </button>
 
