@@ -6,12 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="<?php echo $page->summary; ?>">
   <title><?php echo $title; ?></title>
-  <!-- Montserrat font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
   <!-- Glidejs slider -->
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css">
-  <!-- Icon font -->
-  <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.css" />
+  <noscript>
+    <!-- Icon font -->
+    <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.min.css" />
+    <!-- Montserrat font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
+  </noscript>
   <!-- Main stylesheet -->
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/styles.min.css" />
   <!-- Check-in stylesheet -->
@@ -21,10 +23,8 @@
     ) echo "<link rel='stylesheet' href='{$config->urls->siteModules}SolCheckIn/styles/checkin.css'>";
   ?>
   <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" />
-  <!-- Font Awesome CDN -->
-  <script src="https://kit.fontawesome.com/a33cf6c7ed.js" crossorigin="anonymous"></script>
   <!-- Glidejs slider -->
-  <?php 
+  <?php
   if ($page->template->name === 'home') {
     echo "<script defer src='{$config->urls->templates}scripts/glide.min.js'></script>";
   } ?>
@@ -59,7 +59,8 @@
               foreach($subnavTitle->children as $subnavItem) {
                 $icon = "";
                 if ($subnavItem->template->name === "external-link") {
-                  $icon = '<svg class="np-subnav__icon" viewBox="0 0 25 25" style="height: 0.8rem"><path d="M 0.05037779,13.876397 V 3.3777271 H 5.2997108 10.549048 v 1.56633 1.56634 H 6.866044 3.1830438 v 7.3659999 7.366 h 7.3660042 7.366 v -3.64067 -3.64067 h 1.56633 1.56633 v 5.207 5.207 H 10.549048 0.05037779 Z m 11.28143021,-0.78277 -1.12153,-1.12153 4.38125,-4.3818499 4.38124,-4.38185 h -2.51853 -2.51853 v -1.56634 -1.56633005 h 5.207 5.207 V 5.3250571 10.574397 h -1.56633 -1.56633 v -2.5608699 -2.56086 l -4.38185,4.3812504 -4.38186,4.3812395 z" style="fill:#303030;stroke-width:0.08466666" /></svg>';
+                //   $icon = '<svg class="np-subnav__icon" viewBox="0 0 25 25" style="height: 0.8rem"><path d="M 0.05037779,13.876397 V 3.3777271 H 5.2997108 10.549048 v 1.56633 1.56634 H 6.866044 3.1830438 v 7.3659999 7.366 h 7.3660042 7.366 v -3.64067 -3.64067 h 1.56633 1.56633 v 5.207 5.207 H 10.549048 0.05037779 Z m 11.28143021,-0.78277 -1.12153,-1.12153 4.38125,-4.3818499 4.38124,-4.38185 h -2.51853 -2.51853 v -1.56634 -1.56633005 h 5.207 5.207 V 5.3250571 10.574397 h -1.56633 -1.56633 v -2.5608699 -2.56086 l -4.38185,4.3812504 -4.38186,4.3812395 z" style="fill:#303030;stroke-width:0.08466666" /></svg>';
+                  $icon = "<i class='icon-link-ext'></i>";
                 }
                 $subLinkClass = "np-subnav__link";
                 if ($page->id === $subnavItem->id) {
@@ -100,7 +101,7 @@
 
   </header>
   <!-- Breadcrumbs (parents pages) -->
-  <div id="bread" class="bread">
+  <div class="bread">
   <?php
     foreach($page->parents as $breadItem) {
       echo "<a class='bread__link' href='$breadItem->url'>$breadItem->title</a><span class='bread__separator'>/</span>";

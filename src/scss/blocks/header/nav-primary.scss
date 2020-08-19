@@ -61,17 +61,28 @@
       font-weight: 700;
     }
 
-    &:after {
-      margin-left: 0.25rem;
+    &::after {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 0.5rem;
       font-size: 1rem;
+      font-family: 'fontello';
+      transition: transform 0.5s;
+
+      @include media('>=tablet') {
+        margin-left: 0.25rem;
+        font-size: 0.75rem;
+      }
     }
 
     &.has-subnav::after {
-      content: '▼';
+      // content: '▼';
+      content: '\e800';
     }
 
     &.subnav-open::after {
-      content: '▲';
+      // content: '▲';
+      transform: rotate(180deg);
     }
 
     @include media('>=tablet') {

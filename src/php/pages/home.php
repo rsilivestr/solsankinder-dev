@@ -92,10 +92,10 @@ $content .= "<section class='section section--width_m'>
 		</div>
 		<div class='glide__arrows' data-glide-el='controls'>
 			<button class='glide__arrow glide__arrow--left' data-glide-dir='<'>
-				<i class='fas fa-arrow-left'></i>
+				<i class='icon-left-big'></i>
 			</button>
 			<button class='glide__arrow glide__arrow--right' data-glide-dir='>'>
-				<i class='fas fa-arrow-right'></i>
+				<i class='icon-right-big'></i>
 			</button>
   	</div>
 	</div>
