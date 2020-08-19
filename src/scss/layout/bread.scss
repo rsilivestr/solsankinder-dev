@@ -59,11 +59,20 @@
   }
 }
 
-.page-edit-link {
-  display: none;
+.edit-link {
+  display: inline-block;
+  margin-left: 0.75rem;
+  padding: 0 0.75rem;
+
+  &__text {
+    display: none;
+
+    @include media('>=tablet') {
+      display: initial;
+    }
+  }
 
   @include media('>=tablet') {
-    display: inline-block;
     position: absolute;
     right: 1rem;
     font-weight: 700;

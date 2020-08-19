@@ -109,7 +109,7 @@
   ?>
     <span class="bread__current"><?php echo $page->title ?></span>
     <!-- Edit in admin panel link -->
-    <?php if($page->editable()) echo "<a class='page-edit-link' href='$page->editUrl'>Править</a>"; ?>
+    <?php if($page->editable()) echo "<a class='edit-link' href='$page->editUrl'><i class='icon-pencil edit-link__icon'></i><span class='edit-link__text'> Править</span></a>"; ?>
   </div>
 
   <main class="main">

@@ -16,12 +16,16 @@ const SolSanKinder = (() => {
   /* Toggle mobile navigation */
   const toggleMenu = (e) => {
     const btn = e.target.closest(UIselectors.menuBtn);
+    const btnIcon = btn.firstElementChild;
 
     if (btn) {
       /* Open navigation menu */
       document
         .querySelector(UIselectors.navPrimary)
         .classList.toggle('visible');
+
+      btnIcon.classList.toggle('icon-menu');
+      btnIcon.classList.toggle('icon-cancel');
 
       /* Initially hide all subnavs */
       document
