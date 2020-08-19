@@ -3,11 +3,10 @@
 .main {
   flex: auto;
   margin-top: $breadHeight_m;
-  padding: 1.5rem 0;
+  padding: 3rem 0;
 
   @include media('>tablet') {
     margin-top: 0;
-    padding: 3rem 0;
   }
 }
 
