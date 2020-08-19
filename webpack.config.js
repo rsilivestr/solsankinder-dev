@@ -16,7 +16,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new CopyPlugin({
       patterns: [
-        { from: 'static', to: path.resolve(__dirname, 'dist') },
+        { from: 'src/static', to: path.resolve(__dirname, 'dist') },
         {
           from: 'src/php/**/*',
           to: path.resolve(__dirname, 'dist'),
