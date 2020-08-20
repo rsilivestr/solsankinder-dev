@@ -34,6 +34,18 @@ h6 {
   margin: 1rem 0 0.5rem;
 }
 
+// .main p {
+//   /* super stylish formation */
+//   text-align: justify;
+
+//   /* super stylish line */
+//   &::before {
+//     content: '';
+//     display: inline-block;
+//     width: 1.25cm;
+//   }
+// }
+
 p,
 ul,
 ol {
@@ -47,13 +59,6 @@ ul {
 
 ul {
   list-style-type: square;
-}
-
-li::marker {
-  position: absolute;
-  left: 0;
-  // width: 2rem;
-  // text-align: left;
 }
 
 li {

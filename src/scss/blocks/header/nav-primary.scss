@@ -57,7 +57,7 @@
     font-size: 1.5rem;
     color: #333;
 
-    &.active {
+    &--active {
       color: orangered;
       font-weight: 700;
     }
@@ -76,13 +76,11 @@
       }
     }
 
-    &.has-subnav::after {
-      // content: '▼';
+    &--has-subnav::after {
       content: '\e801';
     }
 
-    &.subnav-open::after {
-      // content: '▲';
+    &--subnav-open::after {
       transform: rotate(180deg);
     }
 

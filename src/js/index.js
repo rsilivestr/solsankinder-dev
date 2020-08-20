@@ -16,9 +16,10 @@ const SolSanKinder = (() => {
   /* Toggle mobile navigation */
   const toggleMenu = (e) => {
     const btn = e.target.closest(UIselectors.menuBtn);
-    const btnIcon = btn.firstElementChild;
 
     if (btn) {
+      const btnIcon = btn.firstElementChild;
+
       /* Open navigation menu */
       document
         .querySelector(UIselectors.navPrimary)
@@ -35,7 +36,9 @@ const SolSanKinder = (() => {
       /* Reset arrows indicating subnav status */
       document
         .querySelectorAll(UIselectors.npLink)
-        .forEach((item) => item.classList.remove('subnav-open'));
+        .forEach((item) =>
+          item.classList.remove('nav-primary__link--subnav-open')
+        );
 
       btn.blur();
     }
@@ -43,7 +46,7 @@ const SolSanKinder = (() => {
 
   /* Toggle navigation sublevels */
   const toggleSubnav = (e) => {
-    const link = e.target.closest('.has-subnav');
+    const link = e.target.closest('.nav-primary__link--has-subnav');
 
     if (link) {
       e.preventDefault();
@@ -57,12 +60,13 @@ const SolSanKinder = (() => {
 
       /* Reset arrows indicating subnav status */
       document.querySelectorAll(UIselectors.npLink).forEach((item) => {
-        if (item !== link) item.classList.remove('subnav-open');
+        if (item !== link)
+          item.classList.remove('nav-primary__link--subnav-open');
       });
 
       /* Toggle current subnav and arrow */
       subnav.classList.toggle('visible');
-      link.classList.toggle('subnav-open');
+      link.classList.toggle('nav-primary__link--subnav-open');
     } else if (!e.target.closest(UIselectors.npSubnav)) {
       /* if not clicked inside a subnav or navigation link */
       /* Hide all subnavs */
@@ -73,14 +77,16 @@ const SolSanKinder = (() => {
       /* Reset all arrows */
       document
         .querySelectorAll(UIselectors.npLink)
-        .forEach((item) => item.classList.remove('subnav-open'));
+        .forEach((item) =>
+          item.classList.remove('nav-primary__link--subnav-open')
+        );
     }
   };
 
   /* Gallery on basic pages */
   const handleBasicGallery = (e) => {
     const target = e.target;
-    const gal = e.target.closest('.basic-gallery');
+    const gal = target.closest('.basic-gallery');
     const current = gal.querySelector('.basic-gallery__current');
     const caption = gal.querySelector('.basic-gallery__caption');
 

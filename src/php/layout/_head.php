@@ -5,32 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="<?php echo $page->summary; ?>">
+
   <title><?php echo $title; ?></title>
+
+  <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" />
+  
   <!-- Glidejs slider -->
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css">
+
+  <!-- Conditional styles -->
   <noscript>
     <!-- Icon font -->
     <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.min.css" />
     <!-- Montserrat font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
   </noscript>
+  
   <!-- Main stylesheet -->
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/styles.min.css" />
+
   <!-- Check-in stylesheet -->
   <?php
     if ($page->template->name === 'check-in__user-form'
       || $page->template->name === 'check-in__admin-panel'
     ) echo "<link rel='stylesheet' href='{$config->urls->siteModules}SolCheckIn/styles/checkin.css'>";
   ?>
-  <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" />
-  <!-- Glidejs slider -->
+
+  <!-- Glidejs slider script -->
   <?php
   if ($page->template->name === 'home') {
     echo "<script defer src='{$config->urls->templates}scripts/glide.min.js'></script>";
   } ?>
+
   <!-- Main script -->
   <script defer src="<?php echo $config->urls->templates; ?>scripts/app.min.js"></script>
 </head>
+
 <body class="<?php echo $page->template->name . ($isLowVisionActive ? ' low-vision' : ''); ?>">
   <header class="main-header<?php if ($page->template->name === "home") echo " main-header--home" ?>">
     <!-- Main navigation bar -->
@@ -44,8 +54,8 @@
         foreach($homepage->and($homepage->children) as $navItem) {
           // Set top-level navigation link classes
           $class='nav-primary__link';
-          if($navItem !== $homepage && count($navItem->children) > 0) $class .= ' has-subnav';
-          if($navItem->id == $page->rootParent->id) $class .= ' active';
+          if($navItem !== $homepage && count($navItem->children) > 0) $class .= ' nav-primary__link--has-subnav';
+          if($navItem->id == $page->rootParent->id) $class .= ' nav-primary__link--active';
           // Render top-level navigation links
           echo "<a class='$class' href='$navItem->url'>$navItem->title</a>";
           // Render subnav if exists
