@@ -27,7 +27,7 @@
 
   &--justified {
     p {
-      @extend %justifiedPara;
+      @extend %justPara;
     }
   }
 }

@@ -6,7 +6,7 @@ foreach($page->cards as $card) {
   $imageHTML = "";
 
   if (!$card->cardTextOnly) {
-    $imageHTML = "<img class='card-tile__image' src='{$config->urls->assets}images/no-photo.png' />";
+    $imageHTML = "<img class='card-tile__image' src='{$config->urls->assets}images/no-photo-3x4.png' />";
 
     if($card->cardPhoto) {
       $xs = $card->cardPhoto->width('320');

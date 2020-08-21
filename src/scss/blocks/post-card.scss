@@ -58,6 +58,7 @@
   }
 
   &__summary {
+    @extend %justPara;
     margin-top: 0;
     margin-bottom: 1rem;
   }

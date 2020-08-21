@@ -5,7 +5,7 @@ $content = "<section class='section section--width_m register-section'>
   <a class='action-btn action-btn--color_yellow' href='/check-in-form'>Записаться на заезд</a>
 </section>";
 
-$content .= "<section class='section section--width_m'>
+$content .= "<section class='section section--width_m section--justified'>
   <h1>Добро пожаловать в санаторий «Солнечное»</h1>
   {$page->body}
 </section>";
@@ -119,7 +119,7 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
 $content .= "</div></section>";
 
 /* о санатории, видео */
-$content .= "<section class='home-about section section--width_m'>
+$content .= "<section class='home-about section section--width_m section--justified'>
   <h2 class='home-about__title'>О санатории</h2>
   <div class='home-about__content'>
     <div class='home-about__video'>

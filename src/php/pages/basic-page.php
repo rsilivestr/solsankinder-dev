@@ -1,6 +1,6 @@
 <?php namespace ProcessWire;
 
-$aClass = "section" . ($page->wideContent ? " section--width_w" : " section--width_m");
+$aClass = "section section--justified" . ($page->wideContent ? " section--width_w" : " section--width_m");
 // if ($page->wideContent) $aClass .= " article--wide";
 
 $content = "<article class='$aClass'>
