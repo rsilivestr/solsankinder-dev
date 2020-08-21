@@ -18,27 +18,9 @@
 
 .card-tile {
   border: 1px solid #eee;
-  box-shadow: 0 0.25rem 0.5rem #ddd;
+  box-shadow: $shadowGrey;
   border-radius: 4px;
 
-  /* smaller vertical images */
-  // &__image-container {
-  //   position: relative;
-  //   height: 0;
-  //   margin: 0.5rem;
-  //   padding-bottom: 66.67%;
-  // }
-
-  // &__image {
-  //   position: absolute;
-  //   left: 0;
-  //   right: 0;
-  //   display: block;
-  //   height: 100%;
-  //   margin: 0 auto;
-  // }
-
-  /* full-height vertical images */
   &__image-container {
     margin: 0.5rem;
     border-radius: 3px;

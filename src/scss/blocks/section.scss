@@ -24,4 +24,10 @@
       }
     }
   }
+
+  &--justified {
+    p {
+      @extend %justifiedPara;
+    }
+  }
 }

@@ -1,0 +1,9 @@
+%justifiedPara {
+  text-align: justify;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1rem;
+  }
+}
