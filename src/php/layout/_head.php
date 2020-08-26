@@ -45,11 +45,13 @@
   <header class="main-header<?php if ($page->template->name === "home") echo " main-header--home" ?>">
     <!-- Main navigation bar -->
     <nav class="nav-primary<?php if ($page->template->name === "home") echo " nav-primary--home" ?>">
-      <img 
+      <!-- Logo -->
+      <!-- <img 
         class="nav-primary__logo"
         src='<?php echo $config->urls->assets ?>images/logo2.svg'
         alt="Лого санатория"
-      >
+      > -->
+      <!-- Navlinks -->
       <?php
         foreach($homepage->and($homepage->children) as $navItem) {
           // Set top-level navigation link classes
