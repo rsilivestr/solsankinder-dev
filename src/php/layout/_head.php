@@ -8,7 +8,8 @@
 
   <title><?php echo $title; ?></title>
 
-  <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" />
+  <!-- <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" /> -->
+  <link rel="icon" type="image/svg" href="<?php echo $config->urls->assets; ?>images/nerp_plain.svg" />
   
   <!-- Glidejs slider -->
   <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css">
@@ -46,11 +47,11 @@
     <!-- Main navigation bar -->
     <nav class="nav-primary<?php if ($page->template->name === "home") echo " nav-primary--home" ?>">
       <!-- Logo -->
-      <!-- <img 
+      <img 
         class="nav-primary__logo"
-        src='<?php echo $config->urls->assets ?>images/logo2.svg'
+        src='<?php echo $config->urls->assets ?>images/logo_plain.svg'
         alt="Лого санатория"
-      > -->
+      >
       <!-- Navlinks -->
       <?php
         foreach($homepage->and($homepage->children) as $navItem) {
@@ -94,6 +95,18 @@
         <span class='toggle-low-vision__span'><?php echo $lowVisionText ?></span>
       </a>
     </nav>
+
+    <!-- Homepage logo -->
+    <?php if ($page->template->name === "home"): ?>
+      <div class="main-header__logo">
+        <img
+          class="main-header__logo-image"
+          src='<?php echo $config->urls->assets ?>images/logo_plain.svg'
+          alt="Лого санатория"
+          width="256"
+        >
+      </div>
+    <?php endif; ?>
 
     <!-- Navigation menu button (mobile) -->
     <button class="menu-btn" aria-label="Открыть меню навигации">
