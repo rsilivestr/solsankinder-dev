@@ -46,6 +46,10 @@ strong {
   float: none;
 }
 
+.ta_center {
+  text-align: center;
+}
+
 @include media('>=tablet') {
   .align_right,
   .align_left {

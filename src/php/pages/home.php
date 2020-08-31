@@ -1,9 +1,9 @@
 <?php namespace ProcessWire;
 
 /* ссылка на форму регистрации */
-$content = "<section class='section section--width_m register-section'>
-  <a class='action-btn action-btn--color_yellow' href='/check-in-form'>Записаться на заезд</a>
-</section>";
+$content = "<div class='section section--width_m register-section ta_center'>
+  <a class='action-btn action-btn--color_blue' href='/check-in-form'>Записаться на заезд</a>
+</div>";
 
 $content .= "<section class='section section--width_m section--justified'>
   <h1>Добро пожаловать в санаторий «Солнечное»</h1>
@@ -34,7 +34,7 @@ $content .= "<section class='section section--width_m'>
 
 /* фото детей */
 $content .= "<div id='home-children-1' class='home-children section hide-sm'>
-  <a class='action-btn action-btn--size_s action-btn--color_cyan' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
+  <a class='action-btn action-btn--size_s action-btn--color_blue' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
     Анкета оценки качества оказания услуг
   </a>
 </div>";
@@ -78,7 +78,7 @@ $content .= "<section class='section section--width_m'>
 
 /* фото детей 2 */
 $content .= "<div id='home-children-2' class='home-children section hide-sm'>
-  <a class='action-btn action-btn--size_s action-btn--color_cyan' href='https://bus.gov.ru/pub/info-card/170512?activeTab=5'>
+  <a class='action-btn action-btn--size_s action-btn--color_blue' href='https://bus.gov.ru/pub/info-card/170512?activeTab=5'>
     Оставьте отзыв о работе санатория
   </a>
 </div>";
@@ -133,7 +133,7 @@ $content .= "<section class='home-about section section--width_m section--justif
     </div>
     <div class='home-about__text-content'>
       <p class='home-about__desctiption'>СПб ГБУЗ «Детский санаторий «Солнечное» располагается в поселке Солнечное Курортного района Санкт-Петербурга в 33 зданиях и сооружениях на территории 45 гектаров.</p>
-      <a class='home-about__btn action-btn action-btn--color_yellow action-btn--size_s' href='/info/common/about/'>Подробнее</a>
+      <a class='home-about__btn action-btn action-btn--color_blue action-btn--size_s' href='/info/common/about/'>Подробнее</a>
     </div>
   </div>
 </section>";

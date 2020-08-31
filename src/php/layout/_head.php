@@ -113,16 +113,6 @@
       <i class="menu-btn__icon icon-menu"></i>
     </button>
 
-    <!-- Homepage register button (desktop) -->
-    <?php if ($page->template->name === "home"): ?>
-      <a href="/check-in-form/"
-        class="main-header__register-btn
-          action-btn
-          action-btn--color_cyan
-          hide-sm"
-      >Записаться на заезд</a>
-    <?php endif; ?>
-
   </header>
   <!-- Breadcrumbs (parents pages) -->
   <div class="bread">

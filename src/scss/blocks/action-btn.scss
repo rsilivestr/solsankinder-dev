@@ -1,3 +1,5 @@
+@use 'ScssUtil/forward' as *;
+
 .action-btn {
   position: relative;
   display: inline-block;
@@ -7,7 +9,6 @@
   text-decoration: none;
   color: #fff;
   border-radius: 0.25rem;
-  text-shadow: 0 0 1px #333;
 
   &--size_s {
     padding: 0.75rem 1rem;
@@ -16,19 +17,27 @@
   }
 
   &--color {
-    &_yellow {
-      background-color: #fb0;
+    &_blue {
+      background-color: $blue-1;
 
       &:hover {
-        background-color: #d90;
+        background-color: $blue-3;
       }
     }
 
-    &_cyan {
-      background-color: #50c0e0;
+    &_magenta {
+      background-color: $magenta-1;
 
       &:hover {
-        background-color: #30a0c0;
+        background-color: $magenta-3;
+      }
+    }
+
+    &_orange {
+      background-color: $orange-1;
+
+      &:hover {
+        background-color: $orange-3;
       }
     }
   }
