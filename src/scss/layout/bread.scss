@@ -15,9 +15,10 @@
     position: relative;
     width: auto;
     justify-content: center;
-    background-color: rgba(50, 40, 0, 0.1);
+    background-color: lighten($violet-1, 55);
     padding: 0;
     line-height: 2;
+    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     z-index: 8;
   }
