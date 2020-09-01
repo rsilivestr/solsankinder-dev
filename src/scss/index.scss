@@ -10,6 +10,10 @@
 @use './blocks/menu-btn';
 @use './blocks/section';
 @use './blocks/table';
+@use './blocks/header';
+@use './blocks/bread';
+@use './blocks/main';
+@use './blocks/footer';
 
 // homepage blocks
 @use './blocks/home/about';
@@ -17,12 +21,6 @@
 @use './blocks/home/glide';
 @use './blocks/home/news';
 @use './blocks/home/units';
-
-// layout
-@use './layout/header';
-@use './layout/bread';
-@use './layout/main';
-@use './layout/footer';
 
 // pages
 @use './pages/cards';

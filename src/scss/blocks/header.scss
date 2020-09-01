@@ -1,7 +1,7 @@
 @use 'ScssUtil/forward' as *;
 
-@use 'ScssBlocks/header/nav-primary';
-@use 'ScssBlocks/header/np-subnav';
+@use './header/nav-primary';
+@use './header/np-subnav';
 
 .main-header {
   position: relative;
@@ -50,12 +50,14 @@
 }
 
 .low-vision {
-  .main-header--home {
-    background: none;
-    height: auto;
-  }
+  .main-header {
+    &--home {
+      background: none;
+      height: auto;
+    }
 
-  .main-header__register-btn {
-    display: none;
+    &__logo {
+      display: none;
+    }
   }
 }
