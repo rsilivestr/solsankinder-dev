@@ -24,8 +24,8 @@ $sidebar = $page->sidebar;
 // Body low-vision class is stored in session
 $isLowVisionActive = $_SESSION['lowVision'];
 
-// Get children
-$patientCountArray = explode(',', file_get_contents("../assets/files/n-children"));
+// Get assets info from manifest.json
+$manifest = json_decode(file_get_contents("./manifest.json"), TRUE);
 
 // We refer to our homepage a few times in our site, so we preload a copy 
 // here in a $homepage variable for convenience. 

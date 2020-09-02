@@ -2,15 +2,14 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: {
-    app: './src/js/index.js',
-  },
+  entry: './src/js/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'scripts/app.min.js',
+    filename: 'scripts/main.[hash].js',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -25,9 +24,10 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/styles.min.css',
+      filename: 'styles/main.[hash].css',
       ignoreOrder: false,
     }),
+    new ManifestPlugin(),
   ],
   module: {
     rules: [

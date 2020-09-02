@@ -8,22 +8,34 @@
 
   <title><?php echo $title; ?></title>
 
-  <!-- <link rel="icon" type="image/png" href="<?php echo $config->urls->assets; ?>images/favicon.png" /> -->
-  <link rel="icon" type="image/svg" href="<?php echo $config->urls->assets; ?>images/nerp_plain.svg" />
+  <!-- Nerp favicon -->
+  <link 
+    rel="icon" 
+    type="image/svg" 
+    href="<?php echo $config->urls->assets; ?>images/nerp_plain.svg"
+  >
   
-  <!-- Glidejs slider -->
-  <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css">
+  <!-- Glidejs slider stylesheet -->
+  <link 
+    rel="stylesheet" 
+    type="text/css" 
+    href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css"
+  >
 
-  <!-- Conditional styles -->
+  <!-- Styles which normally are inserted by javascript -->
   <noscript>
-    <!-- Icon font -->
+    <!-- Icon font stylesheet -->
     <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.min.css" />
-    <!-- Montserrat font -->
+    <!-- Montserrat font CDN -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
   </noscript>
   
   <!-- Main stylesheet -->
-  <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/styles.min.css" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="<?php echo $config->urls->templates . $manifest['main.css']; ?>"
+  />
 
   <!-- Check-in stylesheet -->
   <?php
@@ -39,7 +51,7 @@
   } ?>
 
   <!-- Main script -->
-  <script defer src="<?php echo $config->urls->templates; ?>scripts/app.min.js"></script>
+  <script defer src="<?php echo $config->urls->templates . $manifest['main.js']; ?>"></script>
 </head>
 
 <body class="<?php echo $page->template->name . ($isLowVisionActive ? ' low-vision' : ''); ?>">
@@ -127,4 +139,3 @@
   </div>
 
   <main class="main">
-
