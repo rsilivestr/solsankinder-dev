@@ -5,7 +5,7 @@ $content = "<div class='section section--width_m register-section ta_center'>
   <a class='action-btn action-btn--color_blue' href='/check-in-form'>Записаться на заезд</a>
 </div>";
 
-$content .= "<section class='section section--width_m section--justified'>
+$content .= "<section class='section section--width_m section--justified section--font_cursive'>
   <h1>Добро пожаловать в санаторий «Солнечное»</h1>
   {$page->body}
 </section>";
@@ -93,7 +93,7 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
     $previewImg = $blogPost->images->first();
     $previewAlt = $previewImg->description ? $previewImg->description : "превью новости";
     $thumb_sm = $previewImg->size('444', '333');
-    
+
     $content .= "<article class='home-news__item post-card'>
       <h3 class='post-card__title'>
         <a class='post-card__title-link' href='$blogPost->url'>$blogPost->title</a>

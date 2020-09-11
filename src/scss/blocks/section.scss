@@ -30,4 +30,9 @@
       @extend %justPara;
     }
   }
+
+  &--font_cursive {
+    font-family: 'Lobster', cursive;
+    // font-size: 1.25rem;
+  }
 }

@@ -9,16 +9,16 @@
   <title><?php echo $title; ?></title>
 
   <!-- Nerp favicon -->
-  <link 
-    rel="icon" 
-    type="image/svg" 
+  <link
+    rel="icon"
+    type="image/svg"
     href="<?php echo $config->urls->assets; ?>images/nerp_plain.svg"
   >
-  
+
   <!-- Glidejs slider stylesheet -->
-  <link 
-    rel="stylesheet" 
-    type="text/css" 
+  <link
+    rel="stylesheet"
+    type="text/css"
     href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css"
   >
 
@@ -27,9 +27,11 @@
     <!-- Icon font stylesheet -->
     <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.min.css" />
     <!-- Montserrat font CDN -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Lobster&display=swap" >
+    <!-- Reserved fonts -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat&family=Kelly+Slab&family=Lobster&family=Neucha&family=Pacifico&family=Poiret+One&family=Press+Start+2P&family=Ruslan+Display&family=Underdog&display=swap" rel="stylesheet"> -->
   </noscript>
-  
+
   <!-- Main stylesheet -->
   <link
     rel="stylesheet"
@@ -59,7 +61,7 @@
     <!-- Main navigation bar -->
     <nav class="nav-primary<?php if ($page->template->name === "home") echo " nav-primary--home" ?>">
       <!-- Logo -->
-      <img 
+      <img
         class="nav-primary__logo"
         src='<?php echo $config->urls->assets ?>images/logo_plain.svg'
         alt="Лого санатория"
