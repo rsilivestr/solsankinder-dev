@@ -4,6 +4,7 @@
 
   &__slides {
     margin: 0;
+    align-items: center;
   }
 
   &__slide {
@@ -20,24 +21,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
-    background: #0008;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #0006;
     color: #fff;
     cursor: pointer;
 
     &--left {
       left: 0;
-      border-radius: 0 1.5rem 1.5rem 0;
-      // left: 0.5rem;
-      // border-radius: 1.5rem;
+      // border-radius: 0 1.25rem 1.25rem 0;
+      left: 0.5rem;
+      border-radius: 1.25rem;
     }
 
     &--right {
       right: 0;
-      border-radius: 1.5rem 0 0 1.5rem;
-      // right: 0.5rem;
-      // border-radius: 1.5rem;
+      // border-radius: 1.25rem 0 0 1.25rem;
+      right: 0.5rem;
+      border-radius: 1.25rem;
     }
   }
 }
