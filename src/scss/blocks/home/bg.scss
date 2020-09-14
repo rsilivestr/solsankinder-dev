@@ -1,6 +1,6 @@
 @use 'ScssUtil/forward' as *;
 
-.home-children {
+.home-bg {
   display: none;
 
   @include media('>=tablet') {
@@ -13,11 +13,11 @@
 }
 
 @include media('>=tablet') {
-  #home-children-1 {
-    background-image: url('/site/assets/images/bg-children-1.webp');
+  #home-bg-1 {
+    background-image: url('/site/assets/images/home-bg-1.webp');
   }
 
-  #home-children-2 {
-    background-image: url('/site/assets/images/bg-children-2.webp');
+  #home-bg-2 {
+    background-image: url('/site/assets/images/home-bg-2.webp');
   }
 }

@@ -32,8 +32,8 @@ $content .= "<section class='section section--width_m'>
   </div>
 </section>";
 
-/* фото детей */
-$content .= "<div id='home-children-1' class='home-children section hide-sm'>
+/* фото фон 1 */
+$content .= "<div id='home-bg-1' class='home-bg section hide-sm'>
   <a class='action-btn action-btn--size_s action-btn--color_blue' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
     Анкета оценки качества оказания услуг
   </a>
@@ -76,8 +76,8 @@ $content .= "<section class='section section--width_m'>
   </div>
 </section>";
 
-/* фото детей 2 */
-$content .= "<div id='home-children-2' class='home-children section hide-sm'>
+/* фото фон 2 */
+$content .= "<div id='home-bg-2' class='home-bg section hide-sm'>
   <a class='action-btn action-btn--size_s action-btn--color_blue' href='https://bus.gov.ru/pub/info-card/170512?activeTab=5'>
     Оставьте отзыв о работе санатория
   </a>

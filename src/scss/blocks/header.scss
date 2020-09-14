@@ -20,46 +20,50 @@
   }
 
   &__ugly {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 600px;
-    flex: 1;
-    // background: linear-gradient(#fff8, $magenta-3-50);
-    background-color: #fffa;
-    clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      99.93% 0.25%,
-      99.71% 1.01%,
-      99.35% 2.3%,
-      98.86% 4.17%,
-      98.23% 6.7%,
-      97.47% 10%,
-      96.46% 15%,
-      95.6% 20%,
-      94.89% 25%,
-      94.31% 30%,
-      93.87% 35%,
-      93.55% 40%,
-      93.36% 45%,
-      93.3% 50%,
-      93.36% 55%,
-      93.55% 60%,
-      93.87% 65%,
-      94.31% 70%,
-      94.89% 75%,
-      95.6% 80%,
-      96.46% 85%,
-      97.47% 90%,
-      98.23% 93.3%,
-      98.86% 95.83%,
-      99.35% 97.7%,
-      99.71% 98.99%,
-      99.93% 99.75%,
-      100% 100%,
-      0% 100%
-    );
+    display: none;
+
+    @include media('>=1440px') {
+      display: flex;
+      align-items: center;
+      // justify-content: center;
+      min-width: 800px;
+      flex: 1;
+      // background: linear-gradient(#fff8, $magenta-3-50);
+      background-color: #fffa;
+      clip-path: polygon(
+        0% 0%,
+        800px 0px,
+        773px 1px,
+        745px 6px,
+        718px 13px,
+        690px 23px,
+        663px 37px,
+        636px 55px,
+        604px 82px,
+        581px 110px,
+        563px 137px,
+        549px 164px,
+        539px 192px,
+        532px 219px,
+        527px 247px,
+        526px 274px,
+        527px 301px,
+        532px 329px,
+        539px 356px,
+        549px 384px,
+        563px 411px,
+        581px 438px,
+        604px 466px,
+        636px 493px,
+        663px 511px,
+        690px 525px,
+        718px 535px,
+        745px 542px,
+        773px 547px,
+        800px 548px,
+        0% 100%
+      );
+    }
   }
 
   &__logo {
@@ -68,7 +72,7 @@
     @include media('>=tablet') {
       display: block;
       // Compensate ugly polygon curve
-      margin-right: 3rem;
+      margin: 0 71px;
     }
   }
 
