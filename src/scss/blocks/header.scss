@@ -11,12 +11,55 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       height: 600px;
-      background-image: url('/site/assets/images/bg-header-2560.jpg');
+      background-image: url('/site/assets/images/bg-header.webp');
       background-position: center;
       box-shadow: 0 0 2.5rem #303030 inset;
     }
+  }
+
+  &__ugly {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 600px;
+    flex: 1;
+    // background: linear-gradient(#fff8, $magenta-3-50);
+    background-color: #fffa;
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      99.93% 0.25%,
+      99.71% 1.01%,
+      99.35% 2.3%,
+      98.86% 4.17%,
+      98.23% 6.7%,
+      97.47% 10%,
+      96.46% 15%,
+      95.6% 20%,
+      94.89% 25%,
+      94.31% 30%,
+      93.87% 35%,
+      93.55% 40%,
+      93.36% 45%,
+      93.3% 50%,
+      93.36% 55%,
+      93.55% 60%,
+      93.87% 65%,
+      94.31% 70%,
+      94.89% 75%,
+      95.6% 80%,
+      96.46% 85%,
+      97.47% 90%,
+      98.23% 93.3%,
+      98.86% 95.83%,
+      99.35% 97.7%,
+      99.71% 98.99%,
+      99.93% 99.75%,
+      100% 100%,
+      0% 100%
+    );
   }
 
   &__logo {
@@ -24,23 +67,8 @@
 
     @include media('>=tablet') {
       display: block;
-      width: 100%;
-      max-width: 1440px;
-      padding: 0 1.5rem;
-      margin-bottom: 150px;
-    }
-
-    &-image {
-      display: inline-block;
-    }
-  }
-
-  &__register-btn {
-    display: none;
-
-    @include media('>=tablet') {
-      display: block;
-      bottom: 4rem;
+      // Compensate ugly polygon curve
+      margin-right: 3rem;
     }
   }
 

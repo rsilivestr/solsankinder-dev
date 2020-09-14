@@ -112,12 +112,12 @@
 
     <!-- Homepage logo -->
     <?php if ($page->template->name === "home"): ?>
-      <div class="main-header__logo">
+      <div class="main-header__ugly">
         <img
-          class="main-header__logo-image"
-          src='<?php echo $config->urls->assets ?>images/logo_plain.svg'
+          class="main-header__logo"
+          src='<?php echo $config->urls->assets ?>images/logo_plain_text_vertical.svg'
           alt="Лого санатория"
-          width="256"
+          width="384"
         >
       </div>
     <?php endif; ?>
