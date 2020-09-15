@@ -25,11 +25,10 @@
     @include media('>=1440px') {
       display: flex;
       align-items: center;
-      // justify-content: center;
       min-width: 800px;
       flex: 1;
-      // background: linear-gradient(#fff8, $magenta-3-50);
-      background-color: #fffa;
+      // background-color: #fffa;
+      background: linear-gradient(#ffffff80, $magenta-3-50);
       clip-path: polygon(
         0% 0%,
         800px 0px,
