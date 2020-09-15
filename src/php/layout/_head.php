@@ -27,7 +27,7 @@
     <!-- Icon font stylesheet -->
     <link rel="stylesheet" type="text/css" href="<?php echo $config->urls->templates; ?>styles/fontello.min.css" />
     <!-- Montserrat font CDN -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Lobster&display=swap" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
     <!-- Reserved fonts -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat&family=Kelly+Slab&family=Lobster&family=Neucha&family=Pacifico&family=Poiret+One&family=Press+Start+2P&family=Ruslan+Display&family=Underdog&display=swap" rel="stylesheet"> -->
   </noscript>

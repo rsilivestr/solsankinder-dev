@@ -50,7 +50,7 @@
       fLink.parentElement.insertBefore(link, fLink);
     }
 
-    insertStyle('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&family=Lobster&display=swap');
+    insertStyle('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap');
     // insertStyle('https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat&family=Kelly+Slab&family=Lobster&family=Neucha&family=Pacifico&family=Poiret+One&family=Press+Start+2P&family=Ruslan+Display&family=Underdog&display=swap');
     insertStyle('/site/templates/styles/fontello.min.css');
   </script>
