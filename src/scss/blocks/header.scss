@@ -22,12 +22,11 @@
   &__ugly {
     display: none;
 
-    @include media('>=1440px') {
+    @include media('>=1900px') {
       display: flex;
       align-items: center;
       min-width: 800px;
       flex: 1;
-      // background-color: #fffa;
       background: linear-gradient(#ffffff80, $magenta-3-50);
       clip-path: polygon(
         0% 0%,
@@ -68,9 +67,9 @@
   &__logo {
     display: none;
 
-    @include media('>=tablet') {
+    @include media('>=1900px') {
       display: block;
-      // Compensate ugly polygon curve
+      // Compensate for ugly polygon curve
       margin: 0 71px;
     }
   }
