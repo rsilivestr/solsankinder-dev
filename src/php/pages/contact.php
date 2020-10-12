@@ -66,35 +66,36 @@ $formHtml = "
     enctype='multipart/form-data'
   >
     <label class='contact-form__label'>Имя *
-      <input 
+      <input
+        class='contact-form__input'
         name='name'
-        type='text'
-        class='contact-form__input' 
         required
+        type='text'
       >
     </label>
     <label class='contact-form__label'>Почта для обратной связи
       <input
+        class='contact-form__input'
         name='email'
         type='email'
-        class='contact-form__input'
       >
     </label>
     <label class='contact-form__label'>Текст сообщения *
       <textarea
-        name='message'
-        rows='8'
         class='contact-form__input'
+        name='message'
         required
+        rows='8'
       ></textarea>
     </label>
     <label class='contact-form__label'>Введите сумму кубиков *
       <span class='contact-form-captcha'>
         <img class='contact-form-captcha__image' src='".$dice->captcha()."'>
         <input
-          name='captcha'
-          type='text'
           class='contact-form__input contact-form-captcha__input'
+          name='captcha'
+          required
+          type='text'
         >
       </span>
     </label>
@@ -131,7 +132,7 @@ if ($name && $notSpam) {
       Ваше сообщение успешно отправлено. Спасибо за обращение!
     </p>';
   }
-  
+
   if ($_GET["submit"] === "error") {
     $content .= '<p class="contact-form__message contact-form__message--type_error">
       Капча введена неверно
