@@ -73,10 +73,11 @@ $formHtml = "
         type='text'
       >
     </label>
-    <label class='contact-form__label'>Почта для обратной связи
+    <label class='contact-form__label'>Почта для обратной связи *
       <input
         class='contact-form__input'
         name='email'
+        required
         type='email'
       >
     </label>
