@@ -2,10 +2,10 @@
 
 .post-card {
   @include media('>tablet') {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: $shadowGrey;
+    // padding: 1rem;
+    // border: 1px solid #ccc;
+    // border-radius: 4px;
+    // box-shadow: $shadowGrey;
   }
 
   + .post-card {
@@ -58,7 +58,6 @@
   }
 
   &__summary {
-    @extend %justPara;
     margin-top: 0;
     margin-bottom: 1rem;
   }

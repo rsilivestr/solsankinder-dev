@@ -119,7 +119,7 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
 $content .= "</div></section>";
 
 /* о санатории, видео */
-$content .= "<section class='home-about section section--width_m section--justified'>
+$content .= "<section class='home-about section section--width_m'>
   <h2 class='home-about__title'>О санатории</h2>
   <div class='home-about__content'>
     <div class='home-about__video'>

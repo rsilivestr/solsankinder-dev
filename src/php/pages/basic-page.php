@@ -1,6 +1,6 @@
 <?php namespace ProcessWire;
 
-$aClass = "section section--justified" . ($page->wideContent ? " section--width_w" : " section--width_m");
+$aClass = "section" . ($page->wideContent ? " section--width_w" : " section--width_m");
 // if ($page->wideContent) $aClass .= " article--wide";
 
 $content = "<article class='$aClass'>
@@ -18,7 +18,7 @@ if($page->renderGallery && $page->images->count()) {
     $sm = $image->size('600', '450');
     $md = $image->size('800', '600');
 
-    $thumbsHTML .= "<img 
+    $thumbsHTML .= "<img
       class='basic-gallery__thumb lazy'
       src='$image->url'
       data-srcset='$thumb->url 160w,
