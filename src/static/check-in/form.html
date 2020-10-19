@@ -1,0 +1,134 @@
+<section class="section section--width_m">
+  <form class="ci-form" enctype="multipart/form-data" action="checkin.php" method="POST">
+    <!-- Form page 1 -->
+    <div class="ci-form__page ci-form__page--active" id="form-page-1">
+
+      <h2 class="ci-form__heading">Данные ребёнка</h2>
+
+      <label class="ci-form__label">
+        <span class="ci-form__label-text">Фамилия</span>
+        <input
+          class="ci-form__input ci-form__input--type_text"
+          type="text"
+          name="family_name"
+          id="ci-family-name"
+        />
+        <span class="ci-form__error"></span>
+      </label>
+
+      <label class="ci-form__label">
+        <span class="ci-form__label-text">Имя</span>
+        <input
+          class="ci-form__input ci-form__input--type_text"
+          type="text"
+          name="given_name"
+          id="ci-given-name"
+        />
+        <span class="ci-form__error"></span>
+      </label>
+
+      <label class="ci-form__label">
+        <span class="ci-form__label-text">Отчество</span>
+        <input
+          class="ci-form__input ci-form__input--type_text"
+          type="text"
+          name="patr_name"
+          id="ci-patr-name"
+        />
+        <span class="ci-form__error"></span>
+      </label>
+
+      <label class="ci-form__label">
+        <span class="ci-form__label-text">Дата рождения</span>
+        <input
+          class="ci-form__input ci-form__input--type_text"
+          type="date"
+          name="dob"
+          id="ci-dob"
+        />
+        <span class="ci-form__error"></span>
+      </label>
+
+      <label class="ci-form__label">
+        <span class="ci-form__label-text">Контактный телефон</span>
+        <input
+          class="ci-form__input ci-form__input--type_text"
+          type="tel"
+          name="tel"
+          id="ci-tel"
+        />
+        <span class="ci-form__error"></span>
+      </label>
+
+      <button class="ci-form__button" id="form-next-btn">Далее</button>
+    </div>
+
+    <!-- Form page 2 -->
+    <div class="ci-form__page" id="form-page-2">
+
+      <h2 class="ci-form__heading">Запись на заезд</h2>
+
+      <div class="ci-form__label ci-dropdown" id="ci-unit-drop">
+        <span class="ci-form__label-text">Отделение по направлению</span><input
+          class="ci-form__input ci-dropdown__input"
+          type="text"
+          name="unit"
+          id="ci-unit"
+          readonly
+        />
+        <span class="ci-form__error"></span>
+        <ul class="ci-dropdown__list ci-dropdown__list--hidden js-unit-drop"></ul>
+      </div>
+
+      <label class="ci-form__label ci-form__label--disabled">
+        <span class="ci-form__label-text">Дата заезда</span><input
+          class="ci-form__input ci-form__input--disabled"
+          disabled
+          id="ci-date"
+          name="date"
+          type="text"
+        />
+      </label>
+
+      <div class="ci-form__label ci-form__label--disabled ci-dropdown">
+        <span class="ci-form__label-text">Часы заезда</span><input
+          class="ci-form__input ci-form__input--disabled ci-dropdown__input"
+          id="ci-interval"
+          name="hours"
+          readonly
+          type="text"
+        />
+        <ul class="ci-dropdown__list ci-dropdown__list--hidden js-interval-drop"></ul>
+        <span class="ci-form__error"></span>
+      </div>
+
+      <label class="ci-form__label">
+        <span class="ci-form__label-text">Район поликлиники-направителя</span>
+        <input
+          class="ci-form__input ci-form__input--type_text"
+          id="ci-district"
+          list="ci-district-list"
+          type="text"
+        >
+        <datalist id="ci-district-list">
+          <span>DISTRICTS</span>
+        </datalist>
+        <span class="ci-form__error"></span>
+      </label>
+
+      <div class="ci-form__label ci-form__label--disabled ci-dropdown">
+        <span class="ci-form__label-text">Поликлиника-направитель</span><input
+          class="ci-form__input ci-form__input--disabled ci-dropdown__input"
+          type="text"
+          name="clinic"
+          id="ci-clinic"
+          readonly
+        />
+        <ul class="ci-dropdown__list ci-dropdown__list--hidden js-clinic-drop"></ul>
+        <span class="ci-form__error"></span>
+      </div>
+
+      <button class="ci-form__button" id="form-submit-btn">Записаться</button>
+    </div>
+  </form>
+</section>

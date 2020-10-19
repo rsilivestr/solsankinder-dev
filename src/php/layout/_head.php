@@ -46,6 +46,13 @@
     ) echo "<link rel='stylesheet' href='{$config->urls->siteModules}SolCheckIn/styles/checkin.css'>";
   ?>
 
+  <!-- Check-in dev stylesheet -->
+  <?php
+    if ($page->template->name === 'check-in'
+      || $page->template->name === 'check-in-admin'
+    ) echo "<link rel='stylesheet' href='{$config->urls->templates}styles/check-in.css'>";
+  ?>
+
   <!-- Glidejs slider script -->
   <?php
   if ($page->template->name === 'home') {

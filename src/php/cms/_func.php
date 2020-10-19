@@ -2,10 +2,10 @@
 
 /**
  * /site/templates/_func.php
- * 
+ *
  * Example of shared functions used by template files
  *
- * This file is currently included by _init.php 
+ * This file is currently included by _init.php
  *
  * For more information see README.txt
  *
@@ -100,7 +100,7 @@ function renderNavTree($items, $maxDepth = 0, $fieldNames = '', $class = 'nav') 
 		}
 
 		// if the item has children and we're allowed to output tree navigation (maxDepth)
-		// then call this same function again for the item's children 
+		// then call this same function again for the item's children
 		if($item->hasChildren() && $maxDepth) {
 			if($class == 'nav') $class = 'nav nav-tree';
 			$out .= renderNavTree($item->children, $maxDepth-1, $fieldNames, $class);
