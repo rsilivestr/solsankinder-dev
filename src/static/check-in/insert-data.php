@@ -1,6 +1,7 @@
 <?php
 
 include_once "conn.php";
+include_once "validate-data.php";
 include_once "make-pdf.php";
 
 function insertSpots($date, $maxSpots) {
@@ -118,7 +119,7 @@ function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
 
 function getEventData($id = NULL) {
   if (!$id) return;
-
+  // Get patient fio, check-in date, start & end times by event id
   $sql = "SELECT ci_events.id,
       patients.fio,
       ci_dates.ci_date,
@@ -150,6 +151,7 @@ function insertEvent($eventData = NULL) {
     || !$eventData['district_id']
     || !$eventData['clinic_id']
   ) {
+    // Send error message if some data is missing
     return '{
       "status": "error",
       "message": "Неверные параметры запроса"
@@ -170,7 +172,7 @@ function insertEvent($eventData = NULL) {
       "message": "Данное событие уже зарегистрировано"
     }';
   }
-
+  // Insert event data into ci_events
   $sql = "INSERT INTO ci_events
     (patient_id, date_id, interval_id, unit_id, clinic_id)
     VALUES (?, ?, ?, ?, ?)";
@@ -197,10 +199,10 @@ function insertEvent($eventData = NULL) {
     }';
   }
 
-  // All good
+  // All looks good
   // Get data for PDF
   $event_data = getEventData($id_inserted);
-  // Make PDF
+  // Make PDF, get its url
   $ticketURL = makePDF($event_data);
 
   // Send positive response
