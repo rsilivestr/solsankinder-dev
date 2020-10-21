@@ -1,3 +1,4 @@
+/* Form */
 .ci-form {
   max-width: 360px;
   padding: 0;
@@ -5,16 +6,29 @@
   font-family: sans-serif;
   box-sizing: border-box;
 }
+
 .ci-form *,
 .ci-form *::after,
 .ci-form *::before {
   box-sizing: border-box;
   font-size: 1rem;
 }
+
+/* Form pages visibility */
+.ci-form__page {
+  display: none;
+}
+
+.ci-form__page--active {
+  display: block;
+}
+
+/* Form heading */
 .ci-form__heading {
   font-size: 1.5rem;
   margin: 0 0 2rem 0;
 }
+
 /* Fixed height elements */
 .ci-form__input,
 .ci-form__button {
@@ -25,6 +39,7 @@
   line-height: 2.25rem;
   border: none;
 }
+
 /* Min height elements */
 .ci-form__message,
 .ci-dropdown__list-item {
@@ -33,42 +48,63 @@
   min-height: 2.25rem;
   line-height: 1.25rem;
 }
+
 /* Label */
 .ci-form__label {
   display: block;
   position: relative;
   margin-top: 2rem;
 }
+
 .ci-form__label--disabled {
   color: #aaa;
 }
+
 .ci-form__label-text {
   font-size: 0.75rem;
   font-weight: 700;
 }
+
 /* Input */
 .ci-form__input {
   text-overflow: ellipsis;
   margin-top: 0.25rem;
-  background-color: #006fb010;
+  background-color: #006fb020;
   border: 0px solid transparent;
 }
-.ci-form__input:focus {
-  outline: transparent;
-}
+
 .ci-form__input--type_text {
   border-bottom: 2px solid transparent;
 }
-.ci-form__input--type_text:not(.invalid):focus {
+
+.ci-form__input--type_text:focus {
   border-bottom-color: #006fb0;
 }
+
 .ci-form__input--type_text.invalid {
   border-bottom-color: #ee3364;
 }
+
 .ci-form__input--disabled {
-  background-color: #4444aa05;
+  background-color: #4444aa20;
 }
-/* Submit */
+
+/* Remove date outline (Firefox) */
+.ci-form__input:focus {
+  outline: transparent;
+}
+
+/* Input error */
+.ci-form__error {
+  position: absolute;
+  top: 104%;
+  left: 0;
+  right: 0;
+  font-size: 0.75rem;
+  color: #ee3364;
+}
+
+/* Submit button */
 .ci-form__button {
   margin-top: 2.5rem;
   text-transform: uppercase;
@@ -76,11 +112,13 @@
   background-color: #006fb0;
   color: #fff;
 }
+
 .ci-form__button:hover,
 .check-in-table__del-person:hover {
   background-color: #0054a4;
 }
-/* Dropdown label */
+
+/* Dropdown */
 .ci-dropdown::after {
   content: '+';
   position: absolute;
@@ -93,10 +131,11 @@
   line-height: 2.25rem;
   z-index: -1;
 }
+
 .ci-dropdown--open::after {
   content: '-';
 }
-/* Dropdown input */
+
 .ci-dropdown__input {
   padding-right: 2.25rem;
   -webkit-user-select: none;
@@ -104,7 +143,7 @@
   -ms-user-select: none;
   cursor: default;
 }
-/* Dropdown ul */
+
 .ci-dropdown__list {
   position: absolute;
   max-height: 230px;
@@ -119,16 +158,19 @@
   z-index: 100;
   cursor: default;
 }
+
 .ci-dropdown__list--hidden {
   display: none;
 }
-/* Dropdown li */
+
 .ci-dropdown__list-item:hover {
   background-color: #eee;
 }
+
 .ci-dropdown__list-item--selected {
   background-color: #fea;
 }
+
 /* Message */
 .ci-form__message {
   display: block;
@@ -137,15 +179,19 @@
   /* Default background color = info */
   background-color: #006fb0;
 }
+
 .ci-form__message--type_success {
   background-color: forestgreen;
 }
+
 .ci-form__message--type_error {
   background-color: #ee3364;
 }
+
 .ci-form__message--type_info {
   background-color: #006fb0;
 }
+
 /* Pdf link */
 .ci-form__pdf-link {
   display: inline-block;
@@ -153,28 +199,34 @@
   text-decoration: underline;
   font-size: 1rem;
 }
+
 /* Table */
 .check-in-table-wrapper {
   padding: 3rem 0.5rem 0;
 }
+
 .check-in-table {
   margin: 1.25rem auto;
   text-align: left;
   border-collapse: collapse;
 }
+
 .check-in-table td:nth-child(2) {
   text-transform: capitalize;
 }
+
 .check-in-table th,
 .check-in-table td {
   padding: 0.5rem;
   border: 1px solid #ccc;
 }
+
 .check-in-table__del-person {
   width: 100%;
   padding: 2px 0;
   background-color: #006fb0;
 }
+
 /* Fixed Message */
 #float-message-box .ci-form__message {
   position: fixed;
@@ -186,7 +238,7 @@
   z-index: 100;
 }
 
-/* ???????? */
+/* Admin panel */
 .ci-form__message .ci-form-panel,
 .check-in-display-panel {
   width: auto;
@@ -202,6 +254,8 @@
 .ci-form-panel .ci-form {
   margin: 1.25rem 0.5rem;
 }
+
+/* Admin login button */
 .check-in-login-btn {
   display: inline-block;
   padding: 0.5rem 2rem;
@@ -212,26 +266,28 @@
   color: white;
   background-color: #006fb0;
 }
+
 @media all and (min-width: 600px) {
   .ci-form {
     padding: 2rem 1.25rem 1.25rem;
-    /* border: 1px solid #ccc; */
-    /* box-shadow: 0 4px 12px #f3f3f3; */
-    /* background-color: #006fb0; */
   }
 }
+
 @media all and (min-width: 768px) {
   .low-vision .ci-form {
     max-width: 450px;
     padding: 2.5rem 1.5rem;
   }
+
   .low-vision .ci-form *,
   .low-vision .ci-form *:after {
     font-size: 1.25rem;
   }
+
   .low-vision .ci-form__label + .ci-form__label {
     margin-top: 1.75rem;
   }
+
   .low-vision .ci-form__input,
   .low-vision .ci-form__submit,
   .low-vision .ci-form__dropdown-item,
@@ -239,55 +295,46 @@
     min-height: 2.5rem;
     line-height: 2.5rem;
   }
+
   .low-vision .ci-form__dropdown {
     margin-left: 0;
   }
+
   .low-vision .ci-form__label--dropdown::after {
     width: 2.5rem;
     height: 2.5rem;
     line-height: 2.5rem;
   }
 }
+
 @page {
   size: A4 portrait;
   margin: 1cm 0;
 }
+
 @media print {
   /* Firefox flex bug --- prints single page */
   body {
     display: block;
   }
+
   /* Chrome thead bug --- text intersection */
   .check-in-table-wrapper thead {
     display: table-row-group;
   }
+
   /* hide panel */
   .ci-form-panel {
     display: none;
   }
+
   .check-in-table-wrapper {
     margin-top: -100px;
   }
+
   .check-in-table-wrapper th,
   .check-in-table-wrapper td {
     font-size: 8pt;
     padding: 1pt;
   }
-}
-
-.ci-form__page {
-  display: none;
-}
-
-.ci-form__page--active {
-  display: block;
-}
-
-.ci-form__error {
-  position: absolute;
-  top: 104%;
-  left: 0;
-  right: 0;
-  font-size: 0.75rem;
-  color: #ee3364;
 }
