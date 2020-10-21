@@ -69,20 +69,20 @@
 .ci-form__input {
   text-overflow: ellipsis;
   margin-top: 0.25rem;
-  background-color: #006fb020;
-  border: 0px solid transparent;
+  background-color: #006fb005;
+  border: 1px solid #ddd;
 }
 
 .ci-form__input--type_text {
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid #ddd;
 }
 
 .ci-form__input--type_text:focus {
-  border-bottom-color: #006fb0;
+  border-bottom: 2px solid #006fb0;
 }
 
 .ci-form__input--type_text.invalid {
-  border-bottom-color: #ee3364;
+  border-bottom: 2px solid #ee3364;
 }
 
 .ci-form__input--disabled {
@@ -164,11 +164,14 @@
 }
 
 .ci-dropdown__list-item:hover {
-  background-color: #eee;
+  background-color: #006fb020;
+  color: #000;
 }
 
-.ci-dropdown__list-item--selected {
-  background-color: #fea;
+.ci-dropdown__list-item--selected,
+.ci-dropdown__list-item--selected:hover {
+  background-color: #006fb0;
+  color: #fff;
 }
 
 /* Message */
@@ -200,7 +203,7 @@
   font-size: 1rem;
 }
 
-/* Table */
+/* Admin table */
 .check-in-table-wrapper {
   padding: 3rem 0.5rem 0;
 }
