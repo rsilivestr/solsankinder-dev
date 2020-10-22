@@ -116,8 +116,11 @@ foreach ($unitOptions as $index => $option) {
 $unitOptionsHTML .= "<option value='$option[0]'>$option[1]</option>";
 }
 
+// Add new event date
 $addDateForm = '
 <form class="ci-form" method="POST">
+  <h2 class="ci-form__heading">Добавить заезд</h2>
+
   <label class="ci-form__label">
     <span class="ci-form__label-text">Дата</span>
     <input class="ci-form__input" type="date" name="add_date">
@@ -135,7 +138,52 @@ $addDateForm = '
     <span class="ci-form__label-text">Мест на интервал</span>
     <input class="ci-form__input" type="number" name="add_date_spots" value="40">
   </label>
+
   <input class="ci-form__button" type="submit" value="Добавить">
+</form>';
+
+// Make all event dates list
+$eventDatesDatalist = '';
+$eventDates = json_decode(getAllDates());
+foreach ($eventDates as $date) {
+  $ru_date = (new DateTime($date[1]))->format('d.m.Y');
+  $eventDatesDatalist .= '<option>'.$ru_date.'</option>';
+}
+
+// Show registered events on certain date
+$showEventsForm = '
+<form class="ci-form" id="show-events-form" method="POST">
+  <h2 class="ci-form__heading">Показать записи за дату</h2>
+
+  <label class="ci-form__label">
+    <span class="ci-form__label-text">Дата</span>
+    <input class="ci-form__input" type="text" name="show_date" list="event-dates-list">
+    <datalist id="event-dates-list">' . $eventDatesDatalist . '</datalist>
+  </label>
+
+  <input class="ci-form__button" type="submit" value="Показать">
+</form>';
+
+// Make active event dates list
+$activeDatesDatalist = '';
+$activeDates = json_decode(getDates());
+foreach ($activeDates as $date) {
+  $ru_date = (new DateTime($date[1]))->format('d.m.Y');
+  $activeDatesDatalist .= '<option>'.$ru_date.'</option>';
+}
+
+// Close active event by date
+$closeEventForm = '
+<form class="ci-form" id="close-event-form" method="POST">
+  <h2 class="ci-form__heading">Закрыть заезд на дату</h2>
+
+  <label class="ci-form__label">
+    <span class="ci-form__label-text">Дата</span>
+    <input class="ci-form__input" type="text" name="show_date" list="active-dates-list">
+    <datalist id="active-dates-list">' . $activeDatesDatalist . '</datalist>
+  </label>
+
+  <input class="ci-form__button" type="submit" value="Закрыть">
 </form>';
 
 // Page render starts here
@@ -151,8 +199,14 @@ if (!$user->hasRole('check-in')) {
   // Show forms
   $content = '
     <section class="section section--width_m">
-      <h1>Панель регистратора</h1>'
-      // .$dbResetForm
-      .$addDateForm
-    .'</section>';
+      <h1>Панель регистратора</h1>
+      <div class="ci-admin-panel">'
+        // .$dbResetForm
+        .$addDateForm
+        .$showEventsForm
+        .$closeEventForm
+      .'</div>
+    </section>';
+
+  $content .= '<script src="'.$urls->templates.'scripts/check-in-admin.js"></script>';
 }

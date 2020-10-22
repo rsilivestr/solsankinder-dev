@@ -242,6 +242,16 @@
 }
 
 /* Admin panel */
+.ci-admin-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.ci-admin-panel .ci-form {
+  margin: 0;
+}
+
 .ci-form__message .ci-form-panel,
 .check-in-display-panel {
   width: auto;

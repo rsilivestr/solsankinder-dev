@@ -28,6 +28,10 @@ function getColumn($tableName, $colName, $condition = null) {
   return json_encode($res);
 }
 
+function getAllDates() {
+  return getColumn("ci_dates", "ci_date");
+}
+
 function getDates() {
   return getColumn("ci_dates", "ci_date", "is_active=1");
 }
