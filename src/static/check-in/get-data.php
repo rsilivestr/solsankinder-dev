@@ -141,3 +141,25 @@ function getClinics($districtId = NULL) {
 
   return json_encode($res);
 }
+
+function getEvents($date) {
+  $sql = "SELECT ci_events.id,
+      patients.fio,
+      patients.phone,
+      patients.dob,
+      ci_intervals.start_time,
+      ci_intervals.end_time
+    FROM ci_events
+    INNER JOIN patients ON patients.id = ci_events.patient_id
+    INNER JOIN ci_dates ON ci_dates.id = ci_events.date_id
+    INNER JOIN ci_intervals ON ci_intervals.id = ci_events.interval_id
+    WHERE ci_dates.ci_date=?";
+
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param("s", $date);
+  $stmt->execute();
+  $res = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+  $stmt->close();
+
+  return json_encode($res);
+}

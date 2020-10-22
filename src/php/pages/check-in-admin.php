@@ -206,7 +206,8 @@ if (!$user->hasRole('check-in')) {
         .$showEventsForm
         .$closeEventForm
       .'</div>
-    </section>';
+    </section>
+    <section class="section section--width_m ci-table-wrap"></section>';
 
   $content .= '<script src="'.$urls->templates.'scripts/check-in-admin.js"></script>';
 }
