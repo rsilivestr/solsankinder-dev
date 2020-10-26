@@ -204,30 +204,33 @@
 }
 
 /* Admin table */
-.check-in-table-wrapper {
-  padding: 3rem 0.5rem 0;
-}
-
-.check-in-table {
-  margin: 1.25rem auto;
+.ci-table {
+  margin: 3rem auto 0;
   text-align: left;
   border-collapse: collapse;
 }
 
-.check-in-table td:nth-child(2) {
+.ci-table td:nth-child(2) {
   text-transform: capitalize;
 }
 
-.check-in-table th,
-.check-in-table td {
+.ci-table th,
+.ci-table td {
   padding: 0.5rem;
   border: 1px solid #ccc;
 }
 
-.check-in-table__del-person {
-  width: 100%;
-  padding: 2px 0;
+.ci-table__btn {
+  min-width: 2rem;
+  color: #fff;
+}
+
+.js-edit-event {
   background-color: #006fb0;
+}
+
+.js-delete-event {
+  background-color: #ee3364;
 }
 
 /* Fixed Message */
@@ -258,6 +261,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Admin panel forms */
 .ci-form-panel {
   display: flex;
   flex-flow: row nowrap;
