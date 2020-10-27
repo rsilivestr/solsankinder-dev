@@ -82,17 +82,20 @@ function insertDate($newDate, $unitId, $maxSpots) {
 }
 
 function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
+  $vFio = validateFio($fio);
+  $vPhone = validatePhone($phone);
+  $vDob = validateDob($dob);
+
   // return on empty params
-  if (NULL === $fio || NULL === $phone || NULL === $dob) {
+  if (NULL === $vFio || NULL === $vPhone || FALSE === $vDob) {
     return NULL;
   }
-
   // search patient
   $sql = "SELECT id FROM patients
     WHERE fio=? AND dob=?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("ss", $fio, $dob);
+  $stmt->bind_param("ss", $vFio, $vDob);
   $stmt->execute();
 
   // get id of existing patient
@@ -106,7 +109,7 @@ function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
     $sql = "INSERT INTO patients (fio, phone, dob) VALUES (?, ?, ?)";
 
     $stmt = $GLOBALS['conn']->prepare($sql);
-    $stmt->bind_param("sss", $fio, $phone, $dob);
+    $stmt->bind_param("sss", $vFio, $vPhone, $vDob);
     $stmt->execute();
     $stmt->close();
     // return last inserted id
@@ -139,6 +142,19 @@ function getEventData($id = NULL) {
   $stmt->close();
 
   return $person_data;
+}
+
+function fillSpot($date_id, $interval_id) {
+  $sql = "UPDATE ci_spots
+  SET occupied=occupied+1,
+      available=available-1
+  WHERE date_id=?
+  AND interval_id=?";
+
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param('ii', $date_id, $interval_id);
+  $stmt->execute();
+  $stmt->close();
 }
 
 function insertEvent($eventData = NULL) {
@@ -200,6 +216,8 @@ function insertEvent($eventData = NULL) {
   }
 
   // All looks good
+  // Fill spot
+  fillSpot($eventData["date_id"], $eventData["interval_id"]);
   // Get data for PDF
   $event_data = getEventData($id_inserted);
   // Make PDF, get its url

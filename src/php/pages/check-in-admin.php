@@ -10,7 +10,8 @@ if (isset($_POST["password"])) {
   if (
     !password_verify(
       $_POST["password"],
-      '$2y$10$e9B9cyaX5p7V1OQKnf.TDOAhJDRdc6M.biI27bVsICBfjuUK2fPo6'
+      '$2y$10$/Z7qAz6Ax0Vbbo8F6b5//u3T4HS2A2ScVSV1KGADnZ3UPTYfZz4BS'
+      // '$2y$10$e9B9cyaX5p7V1OQKnf.TDOAhJDRdc6M.biI27bVsICBfjuUK2fPo6'
     )) {
     // Password is wrong: redirect to warning
     header("Location: ?success=0");
@@ -78,7 +79,7 @@ if (
 // Forms HTML
 $dbResetForm = '
 <form class="ci-form" method="POST">
-  <h2>Сбросить базу данных</h2>
+  <h2 class="ci-form__heading">Сбросить базу данных</h2>
 
   <label class="ci-form__label">
     <input type="checkbox" name="districts"> districts
@@ -103,9 +104,10 @@ $dbResetForm = '
   <label class="ci-form__label">
     <input type="checkbox" name="ci_events"> ci_events
   </label>
+  <br />
   <div>
-    <label>Пароль <input type="password" name="password"></label>
-    <input type="submit" value="Сбросить">
+    <label><span class="ci-form__label-text">Пароль</span><input class="ci-form__input" name="password" type="password"></label>
+    <input class="ci-form__button" type="submit" value="Сбросить">
   </div>
 </form>';
 
@@ -198,10 +200,10 @@ if (!$user->hasRole('check-in')) {
 } else {
   // Show forms
   $content = '
-    <section class="section section--width_m">
+    <section class="section section--width_w">
       <h1>Панель регистратора</h1>
       <div class="ci-admin-panel">'
-        // .$dbResetForm
+        .$dbResetForm
         .$addDateForm
         .$showEventsForm
         .$closeEventForm

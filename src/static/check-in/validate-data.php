@@ -16,7 +16,7 @@ function validateFio($fio) {
 
   if (!$ok) {
     // fio is invalid
-    return;
+    return NULL;
   } else {
     // fio is valid
     return $fio;
@@ -40,7 +40,7 @@ function validatePhone($tel) {
 
   if(!preg_match($re, $tel)) {
     // tel is invalid
-    return;
+    return NULL;
   } else {
     // tel is valid
     // 7 digits is OK
@@ -85,10 +85,10 @@ function validateDob($dob) {
 
   if (17 < $age) {
     // Too old
-    return FALSE;
+    return NULL;
   } else if (1 > $age) {
     // Too young
-    return FALSE;
+    return NULL;
   }
   // Age is valid
   return $dob;

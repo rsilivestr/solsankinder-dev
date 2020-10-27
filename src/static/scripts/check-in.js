@@ -223,14 +223,15 @@ const SolCheckIn = (() => {
     const formPage2 = document.getElementById('form-page-2');
 
     // Validate fields
+    const nameRE = /^[а-яА-ЯёЁ]{2,}(\-[а-яА-ЯёЁ]{2,})?$/;
     const familyNameInput = document.getElementById('ci-family-name');
-    const fnErr = validateInput(familyNameInput, /^[а-яА-ЯёЁ]{2,}$/);
+    const fnErr = validateInput(familyNameInput, nameRE);
 
     const givenNameInput = document.getElementById('ci-given-name');
-    const gnErr = validateInput(givenNameInput, /^[а-яА-ЯёЁ]{2,}$/);
+    const gnErr = validateInput(givenNameInput, nameRE);
 
     const patrNameInput = document.getElementById('ci-patr-name');
-    const pnErr = validateInput(patrNameInput, /^[а-яА-ЯёЁ]{2,}$/);
+    const pnErr = validateInput(patrNameInput, nameRE);
 
     const dobInput = document.getElementById('ci-dob');
     const dobErr = validateInput(dobInput, /^\d{4}\-\d{2}\-\d{2}$/);
@@ -341,8 +342,10 @@ const SolCheckIn = (() => {
       const UImessage = createMessage(status, message);
       form.appendChild(UImessage);
       // Append / update PDF link
-      const UIlink = createPDFLink(ticketURL);
-      form.appendChild(UIlink);
+      if (ticketURL) {
+        const UIlink = createPDFLink(ticketURL);
+        form.appendChild(UIlink);
+      }
     }
   };
 
