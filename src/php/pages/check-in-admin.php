@@ -91,27 +91,28 @@ $dbResetForm = '
 <form class="ci-form" method="POST">
   <h2 class="ci-form__heading">Сбросить базу данных</h2>
 
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="districts"> districts
   </label>
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="clinics"> clinics
   </label>
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="units"> units
   </label>
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="patients"> patients
   </label>
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="ci_dates"> ci_dates
   </label>
-  <label class="ci-form__label">
-    <input type="checkbox" name="ci_intervals"> ci_intervals</label>
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
+    <input type="checkbox" name="ci_intervals"> ci_intervals
+  </label>
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="ci_spots"> ci_spots
   </label>
-  <label class="ci-form__label">
+  <label class="ci-form__label mt-8">
     <input type="checkbox" name="ci_events"> ci_events
   </label>
   <br />
