@@ -210,10 +210,6 @@
   border-collapse: collapse;
 }
 
-.ci-table td:nth-child(2) {
-  text-transform: capitalize;
-}
-
 .ci-table th,
 .ci-table td {
   padding: 0.5rem;
@@ -222,15 +218,16 @@
 
 .ci-table__btn {
   min-width: 2rem;
+  vertical-align: top;
   color: #fff;
-}
-
-.js-edit-event {
-  background-color: #006fb0;
 }
 
 .js-delete-event {
   background-color: #ee3364;
+}
+
+.js-delete-event:hover {
+  background-color: #bb0031;
 }
 
 /* Fixed Message */

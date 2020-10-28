@@ -8,7 +8,7 @@ function insertSpots($date, $maxSpots) {
   $maxSpotsInt = intval($maxSpots, 10);
 
   // get date id
-  $sql = "SELECT id FROM ci_dates WHERE ci_date=?";
+  $sql = "SELECT id FROM ci_dates WHERE ci_date = ?";
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param("s", $date);
   $stmt->execute();
@@ -18,7 +18,7 @@ function insertSpots($date, $maxSpots) {
   $dateId = $resDateId->fetch_row()[0];
 
   // get active interval ids
-  $sql = "SELECT id FROM ci_intervals WHERE is_active=1";
+  $sql = "SELECT id FROM ci_intervals WHERE is_active = 1";
   $resIntervals = $GLOBALS['conn']->query($sql)->fetch_all(MYSQLI_NUM);
 
   $intervalIds = [];
@@ -30,8 +30,8 @@ function insertSpots($date, $maxSpots) {
   foreach ($intervalIds as $intId) {
     // check existing spots
     $sql = "SELECT id FROM ci_spots
-      WHERE date_id=?
-      AND interval_id=?";
+      WHERE date_id = ?
+      AND interval_id = ?";
 
     $stmt = $GLOBALS['conn']->prepare($sql);
     $stmt->bind_param("ii", $dateId, $intId);
@@ -54,7 +54,7 @@ function insertSpots($date, $maxSpots) {
 
 function insertDate($newDate, $unitId, $maxSpots) {
   // check if that date already exists
-  $sql = "SELECT id FROM ci_dates WHERE ci_date=? OR unit_id=?";
+  $sql = "SELECT id FROM ci_dates WHERE ci_date = ? OR unit_id = ?";
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param("si", $newDate, intval($unitId, 10));
   $stmt->execute();
@@ -92,7 +92,7 @@ function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
   }
   // search patient
   $sql = "SELECT id FROM patients
-    WHERE fio=? AND dob=?";
+    WHERE fio = ? AND dob = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param("ss", $vFio, $vDob);
@@ -123,7 +123,7 @@ function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
 function getEventData($id = NULL) {
   if (!$id) return;
   // Get patient fio, check-in date, start & end times by event id
-  $sql = "SELECT ci_events.id,
+  $sql = "SELECT ci_events.event_id,
       patients.fio,
       ci_dates.ci_date,
       ci_intervals.start_time,
@@ -132,7 +132,7 @@ function getEventData($id = NULL) {
     INNER JOIN patients ON patients.id = ci_events.patient_id
     INNER JOIN ci_dates ON ci_dates.id = ci_events.date_id
     INNER JOIN ci_intervals ON ci_intervals.id = ci_events.interval_id
-    WHERE ci_events.id=?";
+    WHERE ci_events.event_id = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param('i', $id);
@@ -146,10 +146,10 @@ function getEventData($id = NULL) {
 
 function fillSpot($date_id, $interval_id) {
   $sql = "UPDATE ci_spots
-  SET occupied=occupied+1,
-      available=available-1
-  WHERE date_id=?
-  AND interval_id=?";
+  SET occupied = occupied + 1,
+      available = available - 1
+  WHERE date_id = ?
+  AND interval_id = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param('ii', $date_id, $interval_id);
@@ -174,7 +174,7 @@ function insertEvent($eventData = NULL) {
     }';
   }
   // check if event exists
-  $sql = "SELECT id FROM ci_events WHERE patient_id=? AND date_id=?";
+  $sql = "SELECT event_id FROM ci_events WHERE patient_id = ? AND date_id = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param("ii", $eventData["patient_id"], $eventData["date_id"]);
@@ -228,5 +228,51 @@ function insertEvent($eventData = NULL) {
     "status": "success",
     "message": "Событие зарегистрировано",
     "ticketURL": "' . $ticketURL . '"
+  }';
+}
+
+function freeSpot($id) {
+  $sql = "UPDATE ci_spots
+    INNER JOIN ci_events
+    ON  ci_spots.date_id = ci_events.date_id
+    AND ci_spots.interval_id = ci_events.interval_id
+    SET ci_spots.occupied = ci_spots.occupied - 1,
+      ci_spots.available = ci_spots.available + 1
+    WHERE ci_events.event_id = ?";
+
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param('i', $id);
+  $stmt->execute();
+  $stmt->close();
+}
+
+function deleteEvent($id) {
+  // Free spot BEFORE event deletion
+  freeSpot($id);
+
+  $sql = "DELETE FROM ci_events WHERE event_id = ?";
+
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param('i', $id);
+  $stmt->execute();
+  $res = $stmt->affected_rows;
+  $stmt->close();
+
+  if (-1 === $res) {
+    // -1 indicates that the query has returned an error
+    return '{
+      "status": "error",
+      "message": "Событие не удалено"
+    }';
+  } else if (1 === $res) {
+    return '{
+      "status": "success",
+      "message": "Событие удалено"
+    }';
+  }
+  // Something went wrong
+  return '{
+    "status": "error",
+    "message": "Что-то не так"
   }';
 }

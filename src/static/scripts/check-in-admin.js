@@ -1,5 +1,8 @@
 const SolCheckInAdmin = (() => {
-  const UIformShowEvents = document.getElementById('show-events-form');
+  const UI = {
+    formShowEvents: document.getElementById('show-events-form'),
+    tableWrap: document.querySelector('.ci-table-wrap')
+  }
   // const UIformCloseEvent = document.getElementById('close-event-form');
 
   const fetchEventData = async (date) => {
@@ -26,7 +29,7 @@ const SolCheckInAdmin = (() => {
       <th>Дата рождения</th>
       <th>Телефон</th>
       <th>Интервал</th>
-      <th>⨯</th>
+      <th>Удалить</th>
     </thead>`;
 
     events.forEach((event, index) => {
@@ -37,12 +40,7 @@ const SolCheckInAdmin = (() => {
         <td>${(new Date(event.dob)).toLocaleDateString('ru-RU')}</td>
         <td>${event.phone}</td>
         <td>${event.start_time.substring(0, 5)} - ${event.end_time.substring(0, 5)}</td>
-        <td>
-          <!--
-          <button class="ci-table__btn js-edit-event" data-id=${event.id}>🖉</button>
-          -->
-          <button class="ci-table__btn js-delete-event" data-id=${event.id}>⨯</button>
-        </td>
+        <td><button class="ci-table__btn js-delete-event" data-id=${event.event_id}>&#128473;</button></td>
       `;
       table.appendChild(row);
     });
@@ -53,18 +51,44 @@ const SolCheckInAdmin = (() => {
   const showEvents = async (e) => {
     e.preventDefault();
 
-    const date = UIformShowEvents.querySelector('input').value;
+    const date = UI.formShowEvents.querySelector('input').value;
     const eventData = await fetchEventData(date);
     const tableHTML = createTable(eventData);
-    const tableWrap = document.querySelector('.ci-table-wrap');
 
-    tableWrap.innerHTML = '';
-    tableWrap.appendChild(tableHTML);
+    UI.tableWrap.innerHTML = '';
+    UI.tableWrap.appendChild(tableHTML);
+  }
+
+  const deleteEvent = async (e) => {
+    const target = e.target;
+    if (!target.classList.contains('js-delete-event')) return;
+    // Prompt for confirmation
+    const check = prompt('Для подтверждения введите "удалить"');
+    if ('удалить' !== check) return;
+    // Append id to request body
+    const body = new FormData();
+    body.append('id', target.dataset.id);
+    // Send request
+    const res = await fetch('../check-in-api/delete-event/', {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+      body
+    });
+
+    const data = await res.json();
+
+    if ('success' === data.status) {
+      // Update table
+      target.closest('tr').remove();
+    } else {
+      console.log(data.message);
+    }
   }
 
   return {
     init: () => {
-      UIformShowEvents.addEventListener('submit', showEvents);
+      UI.formShowEvents.addEventListener('submit', showEvents);
+      UI.tableWrap.addEventListener('click', deleteEvent)
       // UIformCloseEvent.addEventListener('submit', closeDate);
     }
   }

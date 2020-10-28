@@ -143,7 +143,7 @@ function getClinics($districtId = NULL) {
 }
 
 function getEvents($date) {
-  $sql = "SELECT ci_events.id,
+  $sql = "SELECT ci_events.event_id,
       patients.fio,
       patients.phone,
       patients.dob,

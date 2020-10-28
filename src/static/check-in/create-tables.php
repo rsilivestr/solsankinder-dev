@@ -73,7 +73,7 @@ $patientSchema = "(
 )";
 
 $eventSchema = "(
-  id INT PRIMARY KEY AUTO_INCREMENT,
+  event_id INT PRIMARY KEY AUTO_INCREMENT,
   patient_id INT NOT NULL,
   date_id INT NOT NULL,
   interval_id INT NOT NULL,
