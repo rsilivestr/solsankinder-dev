@@ -81,6 +81,24 @@ function insertDate($newDate, $unitId, $maxSpots) {
   return '{ "status": "success", "message": "Date was added." }';
 }
 
+// update date: set active = 0
+function closeDate($date) {
+  $formattedDate = (new DateTime($date))->format('Y-m-d');
+
+  $sql = "UPDATE ci_dates
+    SET is_active = 0
+    WHERE ci_date = ?";
+
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param('s', $formattedDate);
+  $stmt->execute();
+  $res = $stmt->affected_rows;
+  $stmt->close();
+
+  if (1 === $res) return TRUE;
+  else return FALSE;
+}
+
 function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
   $vFio = validateFio($fio);
   $vPhone = validatePhone($phone);

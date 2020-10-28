@@ -68,12 +68,22 @@ if (isset($_POST["password"])) {
   }
 }
 
+// Insert new date
 if (
   ($newDate = $_POST["add_date"]) &&
   ($unitId = $_POST["add_date_unit"]) &&
   ($maxSpots = $_POST["add_date_spots"])
 ) {
   insertDate($newDate, $unitId, $maxSpots);
+}
+
+// Close date
+if ($_POST["close_date"]) {
+  if (closeDate($_POST["close_date"])) {
+    header("Location: ?success=1");
+  } else {
+    header("Location: ?success=0");
+  }
 }
 
 // Forms HTML
@@ -181,7 +191,7 @@ $closeEventForm = '
 
   <label class="ci-form__label">
     <span class="ci-form__label-text">Дата</span>
-    <input class="ci-form__input" type="text" name="show_date" list="active-dates-list">
+    <input class="ci-form__input" type="text" name="close_date" list="active-dates-list">
     <datalist id="active-dates-list">' . $activeDatesDatalist . '</datalist>
   </label>
 
