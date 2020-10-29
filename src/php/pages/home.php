@@ -119,21 +119,21 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
 $content .= "</div></section>";
 
 /* о санатории, видео */
-$content .= "<section class='home-about section section--width_m'>
-  <h2 class='home-about__title'>О санатории</h2>
-  <div class='home-about__content'>
-    <div class='home-about__video'>
-      <iframe
-        title='Видео о санатории'
-        class='lazy'
-        width='560'
-        height='315'
-        data-src='https://www.youtube-nocookie.com/embed/WNi9F3brZJM'
-      ></iframe>
-    </div>
-    <div class='home-about__text-content'>
-      <p class='home-about__desctiption'>СПб ГБУЗ «Детский санаторий «Солнечное» располагается в поселке Солнечное Курортного района Санкт-Петербурга в 33 зданиях и сооружениях на территории 45 гектаров.</p>
-      <a class='home-about__btn action-btn action-btn--color_blue action-btn--size_s' href='/info/common/about/'>Подробнее</a>
-    </div>
-  </div>
-</section>";
+// $content .= "<section class='home-about section section--width_m'>
+//   <h2 class='home-about__title'>О санатории</h2>
+//   <div class='home-about__content'>
+//     <div class='home-about__video'>
+//       <iframe
+//         title='Видео о санатории'
+//         class='lazy'
+//         width='560'
+//         height='315'
+//         data-src='https://www.youtube-nocookie.com/embed/WNi9F3brZJM'
+//       ></iframe>
+//     </div>
+//     <div class='home-about__text-content'>
+//       <p class='home-about__desctiption'>СПб ГБУЗ «Детский санаторий «Солнечное» располагается в поселке Солнечное Курортного района Санкт-Петербурга в 33 зданиях и сооружениях на территории 45 гектаров.</p>
+//       <a class='home-about__btn action-btn action-btn--color_blue action-btn--size_s' href='/info/common/about/'>Подробнее</a>
+//     </div>
+//   </div>
+// </section>";

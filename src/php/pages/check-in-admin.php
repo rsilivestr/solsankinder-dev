@@ -214,7 +214,7 @@ if (!$user->hasRole('check-in')) {
     <section class="section section--width_w">
       <h1>Панель регистратора</h1>
       <div class="ci-admin-panel">'
-        .$dbResetForm
+        // .$dbResetForm
         .$addDateForm
         .$showEventsForm
         .$closeEventForm
