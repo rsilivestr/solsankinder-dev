@@ -31,7 +31,7 @@ function makePDF($event_data) {
   $mpdf->WriteHTML('<p class="check-in-ticket__header">СПб ГБУЗ "Детский санаторий "Солнечное"</p>');
   $mpdf->WriteHTML('<h1 class="check-in-ticket__title">Талон регистрации</h1>');
   $mpdf->WriteHTML('<p class="check-in-ticket__text">Выдан на имя: '.$event_data['fio'].'</p>');
-  $mpdf->WriteHTML('<p class="check-in-ticket__text">Дата заезда: '.$event_data['ci_date'].'</p>');
+  $mpdf->WriteHTML('<p class="check-in-ticket__text">Дата заезда: '.$ru_date.'</p>');
   $mpdf->WriteHTML('<p class="check-in-ticket__text">Часы заезда: '.$start.' - '.$end.'</p>');
   $mpdf->WriteHTML('<p class="check-in-ticket__info">Распечатайте или сохраните пропуск.<br/>Просьба не опаздывать.</p>');
   // Write to disc
