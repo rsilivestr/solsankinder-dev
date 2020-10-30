@@ -1,22 +1,14 @@
-<?php
+<?php include_once './check-in/get-data.php';
 
-$content .= '
-<section id="check-in-form-section" class="section section--width_m">
-  <h1>'.$page->title.'</h1>
-  <p>Регистрация действительна только для пациентов, получивших санаторно-курортную карту в поликлинике</p>
-</section>
+$DISTRICT_DATALIST = '';
+$districts = json_decode(getDistricts());
+foreach ($districts as $d) {
+  $DISTRICT_DATALIST .= '<option>' . $d[1] . '</option>';
+}
+// Get form html from file
+$formHTML = file_get_contents("./check-in/form.html");
+// Insert district datalist html
+$formHTML = str_ireplace('<span>DISTRICTS</span>', $DISTRICT_DATALIST, $formHTML);
 
-<noscript>
-  <section class="section section--type_basic">
-    <h3 style="color:red">Для корректной работы формы необходим браузер с поддержкой JavaScript</h3>
-  </section>
-</noscript>
-
-<script src="'.$config->urls->siteModules.'SolCheckIn/scripts/check-in.0ab6b5ca198c948fd0fbc63c9f8e9c92.js"></script>
-<script>
-  (async () => {
-    const chekInForm = await SolCheckIn.createForm();
-    const section = document.getElementById("check-in-form-section");
-    section.appendChild(chekInForm);
-  })();
-</script>';
+$content .= $formHTML;
+$content .= '<script src="' . $config->urls->templates . 'scripts/check-in.js"></script>';

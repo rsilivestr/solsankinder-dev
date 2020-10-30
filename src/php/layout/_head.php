@@ -41,16 +41,10 @@
 
   <!-- Check-in stylesheet -->
   <?php
-    if ($page->template->name === 'check-in__user-form'
-      || $page->template->name === 'check-in__admin-panel'
-    ) echo "<link rel='stylesheet' href='{$config->urls->siteModules}SolCheckIn/styles/checkin.css'>";
-  ?>
-
-  <!-- Check-in dev stylesheet -->
-  <?php
-    if ($page->template->name === 'check-in'
-      || $page->template->name === 'check-in-admin'
-    ) echo "<link rel='stylesheet' href='{$config->urls->templates}styles/check-in.css'>";
+    $n = $page->template->name;
+    if ('check-in__user-form' === $n || 'check-in__admin-panel' === $n) {
+      echo "<link rel='stylesheet' href='{$config->urls->templates}styles/check-in.css'>";
+    }
   ?>
 
   <!-- Glidejs slider script -->
