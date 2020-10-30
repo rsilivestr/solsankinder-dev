@@ -1,6 +1,14 @@
 const SolCheckIn = (() => {
+  // UI elements
+  const UI = {
+    form: document.querySelector('.ci-form'),
+    clinicDrop: document.querySelector('.js-clinic-drop'),
+    message: document.querySelector('.ci-form__message')
+  }
+  // Global districts
   let DISTRICTS;
-  // UI BEHAVIOUR
+
+  // Dropdown behaviour
   const closeDropdowns = (target) => {
     // Select all dropdowns
     const dropdowns = document.getElementsByClassName('ci-dropdown');
@@ -129,7 +137,7 @@ const SolCheckIn = (() => {
 
   const fillClinics = async (districtId) => {
     // Clear list
-    document.querySelector('.js-clinic-drop').innerHTML = '';
+    UI.clinicDrop.innerHTML = '';
     // Fill list
     getClinics(districtId).then((clinics) =>
       appendItems('.js-clinic-drop', clinics)
@@ -145,7 +153,7 @@ const SolCheckIn = (() => {
   };
 
   const clearClinics = () => {
-    document.querySelector('.js-clinic-drop').innerHTML = '';
+    UI.clinicDrop.innerHTML = '';
 
     const clinicInput = document.getElementById('ci-clinic');
     const clinicLabel = clinicInput.parentElement;
@@ -337,14 +345,13 @@ const SolCheckIn = (() => {
 
       const data = await res.json();
       const { status, message, ticketURL } = data;
-      const form = document.querySelector('.ci-form');
-      // Show message
-      const UImessage = createMessage(status, message);
-      form.appendChild(UImessage);
+      // Display message
+      UI.message.className = `ci-form__message ci-form__message--type_${status}`;
+      UI.message.textContent = message;
       // Append / update PDF link
       if (ticketURL) {
         const UIlink = createPDFLink(ticketURL);
-        form.appendChild(UIlink);
+        UI.form.appendChild(UIlink);
       }
     }
   };
@@ -374,9 +381,7 @@ const SolCheckIn = (() => {
     );
 
     // All dropdowns, fill input on select
-    document
-      .querySelector('.ci-form')
-      .addEventListener('mousedown', (e) => fillDropdownInput(e.target));
+    UI.form.addEventListener('mousedown', (e) => fillDropdownInput(e.target));
 
     // Unit dropdown, fill date on select (and get hours)
     document

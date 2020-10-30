@@ -177,13 +177,13 @@ function fillSpot($date_id, $interval_id) {
 
 function insertEvent($eventData = NULL) {
   if (
-    !$eventData
-    || !$eventData['patient_id']
-    || !$eventData['unit_id']
-    || !$eventData['date_id']
-    || !$eventData['interval_id']
-    || !$eventData['district_id']
-    || !$eventData['clinic_id']
+    NULL == $eventData
+    || 0 == $eventData['patient_id']
+    || 0 == $eventData['unit_id']
+    || 0 == $eventData['date_id']
+    || 0 == $eventData['interval_id']
+    || 0 == $eventData['district_id']
+    || 0 == $eventData['clinic_id']
   ) {
     // Send error message if some data is missing
     return '{
@@ -203,7 +203,7 @@ function insertEvent($eventData = NULL) {
   if ($res->num_rows > 0) {
     return '{
       "status": "info",
-      "message": "Данное событие уже зарегистрировано"
+      "message": "Данный пациент уже зарегистрирован"
     }';
   }
   // Insert event data into ci_events

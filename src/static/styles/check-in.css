@@ -183,6 +183,10 @@
   background-color: #006fb0;
 }
 
+.ci-form__message--hidden {
+  display: none;
+}
+
 .ci-form__message--type_success {
   background-color: forestgreen;
 }
