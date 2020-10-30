@@ -148,11 +148,16 @@ function getEvents($date) {
       patients.phone,
       patients.dob,
       ci_intervals.start_time,
-      ci_intervals.end_time
+      ci_intervals.end_time,
+      units.unit_name,
+      districts.district_name
     FROM ci_events
     INNER JOIN patients ON patients.id = ci_events.patient_id
     INNER JOIN ci_dates ON ci_dates.id = ci_events.date_id
     INNER JOIN ci_intervals ON ci_intervals.id = ci_events.interval_id
+    INNER JOIN units ON units.id = ci_events.unit_id
+    INNER JOIN clinics ON clinics.id = ci_events.clinic_id
+    INNER JOIN districts ON districts.id = clinics.district_id
     WHERE ci_dates.ci_date=?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
