@@ -125,8 +125,8 @@ $dbResetForm = '
 // Get units for the next form, generate options list
 $unitOptions = json_decode(getUnits());
 $unitOptionsHTML = "";
-foreach ($unitOptions as $index => $option) {
-$unitOptionsHTML .= "<option value='$option[0]'>$option[1]</option>";
+foreach ($unitOptions as $option) {
+  $unitOptionsHTML .= "<option value='$option[0]'>$option[1]</option>";
 }
 
 // Add new event date
@@ -163,6 +163,16 @@ foreach ($eventDates as $date) {
   $eventDatesDatalist .= '<option>'.$ru_date.'</option>';
 }
 
+// Create interval option list
+$intervalOptions = json_decode(getIntervals());
+$intervalOptionsHTML = '';
+foreach ($intervalOptions as $option) {
+  $intervalOptionsHTML .= '<option value="' . $option[0] . '">'
+    . substr($option[1], 0, 5)
+    . ' - '
+    . substr($option[2], 0, 5)
+    . '</option>';
+}
 // Show registered events on certain date
 $showEventsForm = '
 <form class="ci-form" id="show-events-form" method="POST">
@@ -170,8 +180,16 @@ $showEventsForm = '
 
   <label class="ci-form__label">
     <span class="ci-form__label-text">Дата</span>
-    <input class="ci-form__input" type="text" name="show_date" list="event-dates-list">
+    <input class="ci-form__input js-search-date-input" type="text" name="show_date" list="event-dates-list">
     <datalist id="event-dates-list">' . $eventDatesDatalist . '</datalist>
+  </label>
+
+  <label class="ci-form__label">
+    <span class="ci-form__label-text">Интервал</span>
+    <select class="ci-form__input js-filter-interval-input">
+      <option selected value="">Выберите интервал</option>'
+      . $intervalOptionsHTML
+    . '</select>
   </label>
 
   <input class="ci-form__button" type="submit" value="Показать">

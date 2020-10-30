@@ -4,9 +4,10 @@ const SolCheckInAdmin = (() => {
     tableWrap: document.querySelector('.ci-table-wrap')
   }
 
-  const fetchEventData = async (date) => {
+  const fetchEventData = async (date, intervalId) => {
     const formData = new FormData();
     formData.append('ci_date', date);
+    formData.append('interval_id', intervalId);
 
     const res = await fetch('../check-in-api/events/', {
       method: 'POST',
@@ -60,11 +61,14 @@ const SolCheckInAdmin = (() => {
 
   const showEvents = async (e) => {
     e.preventDefault();
-
-    const date = UI.formShowEvents.querySelector('input').value;
-    const eventData = await fetchEventData(date);
+    // Get input values
+    const date = UI.formShowEvents.querySelector('.js-search-date-input').value;
+    const intervalId = UI.formShowEvents.querySelector('.js-filter-interval-input').value || 0;
+    // Fetch data
+    const eventData = await fetchEventData(date, intervalId);
+    // Create table
     const tableHTML = createTable(eventData);
-
+    // Append table
     UI.tableWrap.innerHTML = '';
     UI.tableWrap.appendChild(tableHTML);
   }

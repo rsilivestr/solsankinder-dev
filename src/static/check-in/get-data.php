@@ -52,34 +52,12 @@ function getDateByUnit($unit_id = NULL) {
   return json_encode($res);
 }
 
-function getIntervals($date) {
-  $sql = "SELECT id FROM ci_dates WHERE ci_date=?";
+function getIntervals() {
+  // get all intervals
+  $sql = "SELECT id, start_time, end_time FROM ci_intervals";
+  $res = $GLOBALS['conn']->query($sql)->fetch_all();
 
-  if (!$stmt = $GLOBALS['conn']->prepare($sql)) {
-    return '{ "status": "error", "message": "Error while preparing SQL statement." }';
-  } else {
-    $stmt->bind_param("s", $date);
-    $stmt->execute();
-    $res = $stmt->get_result();
-    $stmt->close();
-
-    $dateID = $res->fetch_row()[0];
-
-    $sql = "SELECT ci_intervals.ci_interval
-      FROM ci_spots
-      INNER JOIN ci_intervals
-      ON ci_spots.interval_id = ci_intervals.id
-      WHERE ci_spots.date_id=$dateID
-      AND ci_spots.available>0;";
-
-    $res = $GLOBALS['conn']->query($sql)->fetch_all();
-
-    $res = array_map(function ($val) {
-      return $val[0];
-    }, $res);
-
-    return json_encode($res);
-  }
+  return json_encode($res);
 }
 
 function getIntervalsByDateId($date_id = NULL) {
@@ -142,7 +120,7 @@ function getClinics($districtId = NULL) {
   return json_encode($res);
 }
 
-function getEvents($date) {
+function getEvents($date, $interval_id) {
   $sql = "SELECT ci_events.event_id,
       patients.fio,
       patients.phone,
@@ -160,8 +138,20 @@ function getEvents($date) {
     INNER JOIN districts ON districts.id = clinics.district_id
     WHERE ci_dates.ci_date=?";
 
+  if (0 !== $interval_id) {
+    // Add interval condition
+    $sql .= " AND ci_intervals.id=?";
+  }
+
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("s", $date);
+
+  // Bind parameters as needed
+  if (0 !== $interval_id) {
+    $stmt->bind_param("si", $date, $interval_id);
+  } else {
+    $stmt->bind_param("s", $date);
+  }
+
   $stmt->execute();
   $res = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
   $stmt->close();
