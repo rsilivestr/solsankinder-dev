@@ -196,11 +196,11 @@ $showEventsForm = '
 </form>';
 
 // Make active event dates list
-$activeDatesDatalist = '';
+$activeDatesHTML = '';
 $activeDates = json_decode(getDates());
 foreach ($activeDates as $date) {
   $ru_date = (new DateTime($date[1]))->format('d.m.Y');
-  $activeDatesDatalist .= '<option>'.$ru_date.'</option>';
+  $activeDatesHTML .= '<option>'.$ru_date.'</option>';
 }
 
 // Close active event by date
@@ -210,8 +210,10 @@ $closeEventForm = '
 
   <label class="ci-form__label">
     <span class="ci-form__label-text">Дата</span>
-    <input class="ci-form__input" type="text" name="close_date" list="active-dates-list">
-    <datalist id="active-dates-list">' . $activeDatesDatalist . '</datalist>
+    <select class="ci-form__input" type="text" name="close_date">
+      <option selected value=""></option>'
+      . $activeDatesHTML
+    . '</select>
   </label>
 
   <input class="ci-form__button" type="submit" value="Закрыть">
