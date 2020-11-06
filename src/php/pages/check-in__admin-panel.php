@@ -71,10 +71,10 @@ if (isset($_POST["password"])) {
 // Insert new date
 if (
   ($newDate = $_POST["add_date"]) &&
-  ($unitId = $_POST["add_date_unit"]) &&
+  ($unitIdsArray = $_POST["add_date_unit"]) &&
   ($maxSpots = $_POST["add_date_spots"])
 ) {
-  insertDate($newDate, $unitId, $maxSpots);
+  insertDate($newDate, $unitIdsArray, $maxSpots);
 }
 
 // Close date
@@ -88,7 +88,7 @@ if ($_POST["close_date"]) {
 
 // Forms HTML
 $dbResetForm = '
-<form class="ci-form" method="POST">
+<form class="ci-form" id="reset-tables-form" method="POST">
   <h2 class="ci-form__heading">Сбросить базу данных</h2>
 
   <label class="ci-form__label mt-8">
@@ -123,31 +123,29 @@ $dbResetForm = '
 </form>';
 
 // Get units for the next form, generate options list
-$unitOptions = json_decode(getUnits());
-$unitOptionsHTML = "";
-foreach ($unitOptions as $option) {
-  $unitOptionsHTML .= "<option value='$option[0]'>$option[1]</option>";
+$units = json_decode(getUnits());
+$unitsHTML = "";
+foreach ($units as $unit) {
+  $unitsHTML .= '
+    <label class="ci-form__label mt-8">
+      <input type="checkbox" name="add_date_unit[]" value="'.$unit[0].'">
+      ' . $unit[1] . '
+    </label>';
 }
 
 // Add new event date
 $addDateForm = '
-<form class="ci-form" method="POST">
+<form class="ci-form" method="POST" id="add-date-form">
   <h2 class="ci-form__heading">Добавить заезд</h2>
 
-  <label class="ci-form__label">
+  <label class="ci-form__label" style="margin-bottom: 2rem">
     <span class="ci-form__label-text">Дата</span>
     <input class="ci-form__input" type="date" name="add_date">
-  </label>
+  </label>'
 
-  <label class="ci-form__label">
-    <span class="ci-form__label-text">Отделение</span>
-    <select class="ci-form__input" name="add_date_unit">
-      <option disabled selected value="">Выберите отделение</option>'
-      . $unitOptionsHTML .
-    '</select>
-  </label>
+  . $unitsHTML .
 
-  <label class="ci-form__label">
+  '<label class="ci-form__label">
     <span class="ci-form__label-text">Мест на интервал</span>
     <input class="ci-form__input" type="number" name="add_date_spots" value="40">
   </label>

@@ -52,7 +52,14 @@ function fillUnitsTable() {
   ];
 
   foreach ($units as $unit) {
-    $sql = "SELECT id FROM units WHERE unit_name='$unit'";
+    $sql = "SELECT id FROM units WHERE unit_name = '$unit'";
+
+    // $sql = "SELECT id FROM units WHERE unit_name = ?";
+    // $stmt = !$GLOBALS['conn']->prepare($sql);
+    // $stmt->bind_param('s', $unit);
+    // $stmt->execute();
+    // $res = $stmt->get_result();
+    // $stmt->close();
 
     if (!$GLOBALS['conn']->query($sql)->num_rows > 0) {
       $sql = "INSERT INTO units (unit_name) VALUES ('$unit')";

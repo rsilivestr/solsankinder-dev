@@ -52,31 +52,53 @@ function insertSpots($date, $maxSpots) {
   }
 }
 
-function insertDate($newDate, $unitId, $maxSpots) {
-  // check if that date already exists
-  $sql = "SELECT id FROM ci_dates WHERE ci_date = ? OR unit_id = ?";
+function makeUnitActive($dateId, $unitId) {
+  $sql = "UPDATE units SET date_id = ? WHERE id = ?";
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("si", $newDate, intval($unitId, 10));
+  $stmt->bind_param("ii", $dateId, $unitId);
+  $stmt->execute();
+  $stmt->close();
+}
+
+function makeUnitInactive($id) {
+  $sql = "UPDATE units SET date_id = 0 WHERE id = ?";
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param("i", $id);
+  $stmt->execute();
+  $stmt->close();
+}
+
+function insertDate($newDate, $unitIdsArray, $maxSpots) {
+  // check if that date already exists
+  $sql = "SELECT id FROM ci_dates WHERE ci_date = ?";
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param("s", $newDate);
   $stmt->execute();
   $res = $stmt->get_result();
   $stmt->close();
 
   // return if date already exists
   if ($res->num_rows > 0) {
-    return '{ "status": "info", "message": "That date exists or that unit is active." }';
+    return '{ "status": "info", "message": "That date exists." }';
   }
 
   // insert date
   $sql = "INSERT INTO ci_dates
-    (ci_date, unit_id, is_active)
+    (ci_date, unit_ids, is_active)
     VALUES (?, ?, 1)";
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("si", $newDate, intval($unitId, 10));
+  $stmt->bind_param("ss", $newDate, implode(",", $unitIdsArray));
   $stmt->execute();
   $res = $stmt->get_result();
   $stmt->close();
 
   insertSpots($newDate, $maxSpots);
+
+  $dateId = $GLOBALS['conn']->query("SELECT LAST_INSERT_ID()")->fetch_row()[0];
+  // Make units active
+  foreach ($unitIdsArray as $unitId) {
+    makeUnitActive($dateId, $unitId);
+  }
 
   return '{ "status": "success", "message": "Date was added." }';
 }
@@ -95,7 +117,25 @@ function closeDate($date) {
   $res = $stmt->affected_rows;
   $stmt->close();
 
-  if (1 === $res) return TRUE;
+  if (1 === $res) {
+    // Get units that were active on that date
+    $sql = "SELECT unit_ids FROM ci_dates WHERE ci_date = ?";
+    $stmt = $GLOBALS['conn']->prepare($sql);
+    $stmt->bind_param('s', $formattedDate);
+    $stmt->execute();
+    $res = $stmt->get_result()->fetch_row();
+    $stmt->close();
+
+    // Convert unit_ids string into an array
+    $unitIds = explode(",", $res[0]);
+    // Deactivate those units
+    foreach ($unitIds as $unitId) {
+      makeUnitInactive($unitId);
+    }
+
+    return TRUE;
+  }
+
   else return FALSE;
 }
 

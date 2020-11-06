@@ -2,7 +2,7 @@ const SolCheckInAdmin = (() => {
   const UI = {
     formShowEvents: document.getElementById('show-events-form'),
     tableWrap: document.querySelector('.ci-table-wrap')
-  }
+  };
 
   const fetchEventData = async (date, intervalId) => {
     const formData = new FormData();
@@ -18,7 +18,7 @@ const SolCheckInAdmin = (() => {
     const data = await res.json();
 
     return data;
-  }
+  };
 
   const createTable = (events) => {
     console.log(events);
@@ -57,7 +57,7 @@ const SolCheckInAdmin = (() => {
     });
 
     return table;
-  }
+  };
 
   const showEvents = async (e) => {
     e.preventDefault();
@@ -71,7 +71,7 @@ const SolCheckInAdmin = (() => {
     // Append table
     UI.tableWrap.innerHTML = '';
     UI.tableWrap.appendChild(tableHTML);
-  }
+  };
 
   const deleteEvent = async (e) => {
     const target = e.target;
@@ -97,12 +97,12 @@ const SolCheckInAdmin = (() => {
     } else {
       console.log(data.message);
     }
-  }
+  };
 
   return {
     init: () => {
       UI.formShowEvents.addEventListener('submit', showEvents);
-      UI.tableWrap.addEventListener('click', deleteEvent)
+      UI.tableWrap.addEventListener('click', deleteEvent);
     }
   }
 })();

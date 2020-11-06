@@ -39,13 +39,14 @@ $clinicSchema = "(
 
 $unitSchema = "(
   id INT PRIMARY KEY AUTO_INCREMENT,
-  unit_name VARCHAR(100) NOT NULL
+  unit_name VARCHAR(100) NOT NULL,
+  date_id INT DEFAULT 0
 )";
 
 $dateSchema = "(
   id INT PRIMARY KEY AUTO_INCREMENT,
   ci_date DATE NOT NULL,
-  unit_id TINYINT(1) NOT NULL,
+  unit_ids VARCHAR(100) NOT NULL,
   is_active TINYINT(1)
 )";
 

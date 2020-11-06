@@ -41,7 +41,10 @@ function getDateByUnit($unit_id = NULL) {
     return;
   }
 
-  $sql = "SELECT id, ci_date FROM ci_dates WHERE is_active=1 AND unit_id=?";
+  $sql = "SELECT ci_dates.id, ci_dates.ci_date FROM ci_dates
+    INNER JOIN units
+    ON units.date_id = ci_dates.id
+    WHERE units.id = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param("i", $unit_id);
@@ -90,11 +93,9 @@ function getUnits() {
 }
 
 function getActiveUnits() {
-  $sql = "SELECT units.id, units.unit_name
+  $sql = "SELECT id, unit_name
     FROM units
-    INNER JOIN ci_dates
-    ON units.id = ci_dates.unit_id
-    WHERE ci_dates.is_active=1";
+    WHERE date_id > 0";
 
   $res = $GLOBALS['conn']->query($sql)->fetch_all();
 
