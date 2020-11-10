@@ -133,6 +133,20 @@ foreach ($units as $unit) {
     </label>';
 }
 
+// Get intervals
+$intervals = json_decode(getIntervals());
+$intervalInputsHTML = '';
+foreach ($intervals as $interval) {
+  $intervalInputsHTML .= '
+  <label class="ci-form__label">
+    <span class="ci-form__label-text">Мест на '
+    . substr($option[1], 0, 5)
+    . ' - '
+    . substr($option[2], 0, 5)
+    . '<input class="ci-form__input" type="number" name="add_date_spots[]" value="40">
+  </label>';
+}
+
 // Add new event date
 $addDateForm = '
 <form class="ci-form" method="POST" id="add-date-form">

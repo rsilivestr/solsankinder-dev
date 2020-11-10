@@ -92,13 +92,13 @@ function insertDate($newDate, $unitIdsArray, $maxSpots) {
   $res = $stmt->get_result();
   $stmt->close();
 
-  insertSpots($newDate, $maxSpots);
-
   $dateId = $GLOBALS['conn']->query("SELECT LAST_INSERT_ID()")->fetch_row()[0];
   // Make units active
   foreach ($unitIdsArray as $unitId) {
     makeUnitActive($dateId, $unitId);
   }
+
+  insertSpots($newDate, $maxSpots);
 
   return '{ "status": "success", "message": "Date was added." }';
 }

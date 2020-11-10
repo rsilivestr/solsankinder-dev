@@ -68,9 +68,9 @@ function getIntervalsByDateId($date_id = NULL) {
     return;
   }
 
-  $sql = "SELECT ci_spots.id, ci_intervals.start_time, ci_intervals.end_time
-    FROM ci_spots
-    INNER JOIN ci_intervals
+  $sql = "SELECT ci_intervals.id, ci_intervals.start_time, ci_intervals.end_time
+    FROM ci_intervals
+    INNER JOIN ci_spots
     ON ci_spots.interval_id = ci_intervals.id
     WHERE ci_spots.date_id = ?
     AND ci_spots.available > 0;";

@@ -291,15 +291,6 @@ const SolCheckIn = (() => {
     }
   };
 
-  const createMessage = (status, message) => {
-    const span = document.createElement('span');
-
-    span.className = `ci-form__message ci-form__message--type_${status}`;
-    span.textContent = message;
-
-    return span;
-  };
-
   const createPDFLink = (url) =>{
     // Remove existing link
     const existingLink = document.querySelector('.ci-form__pdf-link');
