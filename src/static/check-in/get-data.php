@@ -137,17 +137,17 @@ function getEvents($date, $interval_id) {
     INNER JOIN units ON units.id = ci_events.unit_id
     INNER JOIN clinics ON clinics.id = ci_events.clinic_id
     INNER JOIN districts ON districts.id = clinics.district_id
-    WHERE ci_dates.ci_date=?";
+    WHERE ci_dates.ci_date = ?";
 
-  if (0 !== $interval_id) {
+  if ('0' !== $interval_id) {
     // Add interval condition
-    $sql .= " AND ci_intervals.id=?";
+    $sql .= " AND ci_intervals.id = ?";
   }
 
   $stmt = $GLOBALS['conn']->prepare($sql);
 
   // Bind parameters as needed
-  if (0 !== $interval_id) {
+  if ('0' !== $interval_id) {
     $stmt->bind_param("si", $date, $interval_id);
   } else {
     $stmt->bind_param("s", $date);

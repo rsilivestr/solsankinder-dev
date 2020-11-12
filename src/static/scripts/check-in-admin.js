@@ -21,10 +21,9 @@ const SolCheckInAdmin = (() => {
   };
 
   const createTable = (events) => {
-    console.log(events);
-
     const table = document.createElement('table');
     table.className = 'ci-table';
+    table.id = 'ci-table';
     // Add thead
     table.innerHTML = `
     <thead>
@@ -63,7 +62,7 @@ const SolCheckInAdmin = (() => {
     e.preventDefault();
     // Get input values
     const date = UI.formShowEvents.querySelector('.js-search-date-input').value;
-    const intervalId = UI.formShowEvents.querySelector('.js-filter-interval-input').value || 0;
+    const intervalId = UI.formShowEvents.querySelector('.js-filter-interval-input').value || '0';
     // Fetch data
     const eventData = await fetchEventData(date, intervalId);
     // Create table
@@ -71,6 +70,8 @@ const SolCheckInAdmin = (() => {
     // Append table
     UI.tableWrap.innerHTML = '';
     UI.tableWrap.appendChild(tableHTML);
+    // Go to table
+    location.href = '#ci-table';
   };
 
   const deleteEvent = async (e) => {
