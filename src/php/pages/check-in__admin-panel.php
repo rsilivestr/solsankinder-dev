@@ -11,7 +11,6 @@ if (isset($_POST["password"])) {
     !password_verify(
       $_POST["password"],
       '$2y$10$/Z7qAz6Ax0Vbbo8F6b5//u3T4HS2A2ScVSV1KGADnZ3UPTYfZz4BS'
-      // '$2y$10$e9B9cyaX5p7V1OQKnf.TDOAhJDRdc6M.biI27bVsICBfjuUK2fPo6'
     )) {
     // Password is wrong: redirect to warning
     header("Location: ?success=0");
@@ -72,9 +71,10 @@ if (isset($_POST["password"])) {
 if (
   ($newDate = $_POST["add_date"]) &&
   ($unitIdsArray = $_POST["add_date_unit"]) &&
-  ($maxSpots = $_POST["add_date_spots"])
+  ($maxSpotsArray = $_POST["add_date_spots"])
 ) {
-  insertDate($newDate, $unitIdsArray, $maxSpots);
+  insertDate($newDate, $unitIdsArray, $maxSpotsArray);
+  header("Location: .");
 }
 
 // Close date
@@ -136,14 +136,15 @@ foreach ($units as $unit) {
 // Get intervals
 $intervals = json_decode(getIntervals());
 $intervalInputsHTML = '';
-foreach ($intervals as $interval) {
+foreach ($intervals as $ivl) {
   $intervalInputsHTML .= '
   <label class="ci-form__label">
     <span class="ci-form__label-text">Мест на '
-    . substr($option[1], 0, 5)
-    . ' - '
-    . substr($option[2], 0, 5)
-    . '<input class="ci-form__input" type="number" name="add_date_spots[]" value="40">
+      . substr($ivl[1], 0, 5)
+      . ' - '
+      . substr($ivl[2], 0, 5)
+    . '</span>
+    <input class="ci-form__input" type="number" name="add_date_spots[]" value="40">
   </label>';
 }
 
@@ -157,14 +158,11 @@ $addDateForm = '
     <input class="ci-form__input" type="date" name="add_date">
   </label>'
 
-  . $unitsHTML .
+  . $unitsHTML
 
-  '<label class="ci-form__label">
-    <span class="ci-form__label-text">Мест на интервал</span>
-    <input class="ci-form__input" type="number" name="add_date_spots" value="40">
-  </label>
+  . $intervalInputsHTML
 
-  <input class="ci-form__button" type="submit" value="Добавить">
+  . '<input class="ci-form__button" type="submit" value="Добавить">
 </form>';
 
 // Make all event dates list
@@ -176,9 +174,8 @@ foreach ($eventDates as $date) {
 }
 
 // Create interval option list
-$intervalOptions = json_decode(getIntervals());
 $intervalOptionsHTML = '';
-foreach ($intervalOptions as $option) {
+foreach ($intervals as $option) {
   $intervalOptionsHTML .= '<option value="' . $option[0] . '">'
     . substr($option[1], 0, 5)
     . ' - '

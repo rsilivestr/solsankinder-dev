@@ -4,9 +4,7 @@ include_once "conn.php";
 include_once "validate-data.php";
 include_once "make-pdf.php";
 
-function insertSpots($date, $maxSpots) {
-  $maxSpotsInt = intval($maxSpots, 10);
-
+function insertSpots($date, $maxSpotsArray) {
   // get date id
   $sql = "SELECT id FROM ci_dates WHERE ci_date = ?";
   $stmt = $GLOBALS['conn']->prepare($sql);
@@ -27,14 +25,14 @@ function insertSpots($date, $maxSpots) {
   }
 
   // for each active interval id
-  foreach ($intervalIds as $intId) {
+  foreach ($intervalIds as $index => $ivlId) {
     // check existing spots
     $sql = "SELECT id FROM ci_spots
       WHERE date_id = ?
       AND interval_id = ?";
 
     $stmt = $GLOBALS['conn']->prepare($sql);
-    $stmt->bind_param("ii", $dateId, $intId);
+    $stmt->bind_param("ii", $dateId, $ivlId);
     $stmt->execute();
     $match = $stmt->get_result()->num_rows;
     $stmt->close();
@@ -45,7 +43,13 @@ function insertSpots($date, $maxSpots) {
         (date_id, interval_id, total, available)
         VALUES (?, ?, ?, ?)";
       $stmt = $GLOBALS['conn']->prepare($sql);
-      $stmt->bind_param("iiii", $dateId, $intId, $maxSpotsInt, $maxSpotsInt);
+      $stmt->bind_param(
+        "iiii",
+        $dateId,
+        $ivlId,
+        $maxSpotsArray[$index],
+        $maxSpotsArray[$index]
+      );
       $stmt->execute();
       $stmt->close();
     }
@@ -68,7 +72,7 @@ function makeUnitInactive($id) {
   $stmt->close();
 }
 
-function insertDate($newDate, $unitIdsArray, $maxSpots) {
+function insertDate($newDate, $unitIdsArray, $maxSpotsArray) {
   // check if that date already exists
   $sql = "SELECT id FROM ci_dates WHERE ci_date = ?";
   $stmt = $GLOBALS['conn']->prepare($sql);
@@ -98,7 +102,7 @@ function insertDate($newDate, $unitIdsArray, $maxSpots) {
     makeUnitActive($dateId, $unitId);
   }
 
-  insertSpots($newDate, $maxSpots);
+  insertSpots($newDate, $maxSpotsArray);
 
   return '{ "status": "success", "message": "Date was added." }';
 }
