@@ -207,6 +207,44 @@
   font-size: 1rem;
 }
 
+/* Form navigation */
+.ci-form__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.ci-nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  line-height: 2rem;
+  width: 50%;
+}
+
+.ci-nav-btn__number {
+  background-color: #006fb020;
+  border-radius: 2rem;
+  color: #222;
+  font-weight: 700;
+  margin-right: .5rem;
+  width: 2rem;
+}
+
+.ci-nav-btn--current .ci-nav-btn__number {
+  background-color: #44c;
+  color: #def;
+}
+
+.ci-nav-btn__title {
+  font-size: 0.9rem;
+}
+
+.ci-nav-btn--current .ci-nav-btn__title {
+  font-weight: 700;
+}
+
 /* Admin table */
 .ci-table {
   margin: 3rem auto 0;
@@ -232,17 +270,6 @@
 
 .js-delete-event:hover {
   background-color: #bb0031;
-}
-
-/* Fixed Message */
-#float-message-box .ci-form__message {
-  position: fixed;
-  bottom: 1.25rem;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  max-width: 250px;
-  z-index: 100;
 }
 
 /* Admin panel */

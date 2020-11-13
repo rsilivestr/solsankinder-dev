@@ -3,8 +3,13 @@ const SolCheckIn = (() => {
   const UI = {
     form: document.querySelector('.ci-form'),
     clinicDrop: document.querySelector('.js-clinic-drop'),
-    message: document.querySelector('.ci-form__message')
+    message: document.querySelector('.ci-form__message'),
+    nav: document.querySelector('.ci-form__nav'),
+    formPage1: document.getElementById('form-page-1'),
+    formPage2: document.getElementById('form-page-2'),
   }
+  // Event submit data
+  const FORM_DATA = new FormData();
   // Global districts
   let DISTRICTS;
 
@@ -224,12 +229,21 @@ const SolCheckIn = (() => {
     return !!errorMessage;
   };
 
-  const FORM_DATA = new FormData();
+  const navForward = () => {
+      UI.formPage1.classList.remove('ci-form__page--active');
+      UI.formPage2.classList.add('ci-form__page--active');
+      UI.nav.querySelectorAll('button')
+        .forEach(btn => btn.classList.toggle('ci-nav-btn--current'));
+  };
+
+  const navBackward = () => {
+      UI.formPage1.classList.add('ci-form__page--active');
+      UI.formPage2.classList.remove('ci-form__page--active');
+      UI.nav.querySelectorAll('button')
+        .forEach(btn => btn.classList.toggle('ci-nav-btn--current'));
+  };
 
   const formNext = () => {
-    const formPage1 = document.getElementById('form-page-1');
-    const formPage2 = document.getElementById('form-page-2');
-
     // Validate fields
     const nameRE = /^[а-яА-ЯёЁ]{2,}(\-[а-яА-ЯёЁ]{2,})?$/;
     const familyNameInput = document.getElementById('ci-family-name');
@@ -257,8 +271,7 @@ const SolCheckIn = (() => {
       FORM_DATA.append('patient_dob', dobInput.value);
       FORM_DATA.append('patient_phone', telInput.value);
       // Go to the next page
-      formPage1.classList.remove('ci-form__page--active');
-      formPage2.classList.add('ci-form__page--active');
+      navForward();
     }
   };
 
@@ -336,7 +349,7 @@ const SolCheckIn = (() => {
 
       const data = await res.json();
       const { status, message, ticketURL } = data;
-      // Display message
+      // Update message
       UI.message.className = `ci-form__message ci-form__message--type_${status}`;
       UI.message.textContent = message;
       // Append / update PDF link
@@ -362,6 +375,21 @@ const SolCheckIn = (() => {
       input.dataset.id = id;
       // Fill clinics
       fillClinics(id);
+    }
+  };
+
+  // Navigation
+  const handleNav = (e) => {
+    const targetBtn = e.target.closest('.ci-nav-btn');
+    const currentBtn = UI.nav.querySelector('.ci-nav-btn--current');
+
+    if (targetBtn !== null && targetBtn !== currentBtn) {
+      // Navigate to page
+      if (targetBtn.id === 'nav-page-1') {
+        navBackward();
+      } else {
+        navForward();
+      }
     }
   };
 
@@ -404,6 +432,8 @@ const SolCheckIn = (() => {
     document
       .querySelector('#form-submit-btn')
       .addEventListener('click', formSubmit);
+
+    UI.nav.addEventListener('click', handleNav);
   };
 
   // Module exports
