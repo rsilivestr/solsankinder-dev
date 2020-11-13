@@ -7,6 +7,16 @@ const SolCheckIn = (() => {
     nav: document.querySelector('.ci-form__nav'),
     formPage1: document.getElementById('form-page-1'),
     formPage2: document.getElementById('form-page-2'),
+    familyNameInput: document.getElementById('ci-family-name'),
+    givenNameInput: document.getElementById('ci-given-name'),
+    patrNameInput: document.getElementById('ci-patr-name'),
+    dobInput: document.getElementById('ci-dob'),
+    telInput: document.getElementById('ci-tel'),
+    unitInput: document.getElementById('ci-unit'),
+    dateInput: document.getElementById('ci-date'),
+    intervalInput: document.getElementById('ci-interval'),
+    districtInput: document.getElementById('ci-district'),
+    clinicInput: document.getElementById('ci-clinic'),
   }
   // Event submit data
   const FORM_DATA = new FormData();
@@ -243,33 +253,37 @@ const SolCheckIn = (() => {
         .forEach(btn => btn.classList.toggle('ci-nav-btn--current'));
   };
 
-  const formNext = () => {
-    // Validate fields
+  const validatePatientData = () => {
     const nameRE = /^[а-яА-ЯёЁ]{2,}(\-[а-яА-ЯёЁ]{2,})?$/;
-    const familyNameInput = document.getElementById('ci-family-name');
-    const fnErr = validateInput(familyNameInput, nameRE);
-
-    const givenNameInput = document.getElementById('ci-given-name');
-    const gnErr = validateInput(givenNameInput, nameRE);
-
-    const patrNameInput = document.getElementById('ci-patr-name');
-    const pnErr = validateInput(patrNameInput, nameRE);
-
-    const dobInput = document.getElementById('ci-dob');
-    const dobErr = validateInput(dobInput, /^\d{4}\-\d{2}\-\d{2}$/);
-
-    const telInput = document.getElementById('ci-tel');
     const telRE = /^((\+?7|8)?(-|\.|\s|\s?\()?(\d{3})(-|\.|\s|\)\s?)?)?\d{3}[-\.\s]?\d{2}[-\.\s]?\d{2}$/;
-    const telErr = validateInput(telInput, telRE);
 
-    if (!fnErr && !gnErr && !pnErr && !dobErr && !telErr) {
-      // Save form data
-      FORM_DATA.append(
+    const fnErr = validateInput(UI.familyNameInput, nameRE);
+    const gnErr = validateInput(UI.givenNameInput, nameRE);
+    const pnErr = validateInput(UI.patrNameInput, nameRE);
+    const dobErr = validateInput(UI.dobInput, /^\d{4}\-\d{2}\-\d{2}$/);
+    const telErr = validateInput(UI.telInput, telRE);
+
+    if (!fnErr && !gnErr && !pnErr && !dobErr && !telErr) return true;
+
+    return false;
+  };
+
+  const setPatientData = () => {
+      FORM_DATA.set(
         'patient_fio',
-        `${familyNameInput.value} ${givenNameInput.value} ${patrNameInput.value}`
+        `${UI.familyNameInput.value} ${UI.givenNameInput.value} ${UI.patrNameInput.value}`
       );
-      FORM_DATA.append('patient_dob', dobInput.value);
-      FORM_DATA.append('patient_phone', telInput.value);
+      FORM_DATA.set('patient_dob', UI.dobInput.value);
+      FORM_DATA.set('patient_phone', UI.telInput.value);
+  };
+
+  const formNext = () => {
+    // Validation status
+    const ok = validatePatientData();
+
+    if (ok) {
+      // Save to FORM_DATA
+      setPatientData();
       // Go to the next page
       navForward();
     }
@@ -317,27 +331,31 @@ const SolCheckIn = (() => {
     return link;
   };
 
+  const validateEventData = () => {
+    const unitErr = validateDropInput(UI.unitInput);
+    const intErr = validateDropInput(UI.intervalInput);
+    const districtErr = validateDropInput(UI.districtInput);
+    const clinicErr = validateDropInput(UI.clinicInput);
+
+    if (!unitErr && !intErr && !districtErr && !clinicErr) return true;
+
+    return false;
+  };
+
+  const setEventData = () => {
+      FORM_DATA.set('unit_id', UI.unitInput.dataset.id);
+      FORM_DATA.set('date_id', UI.dateInput.dataset.id);
+      FORM_DATA.set('interval_id', UI.intervalInput.dataset.id);
+      FORM_DATA.set('district_id', UI.districtInput.dataset.id);
+      FORM_DATA.set('clinic_id', UI.clinicInput.dataset.id);
+  };
+
   const formSubmit = async () => {
-    const unitInput = document.getElementById('ci-unit');
-    const unitErr = validateDropInput(unitInput);
+    const ok = validateEventData();
 
-    const dateInput = document.getElementById('ci-date');
-
-    const intervalInput = document.getElementById('ci-interval');
-    const intErr = validateDropInput(intervalInput);
-
-    const districtInput = document.getElementById('ci-district');
-    const districtErr = validateDropInput(districtInput);
-
-    const clinicInput = document.getElementById('ci-clinic');
-    const clinicErr = validateDropInput(clinicInput);
-
-    if (!unitErr && !intErr && !districtErr && !clinicErr) {
-      FORM_DATA.append('unit_id', unitInput.dataset.id);
-      FORM_DATA.append('date_id', dateInput.dataset.id);
-      FORM_DATA.append('interval_id', intervalInput.dataset.id);
-      FORM_DATA.append('district_id', districtInput.dataset.id);
-      FORM_DATA.append('clinic_id', clinicInput.dataset.id);
+    if (ok) {
+      // Save event to FORM_DATA
+      setEventData();
 
       const res = await fetch('../check-in-api/register/', {
         method: 'POST',
