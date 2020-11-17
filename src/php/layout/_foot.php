@@ -26,6 +26,12 @@
           id="ban_poll"
           href="http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews"
           aria-label="Баннер анкеты оценки качества оказанных услуг"
+        ></a
+        ><a
+          class="footer-officials__banner"
+          id="ban_gorzdrav"
+          href="https://gorzdrav.spb.ru"
+          aria-label='Баннер портала "Здоровье петербуржца"'
         ></a>
       </div>
     </div>

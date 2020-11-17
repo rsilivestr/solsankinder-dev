@@ -5,6 +5,8 @@ const SolCheckIn = (() => {
     clinicDrop: document.querySelector('.js-clinic-drop'),
     message: document.querySelector('.ci-form__message'),
     nav: document.querySelector('.ci-form__nav'),
+    navBtn1: document.getElementById('nav-page-1'),
+    navBtn2: document.getElementById('nav-page-2'),
     formPage1: document.getElementById('form-page-1'),
     formPage2: document.getElementById('form-page-2'),
     familyNameInput: document.getElementById('ci-family-name'),
@@ -71,6 +73,8 @@ const SolCheckIn = (() => {
       }
       // Add selection to current element
       target.classList.add('ci-dropdown__list-item--selected');
+      // Clear error message
+      dropdown.querySelector('.ci-form__error').textContent = '';
     }
   };
 
@@ -253,6 +257,20 @@ const SolCheckIn = (() => {
         .forEach(btn => btn.classList.toggle('ci-nav-btn--current'));
   };
 
+  const showNavError = (pageNumber) => {
+    const navBtn = pageNumber === 1 ? UI.navBtn1 : UI.navBtn2;
+    navBtn.classList.add('ci-nav-btn--has-error');
+    navBtn.classList.remove('ci-nav-btn--is-ok');
+    navBtn.firstElementChild.textContent = '!';
+  };
+
+  const clearNavError = (pageNumber) => {
+    const navBtn = pageNumber === 1 ? UI.navBtn1 : UI.navBtn2;
+    navBtn.classList.remove('ci-nav-btn--has-error');
+    navBtn.classList.add('ci-nav-btn--is-ok');
+    navBtn.firstElementChild.innerHTML = '&#10004;'; // ✔
+  }
+
   const validatePatientData = () => {
     const nameRE = /^[а-яА-ЯёЁ]{2,}(\-[а-яА-ЯёЁ]{2,})?$/;
     const telRE = /^((\+?7|8)?(-|\.|\s|\s?\()?(\d{3})(-|\.|\s|\)\s?)?)?\d{3}[-\.\s]?\d{2}[-\.\s]?\d{2}$/;
@@ -263,7 +281,13 @@ const SolCheckIn = (() => {
     const dobErr = validateInput(UI.dobInput, /^\d{4}\-\d{2}\-\d{2}$/);
     const telErr = validateInput(UI.telInput, telRE);
 
-    if (!fnErr && !gnErr && !pnErr && !dobErr && !telErr) return true;
+    if (!fnErr && !gnErr && !pnErr && !dobErr && !telErr) {
+      clearNavError(1);
+
+      return true;
+    }
+
+    showNavError(1);
 
     return false;
   };
@@ -337,7 +361,13 @@ const SolCheckIn = (() => {
     const districtErr = validateDropInput(UI.districtInput);
     const clinicErr = validateDropInput(UI.clinicInput);
 
-    if (!unitErr && !intErr && !districtErr && !clinicErr) return true;
+    if (!unitErr && !intErr && !districtErr && !clinicErr) {
+      clearNavError(2);
+
+      return true;
+    }
+
+    showNavError(2);
 
     return false;
   };
@@ -350,31 +380,36 @@ const SolCheckIn = (() => {
       FORM_DATA.set('clinic_id', UI.clinicInput.dataset.id);
   };
 
-  const formSubmit = async () => {
-    const ok = validateEventData();
 
-    if (ok) {
+  const formSubmit = async () => {
+    const eventOk = validateEventData();
+    const patientOk = validatePatientData();
+
+    if (eventOk) {
       // Save event to FORM_DATA
       setEventData();
 
-      const res = await fetch('../check-in-api/register/', {
-        method: 'POST',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        },
-        body: FORM_DATA,
-      });
+      if (patientOk) {
+        // All data should be valid at that point
+        const res = await fetch('../check-in-api/register/', {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: FORM_DATA,
+        });
 
-      const data = await res.json();
-      const { status, message, ticketURL } = data;
-      // Update message
-      UI.message.className = `ci-form__message ci-form__message--type_${status}`;
-      UI.message.textContent = message;
-      // Append / update PDF link
-      if (ticketURL) {
-        const UIlink = createPDFLink(ticketURL);
-        UI.form.appendChild(UIlink);
-      }
+        const data = await res.json();
+        const { status, message, ticketURL } = data;
+        // Update message
+        UI.message.className = `ci-form__message ci-form__message--type_${status}`;
+        UI.message.textContent = message;
+        // Append / update PDF link
+        if (ticketURL) {
+          const UIlink = createPDFLink(ticketURL);
+          UI.form.appendChild(UIlink);
+        }
+      }  
     }
   };
 
@@ -406,7 +441,8 @@ const SolCheckIn = (() => {
       if (targetBtn.id === 'nav-page-1') {
         navBackward();
       } else {
-        navForward();
+
+        formNext();
       }
     }
   };
@@ -450,7 +486,8 @@ const SolCheckIn = (() => {
     document
       .querySelector('#form-submit-btn')
       .addEventListener('click', formSubmit);
-
+    
+    // Form steps navigation
     UI.nav.addEventListener('click', handleNav);
   };
 

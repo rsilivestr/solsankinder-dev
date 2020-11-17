@@ -34,7 +34,6 @@
       display: inline-block;
       height: 100px;
       margin: 0.25rem;
-      border: 1px solid #e0e0e0;
       max-width: 100%;
     }
   }
@@ -48,23 +47,28 @@
     }
   }
 
-  @include media('print') {
+  @include media("print") {
     display: none;
   }
 }
 
 #ban_gu {
   width: 235px;
-  background: url('/site/assets/images/ban1.png') 0 0;
+  background: url("/site/assets/images/banners.png") 0 0;
 }
 #ban_miac {
   width: 300px;
-  background: url('/site/assets/images/ban1.png') -235px 0;
+  background: url("/site/assets/images/banners.png") -235px 0;
 }
 
 #ban_poll {
   width: 355px;
-  background: url('/site/assets/images/ban1.png') -535px 0;
+  background: url("/site/assets/images/banners.png") -535px 0;
+}
+
+#ban_gorzdrav {
+  width: 212px;
+  background: url("/site/assets/images/banners.png") -890px 0;
 }
 
 // @include media('>=tablet') {

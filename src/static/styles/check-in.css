@@ -188,7 +188,7 @@
 }
 
 .ci-form__message--type_success {
-  background-color: forestgreen;
+  background-color: #4a2;
 }
 
 .ci-form__message--type_error {
@@ -234,6 +234,16 @@
 
 .ci-nav-btn--current .ci-nav-btn__number {
   background-color: #006fb0;
+  color: #def;
+}
+
+.ci-nav-btn--is-ok .ci-nav-btn__number {
+  background-color: #4a2;
+  color: #def;
+}
+
+.ci-nav-btn--has-error .ci-nav-btn__number {
+  background-color: #ee3364;
   color: #def;
 }
 
