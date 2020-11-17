@@ -243,6 +243,36 @@ const SolCheckIn = (() => {
     return !!errorMessage;
   };
 
+  const getFullYears = (dateString) => {
+    if (!dateString) return -1;
+
+    const date = new Date(dateString);
+    const today = new Date();
+    // Get diffs
+    const dayDiff = today.getDate() - date.getDate();
+    const monthDiff = today.getMonth() - date.getMonth();
+    const yearDiff = today.getFullYear() - date.getFullYear();
+    // Default = 0
+    // Get full months
+    const fullMonths = dayDiff < 0 ? monthDiff - 1 : monthDiff;
+    const fullYears = fullMonths < 0 ? yearDiff - 1 : yearDiff;
+
+    return fullYears;
+  }
+
+  const validateAge = () => {
+    const age = getFullYears(UI.dobInput.value);
+    const errorSpan = UI.dobInput.parentElement.querySelector('.ci-form__error');
+
+    if (age < 2 || age > 17) {
+      errorSpan.textContent = 'Проверьте правильность заполения поля';
+      return true;
+    }
+
+    errorSpan.textContent = '';
+    return false;
+  }
+
   const navForward = () => {
       UI.formPage1.classList.remove('ci-form__page--active');
       UI.formPage2.classList.add('ci-form__page--active');
@@ -278,7 +308,7 @@ const SolCheckIn = (() => {
     const fnErr = validateInput(UI.familyNameInput, nameRE);
     const gnErr = validateInput(UI.givenNameInput, nameRE);
     const pnErr = validateInput(UI.patrNameInput, nameRE);
-    const dobErr = validateInput(UI.dobInput, /^\d{4}\-\d{2}\-\d{2}$/);
+    const dobErr = validateAge();
     const telErr = validateInput(UI.telInput, telRE);
 
     if (!fnErr && !gnErr && !pnErr && !dobErr && !telErr) {
