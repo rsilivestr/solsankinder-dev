@@ -322,12 +322,12 @@ const SolCheckIn = (() => {
   };
 
   const setPatientData = () => {
-      FORM_DATA.set(
-        'patient_fio',
-        `${UI.familyNameInput.value} ${UI.givenNameInput.value} ${UI.patrNameInput.value}`
-      );
-      FORM_DATA.set('patient_dob', UI.dobInput.value);
-      FORM_DATA.set('patient_phone', UI.telInput.value);
+    FORM_DATA.set(
+      'patient_fio',
+      `${UI.familyNameInput.value} ${UI.givenNameInput.value} ${UI.patrNameInput.value}`
+    );
+    FORM_DATA.set('patient_dob', UI.dobInput.value);
+    FORM_DATA.set('patient_phone', UI.telInput.value);
   };
 
   const formNext = () => {
@@ -413,9 +413,11 @@ const SolCheckIn = (() => {
     UI.message.className = `ci-form__message ci-form__message--type_${status}`;
     UI.message.textContent = message;
 
-    setTimeout(() => {
-      UI.message.textContent = '';
-    }, 3000);
+    // setTimeout(() => {
+    //   UI.message.textContent = '';
+    //   UI.message.classList.remove(`ci-form__message--type_${status}`);
+    //   UI.message.classList.add('ci-form__message--hidden');
+    // }, 3000);
   }
 
   const formSubmit = async () => {

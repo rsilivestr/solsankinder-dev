@@ -2,7 +2,11 @@
 
 include_once($urls->root.'/vendor/mpdf/mpdf/src/Mpdf.php');
 
-function makePDF($event_data) {
+function formatDate($dateString) {
+  return (new DateTime($dateString))->format('d.m.Y');
+}
+
+function getFileName($event_data) {
   $fioArr = explode(' ', $event_data['fio']);
   // Get family name
   $familyName = $fioArr[0];
@@ -11,11 +15,24 @@ function makePDF($event_data) {
     . '.'
     . mb_substr($fioArr[2], 0, 1, 'utf-8')
     . '.';
-  // Format date
-  $date = new DateTime($event_data['ci_date']);
-  $ru_date = $date->format('d.m.Y');
+
+  return $familyName . ' ' . $initials . ' ' . formatDate($event_data['ci_date']);
+}
+
+function makePDF($event_data) {
+  // $fioArr = explode(' ', $event_data['fio']);
+  // // Get family name
+  // $familyName = $fioArr[0];
+  // // Get initials
+  // $initials = mb_substr($fioArr[1], 0, 1, 'utf-8')
+  //   . '.'
+  //   . mb_substr($fioArr[2], 0, 1, 'utf-8')
+  //   . '.';
   // Set file name (Иванов И.И. 01.01.2020)
-  $fileName = $familyName . ' ' . $initials . ' ' . $ru_date;
+  // $fileName = $familyName . ' ' . $initials . ' ' . $ru_date;
+  $fileName = getFileName($event_data);
+  // Format date
+  $ru_date = formatDate($event_data['ci_date']);
   // Trim seconds
   $start = mb_substr($event_data['start_time'], 0, 5, 'utf-8');
   $end = mb_substr($event_data['end_time'], 0, 5, 'utf-8');

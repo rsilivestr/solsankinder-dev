@@ -154,7 +154,7 @@ function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
   }
   // search patient
   $sql = "SELECT id FROM patients
-    WHERE fio = ? AND dob = ?";
+    WHERE LOWER(fio) = LOWER(?) AND dob = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param("ss", $vFio, $vDob);
@@ -245,9 +245,14 @@ function insertEvent($eventData = NULL) {
   $stmt->close();
 
   if ($res->num_rows > 0) {
+    $eventId = $res->fetch_row()[0];
+    $eventData = getEventData($eventId);
+    $ticketURL = '/site/assets/files/tickets/' . getFileName($eventData) . '.pdf';
+
     return '{
       "status": "info",
-      "message": "Данный пациент уже зарегистрирован"
+      "message": "Данное событие уже зарегистрировано",
+      "ticketURL": "' . $ticketURL . '"
     }';
   }
   // Insert event data into ci_events

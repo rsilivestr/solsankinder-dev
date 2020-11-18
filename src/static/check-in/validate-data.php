@@ -14,13 +14,7 @@ function validateFio($fio) {
     }
   }
 
-  if (!$ok) {
-    // fio is invalid
-    return NULL;
-  } else {
-    // fio is valid
-    return $fio;
-  }
+  return $ok ? $fio : NULL;
 }
 
 function validatePhone($tel) {
