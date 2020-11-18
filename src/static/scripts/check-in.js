@@ -252,7 +252,6 @@ const SolCheckIn = (() => {
     const dayDiff = today.getDate() - date.getDate();
     const monthDiff = today.getMonth() - date.getMonth();
     const yearDiff = today.getFullYear() - date.getFullYear();
-    // Default = 0
     // Get full months
     const fullMonths = dayDiff < 0 ? monthDiff - 1 : monthDiff;
     const fullYears = fullMonths < 0 ? yearDiff - 1 : yearDiff;
@@ -260,11 +259,11 @@ const SolCheckIn = (() => {
     return fullYears;
   }
 
-  const validateAge = () => {
+  const validateAge = (ageMin, ageMax) => {
     const age = getFullYears(UI.dobInput.value);
     const errorSpan = UI.dobInput.parentElement.querySelector('.ci-form__error');
 
-    if (age < 2 || age > 17) {
+    if (age < ageMin || age > ageMax) {
       errorSpan.textContent = 'Проверьте правильность заполения поля';
       return true;
     }
@@ -308,7 +307,7 @@ const SolCheckIn = (() => {
     const fnErr = validateInput(UI.familyNameInput, nameRE);
     const gnErr = validateInput(UI.givenNameInput, nameRE);
     const pnErr = validateInput(UI.patrNameInput, nameRE);
-    const dobErr = validateAge();
+    const dobErr = validateAge(1, 17);
     const telErr = validateInput(UI.telInput, telRE);
 
     if (!fnErr && !gnErr && !pnErr && !dobErr && !telErr) {
@@ -410,6 +409,14 @@ const SolCheckIn = (() => {
       FORM_DATA.set('clinic_id', UI.clinicInput.dataset.id);
   };
 
+  const updateMessage = (status, message) => {
+    UI.message.className = `ci-form__message ci-form__message--type_${status}`;
+    UI.message.textContent = message;
+
+    setTimeout(() => {
+      UI.message.textContent = '';
+    }, 3000);
+  }
 
   const formSubmit = async () => {
     const eventOk = validateEventData();
@@ -432,8 +439,7 @@ const SolCheckIn = (() => {
         const data = await res.json();
         const { status, message, ticketURL } = data;
         // Update message
-        UI.message.className = `ci-form__message ci-form__message--type_${status}`;
-        UI.message.textContent = message;
+        updateMessage(status, message);
         // Append / update PDF link
         if (ticketURL) {
           const UIlink = createPDFLink(ticketURL);
@@ -476,6 +482,14 @@ const SolCheckIn = (() => {
       }
     }
   };
+
+  const clearEventInputs = () => {
+    UI.unitInput.value = '';
+    UI.dateInput.value = '';
+    UI.intervalInput.value = '';
+    UI.districtInput.value = '';
+    UI.clinicInput.value = '';
+  }
 
   // LISTENERS
   const addListeners = () => {
@@ -524,6 +538,8 @@ const SolCheckIn = (() => {
   // Module exports
   return {
     init: () => {
+      clearEventInputs();
+
       getDistricts();
 
       addListeners();

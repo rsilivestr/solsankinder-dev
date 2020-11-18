@@ -374,24 +374,30 @@
     display: block;
   }
 
-  /* Chrome thead bug --- text intersection */
-  .check-in-table-wrapper thead {
-    display: table-row-group;
-  }
-
   /* hide panel */
   .ci-form-panel {
     display: none;
   }
 
-  .check-in-table-wrapper {
+  .ci-table {
     margin-top: -100px;
   }
 
-  .check-in-table-wrapper th,
-  .check-in-table-wrapper td {
+  /* Chrome thead bug --- text intersection */
+  .ci-table thead {
+    display: table-row-group;
+  }
+
+  .ci-table th,
+  .ci-table td {
     font-size: 8pt;
     padding: 1pt;
+  }
+
+  /* Hide delete buttons */
+  .ci-table tr th:last-child,
+  .ci-table tr td:last-child {
+    display: none;
   }
 }
 

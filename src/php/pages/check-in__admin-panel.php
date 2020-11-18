@@ -240,7 +240,7 @@ if (!$user->hasRole('check-in')) {
 } else {
   // Show forms
   $content = '
-    <section class="section section--width_w">
+    <section class="ci-form-panel section section--width_w">
       <h1>Панель регистратора</h1>
       <div class="ci-admin-panel">'
         .$dbResetForm

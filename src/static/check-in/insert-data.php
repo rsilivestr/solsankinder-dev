@@ -146,7 +146,7 @@ function closeDate($date) {
 function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
   $vFio = validateFio($fio);
   $vPhone = validatePhone($phone);
-  $vDob = validateDob($dob);
+  $vDob = validateDob($dob, 1, 17);
 
   // return on empty params
   if (NULL === $vFio || NULL === $vPhone || FALSE === $vDob) {

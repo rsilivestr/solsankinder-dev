@@ -144,6 +144,8 @@ function getEvents($date, $interval_id) {
     $sql .= " AND ci_intervals.id = ?";
   }
 
+  $sql .= " ORDER BY patients.fio ASC";
+
   $stmt = $GLOBALS['conn']->prepare($sql);
 
   // Bind parameters as needed

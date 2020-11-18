@@ -30,7 +30,7 @@ function validatePhone($tel) {
     '-',
     '.',
     ' ',
-    '+'
+    '+',
   );
   // Strip symbols
   $tel = str_replace($symbols, '', $tel);
@@ -38,7 +38,7 @@ function validatePhone($tel) {
   // if 11 - should start with 7 or 8
   $re = "/^((7|8)?\d{3})?\d{7}$/";
 
-  if(!preg_match($re, $tel)) {
+  if (!preg_match($re, $tel)) {
     // tel is invalid
     return NULL;
   } else {
@@ -47,7 +47,7 @@ function validatePhone($tel) {
     if (strlen($tel === 10)) {
       // Append leading 7
       $tel = substr_replace($tel, '7', 0, 0);
-    } else if (11 === strlen($tel) && '8' === $tel[0]) {
+    } elseif (11 === strlen($tel) && '8' === $tel[0]) {
       // Change leading 8 with 7
       $tel[0] = '7';
     }
@@ -60,36 +60,22 @@ function getFullYears($date_string) {
   $date = new DateTime($date_string);
   $today = new DateTime();
   // Get diffs
-  $days = $today->format('d') - $date->format('d');
-  $months = $today->format('m') - $date->format('m');
-  $years = $today->format('Y') - $date->format('Y');
-  // Default value
-  $fullYears = 0;
+  $dayDiff = $today->format('d') - $date->format('d');
+  $monthDiff = $today->format('m') - $date->format('m');
+  $yearDiff = $today->format('Y') - $date->format('Y');
   // Get full months
-  if ($days < 0) {
-    $months = $months - 1;
-  }
+  $fullMonths = $dayDiff < 0 ? $monthDiff - 1 : $monthDiff;
   // Get full years
-  if ($months < 0) {
-    $fullYears = $years - 1;
-  } else {
-    $fullYears = $years;
-  }
+  $fullYears = $fullMonths < 0 ? $yearDiff - 1 : $yearDiff;
 
   return $fullYears;
 }
 
-function validateDob($dob) {
+function validateDob($dob, $ageMin, $ageMax) {
   // Get age, full years
   $age = getFullYears($dob);
-
-  if (17 < $age) {
-    // Too old
-    return NULL;
-  } else if (1 > $age) {
-    // Too young
-    return NULL;
-  }
+  // Age is invalid
+  if ($age < $ageMin || $age > $ageMax) return NULL;
   // Age is valid
   return $dob;
 }
