@@ -14,17 +14,33 @@ $clinicId = $_POST["clinic_id"];
 // Register patient
 $patientId = insertPatient($fio, $phone, $dob);
 
-// Compose event data
-$eventData = [
-  "patient_id" => $patientId,
-  "unit_id" => $unitId,
-  "date_id" => $dateId,
-  "interval_id" => $intervalId,
-  "district_id" => $districtId,
-  "clinic_id" => $clinicId,
-];
+switch ($patientId) {
+  case -4:
+    return '{ "status": "error", "message": "Ошибка валидации даты рождения" }';
+    break;
 
-// Register check-in event
-echo insertEvent($eventData);
+  case -3:
+    return '{ "status": "error", "message": "Ошибка валидации телефона" }';
+    break;
+
+  case -2:
+    return '{ "status": "error", "message": "Ошибка валидации ФИО" }';
+    break;
+
+  default:
+    // Compose event data
+    $eventData = [
+      "patient_id" => $patientId,
+      "unit_id" => $unitId,
+      "date_id" => $dateId,
+      "interval_id" => $intervalId,
+      "district_id" => $districtId,
+      "clinic_id" => $clinicId,
+    ];
+
+    // Register check-in event
+    echo insertEvent($eventData);
+    break;
+}
 
 $GLOBALS['conn']->close();

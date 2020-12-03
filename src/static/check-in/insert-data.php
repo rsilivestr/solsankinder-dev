@@ -149,8 +149,17 @@ function insertPatient($fio = NULL, $phone = NULL, $dob = NULL) {
   $vDob = validateDob($dob, 1, 17);
 
   // return on empty params
-  if (NULL === $vFio || NULL === $vPhone || FALSE === $vDob) {
-    return NULL;
+  if (NULL === $vFio) {
+    return -2;
+    // return '{ "status": "error", "message": "Ошибка валидации ФИО" }';
+  }
+  else if (NULL === $vPhone) {
+    return -3;
+    // return '{ "status": "error", "message": "Ошибка валидации телефона" }';
+  }
+  else if (NULL === $vDob) {
+    return -4;
+    // return '{ "status": "error", "message": "Ошибка валидации даты рождения" }';
   }
   // search patient
   $sql = "SELECT id FROM patients
@@ -220,20 +229,21 @@ function fillSpot($date_id, $interval_id) {
 }
 
 function insertEvent($eventData = NULL) {
-  if (
-    NULL == $eventData
-    || 0 == $eventData['patient_id']
-    || 0 == $eventData['unit_id']
-    || 0 == $eventData['date_id']
-    || 0 == $eventData['interval_id']
-    || 0 == $eventData['district_id']
-    || 0 == $eventData['clinic_id']
-  ) {
+  if (NULL == $eventData) {
     // Send error message if some data is missing
-    return '{
-      "status": "error",
-      "message": "Неверные параметры запроса"
-    }';
+    return '{ "status": "error", "message": "Ошибка отправки запроса" }';
+  } else if (0 == $eventData['patient_id']) {
+    return '{ "status": "error", "message": "Ошибка в id пациента" }';
+  } else if (0 == $eventData['unit_id']) {
+    return '{ "status": "error", "message": "Ошибка в id отделения" }';
+  } else if (0 == $eventData['date_id']) {
+    return '{ "status": "error", "message": "Ошибка в id даты" }';
+  } else if (0 == $eventData['interval_id']) {
+    return '{ "status": "error", "message": "Ошибка в id интервала" }';
+  } else if (0 == $eventData['district_id']) {
+    return '{ "status": "error", "message": "Ошибка в id района" }';
+  } else if (0 == $eventData['clinic_id']) {
+    return '{ "status": "error", "message": "Ошибка в id клиники" }';
   }
   // check if event exists
   $sql = "SELECT event_id FROM ci_events WHERE patient_id = ? AND date_id = ?";
