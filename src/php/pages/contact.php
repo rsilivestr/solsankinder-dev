@@ -117,7 +117,7 @@ if ($name && $notSpam) {
     $headers .= "Reply-To: $email\n";
     $headers .= "Content-Type: text/html; charset=utf-8\n";
 
-    $mailBody = "<pre>$message</pre><p>Отправитель: $name $email</p>";
+    $mailBody = "<p>$message</p><p>Отправитель: $name $email</p>";
 
     mail("info@solsankinder.ru", $subject, $mailBody, $headers);
 
