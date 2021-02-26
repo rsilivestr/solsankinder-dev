@@ -56,6 +56,17 @@ function insertSpots($date, $maxSpotsArray) {
   }
 }
 
+function checkUnitActive($unitId) {
+  $sql = "SELECT id FROM units WHERE id = ? AND NOT date_id = 0";
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param("i", $unitId);
+  $stmt->execute();
+  $res = $stmt->get_result();
+  $stmt->close();
+
+  return $res->num_rows > 0;
+}
+
 function makeUnitActive($dateId, $unitId) {
   $sql = "UPDATE units SET date_id = ? WHERE id = ?";
   $stmt = $GLOBALS['conn']->prepare($sql);
@@ -84,6 +95,15 @@ function insertDate($newDate, $unitIdsArray, $maxSpotsArray) {
   // return if date already exists
   if ($res->num_rows > 0) {
     return '{ "status": "info", "message": "That date exists." }';
+  }
+
+  // check if any of the units are already active, return if it is
+  foreach ($unitIdsArray as $unitId) {
+    $isActive = checkUnitActive($unitId);
+
+    if ($isActive) {
+      return '{ "status": "info", "message": "Unit already in use." }';
+    }
   }
 
   // insert date
