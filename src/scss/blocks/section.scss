@@ -19,7 +19,7 @@
     &_w {
       padding: 0 0.75rem;
 
-      @include media('>=tablet') {
+      @include media(">=tablet") {
         padding: 0 1.5rem;
       }
     }
@@ -34,5 +34,23 @@
   &--font_cursive {
     font-family: cursive;
     font-size: 1.25rem;
+  }
+}
+
+.low-vision {
+  .section {
+    &--font_cursive {
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    }
+
+    &--justified {
+      p {
+        text-align: left;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
   }
 }
