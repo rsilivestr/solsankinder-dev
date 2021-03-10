@@ -21,9 +21,7 @@ const SolSanKinder = (() => {
       const btnIcon = btn.firstElementChild;
 
       /* Open navigation menu */
-      document
-        .querySelector(UIselectors.navPrimary)
-        .classList.toggle('visible');
+      document.querySelector(UIselectors.navPrimary).classList.toggle('visible');
 
       btnIcon.classList.toggle('icon-menu');
       btnIcon.classList.toggle('icon-cancel');
@@ -36,9 +34,7 @@ const SolSanKinder = (() => {
       /* Reset arrows indicating subnav status */
       document
         .querySelectorAll(UIselectors.npLink)
-        .forEach((item) =>
-          item.classList.remove('nav-primary__link--subnav-open')
-        );
+        .forEach((item) => item.classList.remove('nav-primary__link--subnav-open'));
 
       btn.blur();
     }
@@ -60,8 +56,7 @@ const SolSanKinder = (() => {
 
       /* Reset arrows indicating subnav status */
       document.querySelectorAll(UIselectors.npLink).forEach((item) => {
-        if (item !== link)
-          item.classList.remove('nav-primary__link--subnav-open');
+        if (item !== link) item.classList.remove('nav-primary__link--subnav-open');
       });
 
       /* Toggle current subnav and arrow */
@@ -77,9 +72,7 @@ const SolSanKinder = (() => {
       /* Reset all arrows */
       document
         .querySelectorAll(UIselectors.npLink)
-        .forEach((item) =>
-          item.classList.remove('nav-primary__link--subnav-open')
-        );
+        .forEach((item) => item.classList.remove('nav-primary__link--subnav-open'));
     }
   };
 
@@ -90,10 +83,7 @@ const SolSanKinder = (() => {
     const current = gal.querySelector('.basic-gallery__current');
     const caption = gal.querySelector('.basic-gallery__caption');
 
-    if (
-      target.classList.contains('basic-gallery__thumb') &&
-      current.src !== target.src
-    ) {
+    if (target.classList.contains('basic-gallery__thumb') && current.src !== target.src) {
       current.src = target.src;
       current.srcset = target.srcset;
       caption.textContent = target.dataset.caption;
@@ -148,9 +138,7 @@ const SolSanKinder = (() => {
   /* Public method that initializes event listeners */
   const init = () => {
     /* Navigation menu button click capture */
-    document
-      .querySelector(UIselectors.header)
-      .addEventListener('click', toggleMenu);
+    document.querySelector(UIselectors.header).addEventListener('click', toggleMenu);
 
     /* Primary navigation click capture */
     document.body.addEventListener('click', toggleSubnav);
@@ -162,9 +150,7 @@ const SolSanKinder = (() => {
     }
 
     /* Low vision toggle button click */
-    document
-      .querySelector(UIselectors.lowVisionBtn)
-      .addEventListener('click', toggleLowVision);
+    document.querySelector(UIselectors.lowVisionBtn).addEventListener('click', toggleLowVision);
 
     /* Lazy content loading */
     if (document.querySelector('.lazy')) {

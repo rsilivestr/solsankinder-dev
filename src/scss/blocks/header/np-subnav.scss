@@ -32,7 +32,6 @@
     }
   }
 
-  // .np-subnav__column
   &__column {
     display: flex;
     flex-direction: column;
@@ -43,7 +42,6 @@
       padding: 0 1rem;
     }
 
-    // .np-subnav__column-heading
     &-heading {
       margin-top: 0.5rem;
       font-size: 1.25rem;
@@ -57,14 +55,12 @@
     }
   }
 
-  // .np-subnav__icon (svg)
   &__icon {
     height: 0.8rem;
     width: auto;
     margin-left: 0.5rem;
   }
 
-  // .np-subnav__link
   &__link {
     margin-left: 1.5rem;
     font-size: 1.25rem;

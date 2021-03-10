@@ -1,7 +1,7 @@
 const SolCheckInAdmin = (() => {
   const UI = {
     formShowEvents: document.getElementById('show-events-form'),
-    tableWrap: document.querySelector('.ci-table-wrap')
+    tableWrap: document.querySelector('.ci-table-wrap'),
   };
 
   const fetchEventData = async (date, intervalId) => {
@@ -45,12 +45,14 @@ const SolCheckInAdmin = (() => {
       row.innerHTML = `
         <td>${index + 1}</td>
         <td>${event.fio}</td>
-        <td>${(new Date(event.dob)).toLocaleDateString('ru-RU')}</td>
+        <td>${new Date(event.dob).toLocaleDateString('ru-RU')}</td>
         <td>${event.phone}</td>
         <td>${event.unit_name}</td>
         <td>${event.start_time.substring(0, 5)} - ${event.end_time.substring(0, 5)}</td>
         <td>${event.district_name}</td>
-        <td><button class="ci-table__btn js-delete-event" data-id=${event.event_id}>&#128473;</button></td>
+        <td><button class="ci-table__btn js-delete-event" data-id=${
+          event.event_id
+        }>&#128473;</button></td>
       `;
       tbody.appendChild(row);
     });
@@ -87,7 +89,7 @@ const SolCheckInAdmin = (() => {
     const res = await fetch('../check-in-api/delete-event/', {
       method: 'POST',
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      body
+      body,
     });
 
     const data = await res.json();
@@ -104,8 +106,8 @@ const SolCheckInAdmin = (() => {
     init: () => {
       UI.formShowEvents.addEventListener('submit', showEvents);
       UI.tableWrap.addEventListener('click', deleteEvent);
-    }
-  }
+    },
+  };
 })();
 
 SolCheckInAdmin.init();

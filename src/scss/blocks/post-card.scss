@@ -1,13 +1,6 @@
 @use 'ScssUtil/forward' as *;
 
 .post-card {
-  @include media('>tablet') {
-    // padding: 1rem;
-    // border: 1px solid #ccc;
-    // border-radius: 4px;
-    // box-shadow: $shadowGrey;
-  }
-
   + .post-card {
     margin-top: 3rem;
   }

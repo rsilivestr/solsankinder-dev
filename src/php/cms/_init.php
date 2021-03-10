@@ -25,16 +25,14 @@ $sidebar = $page->sidebar;
 $isLowVisionActive = $_SESSION['lowVision'];
 
 // Get assets info from manifest.json
-$manifest = json_decode(file_get_contents("./manifest.json"), TRUE);
+$manifest = json_decode(file_get_contents('./manifest.json'), true);
 
 // We refer to our homepage a few times in our site, so we preload a copy
 // here in a $homepage variable for convenience.
 $homepage = $pages->get('/');
 
-
 // Include shared functions (if any)
-include_once("./_func.php");
-
+include_once './_func.php';
 
 // What happens after this?
 // ------------------------
@@ -42,4 +40,3 @@ include_once("./_func.php");
 // 2. ProcessWire loads the _main.php file
 //
 // See the README.txt file for more information.
-

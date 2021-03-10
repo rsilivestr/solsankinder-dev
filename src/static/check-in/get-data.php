@@ -1,8 +1,9 @@
 <?php
 
-include_once "conn.php";
+include_once 'conn.php';
 
-function makeArr($queryRes) {
+function makeArr($queryRes)
+{
   $rows = $queryRes->fetch_all();
 
   $res = [];
@@ -13,7 +14,8 @@ function makeArr($queryRes) {
   return $res;
 }
 
-function getColumn($tableName, $colName, $condition = null) {
+function getColumn($tableName, $colName, $condition = null)
+{
   $sql = "SELECT id, $colName FROM $tableName";
   if ($condition) {
     $sql .= " WHERE $condition";
@@ -28,16 +30,19 @@ function getColumn($tableName, $colName, $condition = null) {
   return json_encode($res);
 }
 
-function getAllDates() {
-  return getColumn("ci_dates", "ci_date");
+function getAllDates()
+{
+  return getColumn('ci_dates', 'ci_date');
 }
 
-function getDates() {
-  return getColumn("ci_dates", "ci_date", "is_active=1");
+function getDates()
+{
+  return getColumn('ci_dates', 'ci_date', 'is_active=1');
 }
 
-function getDateByUnit($unit_id = NULL) {
-  if (NULL === $unit_id) {
+function getDateByUnit($unit_id = null)
+{
+  if (null === $unit_id) {
     return;
   }
 
@@ -47,7 +52,7 @@ function getDateByUnit($unit_id = NULL) {
     WHERE units.id = ?";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("i", $unit_id);
+  $stmt->bind_param('i', $unit_id);
   $stmt->execute();
   $res = $stmt->get_result()->fetch_row();
   $stmt->close();
@@ -55,16 +60,18 @@ function getDateByUnit($unit_id = NULL) {
   return json_encode($res);
 }
 
-function getIntervals() {
+function getIntervals()
+{
   // get all intervals
-  $sql = "SELECT id, start_time, end_time FROM ci_intervals";
+  $sql = 'SELECT id, start_time, end_time FROM ci_intervals';
   $res = $GLOBALS['conn']->query($sql)->fetch_all();
 
   return json_encode($res);
 }
 
-function getIntervalsByDateId($date_id = NULL) {
-  if (NULL === $date_id) {
+function getIntervalsByDateId($date_id = null)
+{
+  if (null === $date_id) {
     return;
   }
 
@@ -76,23 +83,25 @@ function getIntervalsByDateId($date_id = NULL) {
     AND ci_spots.available > 0;";
 
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("i", $date_id);
+  $stmt->bind_param('i', $date_id);
   $stmt->execute();
   $res = $stmt->get_result()->fetch_all();
   $stmt->close();
 
   $res = array_map(function ($val) {
-    return [$val[0], (substr($val[1], 0, 5) . " - " . substr($val[2], 0, 5))];
+    return [$val[0], substr($val[1], 0, 5) . ' - ' . substr($val[2], 0, 5)];
   }, $res);
 
   return json_encode($res);
 }
 
-function getUnits() {
-  return getColumn("units", "unit_name");
+function getUnits()
+{
+  return getColumn('units', 'unit_name');
 }
 
-function getActiveUnits() {
+function getActiveUnits()
+{
   $sql = "SELECT id, unit_name
     FROM units
     WHERE date_id > 0";
@@ -102,18 +111,20 @@ function getActiveUnits() {
   return json_encode($res);
 }
 
-function getDistricts() {
-  return getColumn("districts", "district_name");
+function getDistricts()
+{
+  return getColumn('districts', 'district_name');
 }
 
-function getClinics($districtId = NULL) {
-  if (NULL === $districtId) {
+function getClinics($districtId = null)
+{
+  if (null === $districtId) {
     return;
   }
 
-  $sql = "SELECT id, clinic_name FROM clinics WHERE district_id=?";
+  $sql = 'SELECT id, clinic_name FROM clinics WHERE district_id=?';
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param("i", $districtId);
+  $stmt->bind_param('i', $districtId);
   $stmt->execute();
   $res = $stmt->get_result()->fetch_all();
   $stmt->close();
@@ -121,7 +132,8 @@ function getClinics($districtId = NULL) {
   return json_encode($res);
 }
 
-function getEvents($date, $interval_id) {
+function getEvents($date, $interval_id)
+{
   $sql = "SELECT ci_events.event_id,
       patients.fio,
       patients.phone,
@@ -141,18 +153,18 @@ function getEvents($date, $interval_id) {
 
   if ('0' !== $interval_id) {
     // Add interval condition
-    $sql .= " AND ci_intervals.id = ?";
+    $sql .= ' AND ci_intervals.id = ?';
   }
 
-  $sql .= " ORDER BY patients.fio ASC";
+  $sql .= ' ORDER BY patients.fio ASC';
 
   $stmt = $GLOBALS['conn']->prepare($sql);
 
   // Bind parameters as needed
   if ('0' !== $interval_id) {
-    $stmt->bind_param("si", $date, $interval_id);
+    $stmt->bind_param('si', $date, $interval_id);
   } else {
-    $stmt->bind_param("s", $date);
+    $stmt->bind_param('s', $date);
   }
 
   $stmt->execute();

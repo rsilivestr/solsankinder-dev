@@ -11,7 +11,6 @@
  *
  */
 
-
 /**
  * Given a group of pages, render a simple <ul> navigation
  *
@@ -22,41 +21,42 @@
  * @return string
  *
  */
-function renderNav(PageArray $items) {
+function renderNav(PageArray $items)
+{
+  // $out is where we store the markup we are creating in this function
+  $out = '';
 
-	// $out is where we store the markup we are creating in this function
-	$out = '';
+  // cycle through all the items
+  foreach ($items as $item) {
+    // render markup for each navigation item as an <li>
+    if ($item->id == wire('page')->id) {
+      // if current item is the same as the page being viewed, add a "current" class to it
+      $out .= "<li class='current'>";
+    } else {
+      // otherwise just a regular list item
+      $out .= '<li>';
+    }
 
-	// cycle through all the items
-	foreach($items as $item) {
+    // markup for the link
+    $out .= "<a href='$item->url'>$item->title</a> ";
 
-		// render markup for each navigation item as an <li>
-		if($item->id == wire('page')->id) {
-			// if current item is the same as the page being viewed, add a "current" class to it
-			$out .= "<li class='current'>";
-		} else {
-			// otherwise just a regular list item
-			$out .= "<li>";
-		}
+    // if the item has summary text, include that too
+    if ($item->summary) {
+      $out .= "<div class='summary'>$item->summary</div>";
+    }
 
-		// markup for the link
-		$out .= "<a href='$item->url'>$item->title</a> ";
+    // close the list item
+    $out .= '</li>';
+  }
 
-		// if the item has summary text, include that too
-		if($item->summary) $out .= "<div class='summary'>$item->summary</div>";
+  // if output was generated above, wrap it in a <ul>
+  if ($out) {
+    $out = "<ul class='nav'>$out</ul>\n";
+  }
 
-		// close the list item
-		$out .= "</li>";
-	}
-
-	// if output was generated above, wrap it in a <ul>
-	if($out) $out = "<ul class='nav'>$out</ul>\n";
-
-	// return the markup we generated above
-	return $out;
+  // return the markup we generated above
+  return $out;
 }
-
-
 
 /**
  * Given a group of pages, render a <ul> navigation tree
@@ -73,52 +73,62 @@ function renderNav(PageArray $items) {
  * @return string
  *
  */
-function renderNavTree($items, $maxDepth = 0, $fieldNames = '', $class = 'nav') {
+function renderNavTree($items, $maxDepth = 0, $fieldNames = '', $class = 'nav')
+{
+  // if we were given a single Page rather than a group of them, we'll pretend they
+  // gave us a group of them (a group/array of 1)
+  if ($items instanceof Page) {
+    $items = [$items];
+  }
 
-	// if we were given a single Page rather than a group of them, we'll pretend they
-	// gave us a group of them (a group/array of 1)
-	if($items instanceof Page) $items = array($items);
+  // $out is where we store the markup we are creating in this function
+  $out = '';
 
-	// $out is where we store the markup we are creating in this function
-	$out = '';
+  // cycle through all the items
+  foreach ($items as $item) {
+    // markup for the list item...
+    // if current item is the same as the page being viewed, add a "current" class to it
+    $out .= $item->id == wire('page')->id ? "<li class='current'>" : '<li>';
 
-	// cycle through all the items
-	foreach($items as $item) {
+    // markup for the link
+    $out .= "<a href='$item->url'>$item->title</a>";
 
-		// markup for the list item...
-		// if current item is the same as the page being viewed, add a "current" class to it
-		$out .= $item->id == wire('page')->id ? "<li class='current'>" : "<li>";
+    // if there are extra field names specified, render markup for each one in a <div>
+    // having a class name the same as the field name
+    if ($fieldNames) {
+      foreach (explode(' ', $fieldNames) as $fieldName) {
+        $value = $item->get($fieldName);
+        if ($value) {
+          $out .= " <div class='$fieldName'>$value</div>";
+        }
+      };
+    }
 
-		// markup for the link
-		$out .= "<a href='$item->url'>$item->title</a>";
+    // if the item has children and we're allowed to output tree navigation (maxDepth)
+    // then call this same function again for the item's children
+    if ($item->hasChildren() && $maxDepth) {
+      if ($class == 'nav') {
+        $class = 'nav nav-tree';
+      }
+      $out .= renderNavTree($item->children, $maxDepth - 1, $fieldNames, $class);
+    }
 
-		// if there are extra field names specified, render markup for each one in a <div>
-		// having a class name the same as the field name
-		if($fieldNames) foreach(explode(' ', $fieldNames) as $fieldName) {
-			$value = $item->get($fieldName);
-			if($value) $out .= " <div class='$fieldName'>$value</div>";
-		}
+    // close the list item
+    $out .= '</li>';
+  }
 
-		// if the item has children and we're allowed to output tree navigation (maxDepth)
-		// then call this same function again for the item's children
-		if($item->hasChildren() && $maxDepth) {
-			if($class == 'nav') $class = 'nav nav-tree';
-			$out .= renderNavTree($item->children, $maxDepth-1, $fieldNames, $class);
-		}
+  // if output was generated above, wrap it in a <ul>
+  if ($out) {
+    $out = "<ul class='$class'>$out</ul>\n";
+  }
 
-		// close the list item
-		$out .= "</li>";
-	}
-
-	// if output was generated above, wrap it in a <ul>
-	if($out) $out = "<ul class='$class'>$out</ul>\n";
-
-	// return the markup we generated above
-	return $out;
+  // return the markup we generated above
+  return $out;
 }
 
-function clg( $data ){
+function clg($data)
+{
   echo '<script>';
-  echo 'console.log('. json_encode( $data ) .')';
+  echo 'console.log(' . json_encode($data) . ')';
   echo '</script>';
 }

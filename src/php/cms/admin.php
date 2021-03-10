@@ -12,4 +12,4 @@
  *
  */
 
-require($config->paths->adminTemplates . 'controller.php');
+require $config->paths->adminTemplates . 'controller.php';

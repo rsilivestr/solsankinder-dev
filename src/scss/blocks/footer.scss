@@ -47,35 +47,26 @@
     }
   }
 
-  @include media("print") {
+  @include media('print') {
     display: none;
   }
 }
 
 #ban_gu {
   width: 235px;
-  background: url("/site/assets/images/banners.png") 0 0;
+  background: url('/site/assets/images/banners.png') 0 0;
 }
 #ban_miac {
   width: 300px;
-  background: url("/site/assets/images/banners.png") -235px 0;
+  background: url('/site/assets/images/banners.png') -235px 0;
 }
 
 #ban_poll {
   width: 355px;
-  background: url("/site/assets/images/banners.png") -535px 0;
+  background: url('/site/assets/images/banners.png') -535px 0;
 }
 
 #ban_gorzdrav {
   width: 212px;
-  background: url("/site/assets/images/banners.png") -890px 0;
+  background: url('/site/assets/images/banners.png') -890px 0;
 }
-
-// @include media('>=tablet') {
-//   .low-vision {
-//     .footer-nav__link,
-//     .footer-copy__para {
-//       font-size: 1.5rem;
-//     }
-//   }
-// }

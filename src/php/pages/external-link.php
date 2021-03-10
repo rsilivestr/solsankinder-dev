@@ -1,4 +1,4 @@
 <?php namespace ProcessWire;
-  header('Location: '.$page->externalResource);
-  die();
+header('Location: ' . $page->externalResource);
+die();
 ?>

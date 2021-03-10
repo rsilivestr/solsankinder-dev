@@ -1,8 +1,8 @@
 <?php namespace ProcessWire;
 
-$list = "";
+$list = '';
 
-foreach($page->children as $child){
+foreach ($page->children as $child) {
   $list .= "<li><a href='$child->url'>$child->title</a></li>";
 }
 

@@ -1,8 +1,8 @@
 <?php
 
-include(dirname(__FILE__) . "/../../vendor/vlucas/valitron/src/Valitron/Validator.php");
+include dirname(__FILE__) . '/../../vendor/vlucas/valitron/src/Valitron/Validator.php';
 
-$dice = $modules->get("FormDiceCaptcha");
+$dice = $modules->get('FormDiceCaptcha');
 
 $content = "<section class='section section--width_m'><h1>$title</h1>";
 
@@ -41,24 +41,25 @@ $filteredWords = [
 ];
 
 foreach ($filteredWords as $word) {
-  if(strripos($message, $word) !== false) {
+  if (strripos($message, $word) !== false) {
     $notSpam = false;
     break;
   }
 }
 
-$v = new \Valitron\Validator(array(
+$v = new \Valitron\Validator([
   'name' => $sanitizer->text($name),
   'email' => $sanitizer->email($email),
-  'message' => $sanitizer->text($message)
-));
+  'message' => $sanitizer->text($message),
+]);
 
 $v->rule('required', ['name', 'message']);
 $v->rule('lengthMin', 'name', 3);
 $v->rule('lengthMin', 'message', 15);
 $v->rule('email', 'email');
 
-$formHtml = "
+$formHtml =
+  "
   <form
     method='post'
     action='./'
@@ -91,7 +92,9 @@ $formHtml = "
     </label>
     <label class='contact-form__label'>Введите сумму кубиков *
       <span class='contact-form-captcha'>
-        <img class='contact-form-captcha__image' src='".$dice->captcha()."'>
+        <img class='contact-form-captcha__image' src='" .
+  $dice->captcha() .
+  "'>
         <input
           class='contact-form__input contact-form-captcha__input'
           name='captcha'
@@ -113,13 +116,13 @@ if ($name && $notSpam) {
     $subject = "Контактная форма | $name";
 
     $headers = "From: $name < $email >\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
+    $headers .= 'X-Mailer: PHP/' . phpversion();
     $headers .= "Reply-To: $email\n";
     $headers .= "Content-Type: text/html; charset=utf-8\n";
 
     $mailBody = "<p>$message</p><p>Отправитель: $name $email</p>";
 
-    mail("info@solsankinder.ru", $subject, $mailBody, $headers);
+    mail('info@solsankinder.ru', $subject, $mailBody, $headers);
 
     header('Location: ?submit=success');
     die();
@@ -128,13 +131,13 @@ if ($name && $notSpam) {
     die();
   }
 } else {
-  if ($_GET["submit"] === "success") {
+  if ($_GET['submit'] === 'success') {
     $content .= '<p class="contact-form__message contact-form__message--type_success">
       Ваше сообщение успешно отправлено. Спасибо за обращение!
     </p>';
   }
 
-  if ($_GET["submit"] === "error") {
+  if ($_GET['submit'] === 'error') {
     $content .= '<p class="contact-form__message contact-form__message--type_error">
       Капча введена неверно
     </p>';
@@ -143,4 +146,4 @@ if ($name && $notSpam) {
   $content .= $formHtml;
 }
 
-$content .= "</section>";
+$content .= '</section>';

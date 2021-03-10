@@ -1,12 +1,13 @@
 <?php
 
-require "conn.php";
+require 'conn.php';
 
 $json = file_get_contents('json/districts.json');
-$GLOBALS['assoc'] = json_decode($json, TRUE);
+$GLOBALS['assoc'] = json_decode($json, true);
 $GLOBALS['districts'] = array_keys($GLOBALS['assoc']);
 
-function fillDistrictsTable() {
+function fillDistrictsTable()
+{
   foreach ($GLOBALS['districts'] as $district) {
     $sql = "SELECT * FROM districts
       WHERE district_name='$district'";
@@ -21,7 +22,8 @@ function fillDistrictsTable() {
   }
 }
 
-function fillClinicsTable() {
+function fillClinicsTable()
+{
   foreach ($GLOBALS['districts'] as $district) {
     $sql = "SELECT id FROM districts
       WHERE district_name='$district'";
@@ -40,17 +42,18 @@ function fillClinicsTable() {
   }
 }
 
-function fillUnitsTable() {
+function fillUnitsTable()
+{
   $units = [
-    "1 отделение (3 - 10 лет), гастроэнтерология",
-    "1 отделение (11 - 17 лет), гастроэнтерология",
-    "2 отделение, психоневрология",
-    "3 отделение (3 - 10 лет), нефрология",
-    "3 отделение (11 - 17 лет), нефрология",
+    '1 отделение (3 - 10 лет), гастроэнтерология',
+    '1 отделение (11 - 17 лет), гастроэнтерология',
+    '2 отделение, психоневрология',
+    '3 отделение (3 - 10 лет), нефрология',
+    '3 отделение (11 - 17 лет), нефрология',
     "4 отделение, \"Мать и дитя\"",
-    "4 отделение, пульмонология",
-    "5 отделение, онкология",
-    "6 отделение, п. Ушково, пульмонология",
+    '4 отделение, пульмонология',
+    '5 отделение, онкология',
+    '6 отделение, п. Ушково, пульмонология',
   ];
 
   foreach ($units as $unit) {
@@ -70,7 +73,8 @@ function fillUnitsTable() {
   }
 }
 
-function fillIntervalsTable() {
+function fillIntervalsTable()
+{
   $intervals = [
     0 => ['09:00', '11:00'],
     1 => ['11:00', '13:00'],

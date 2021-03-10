@@ -532,10 +532,7 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
 
   // Update global configuration
   $breakpoints: map-merge($breakpoints, $tweakpoints) !global;
-  $media-expressions: map-merge(
-    $media-expressions,
-    $tweak-media-expressions
-  ) !global;
+  $media-expressions: map-merge($media-expressions, $tweak-media-expressions) !global;
 
   @content;
 
@@ -581,7 +578,7 @@ $im-no-media-expressions: ('screen', 'portrait', 'landscape') !default;
   } @else if ($im-media-support and length($conditions) > 0) {
     @media #{unquote(parse-expression(nth($conditions, 1)))} {
       // Recursive call
-      @include media(slice($conditions, 2) ...) {
+      @include media(slice($conditions, 2)...) {
         @content;
       }
     }

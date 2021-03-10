@@ -40,7 +40,7 @@ $content .= "<div id='home-bg-1' class='home-bg section hide-sm'>
 </div>";
 
 /* галерея glidejs */
-$galItemsHTML = "";
+$galItemsHTML = '';
 
 foreach ($page->gallery as $image) {
   $xs = $image->width('400');
@@ -60,10 +60,13 @@ foreach ($page->gallery as $image) {
   ></li>";
 }
 
-$content .= "<section class='section section--width_m'>
+$content .=
+  "<section class='section section--width_m'>
   <div class='glide'>
     <div data-glide-el='track' class='glide__track'>
-      <ul class='glide__slides'>"  . $galItemsHTML .  "</ul>
+      <ul class='glide__slides'>" .
+  $galItemsHTML .
+  "</ul>
     </div>
     <div class='glide__arrows' data-glide-el='controls'>
       <button class='glide__arrow glide__arrow--left' data-glide-dir='<' aria-label='Листать галерею влево'>
@@ -88,10 +91,10 @@ $content .= "<section class='home-news section section--width_m'>
   <h2 class='home-news__title'>Новости</h2>
   <div class='home-news__content'>";
 
-foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost) {
-  if($blogPost->images->count()){
+foreach ($pages->find('template=blog-post, limit=3, sort=-created') as $blogPost) {
+  if ($blogPost->images->count()) {
     $previewImg = $blogPost->images->first();
-    $previewAlt = $previewImg->description ? $previewImg->description : "превью новости";
+    $previewAlt = $previewImg->description ? $previewImg->description : 'превью новости';
     $thumb_sm = $previewImg->size('444', '333');
 
     $content .= "<article class='home-news__item post-card'>
@@ -116,7 +119,7 @@ foreach($pages->find("template=blog-post, limit=3, sort=-created") as $blogPost)
   }
 }
 
-$content .= "</div></section>";
+$content .= '</div></section>';
 
 /* о санатории, видео */
 // $content .= "<section class='home-about section section--width_m'>

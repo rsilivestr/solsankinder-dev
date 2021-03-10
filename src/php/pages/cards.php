@@ -1,17 +1,17 @@
 <?php namespace ProcessWire;
 
-$cardsHTML = "";
+$cardsHTML = '';
 
-foreach($page->cards as $card) {
-  $imageHTML = "";
+foreach ($page->cards as $card) {
+  $imageHTML = '';
 
   if (!$card->cardTextOnly) {
     $imageHTML = "<img class='card-tile__image' src='{$config->urls->assets}images/no-photo-3x4.png' />";
 
-    if($card->cardPhoto) {
+    if ($card->cardPhoto) {
       $xs = $card->cardPhoto->width('320');
       $sm = $card->cardPhoto->width('450');
-  
+
       $imageHTML = "<img class='card-tile__image lazy'
         src='{$card->cardPhoto->url}'
         srcset='{$config->urls->assets}images/no-photo.png'
@@ -24,11 +24,11 @@ foreach($page->cards as $card) {
     }
   }
 
-  $imageContainerHTML = "";
+  $imageContainerHTML = '';
 
-  if ($imageHTML !== "") {
+  if ($imageHTML !== '') {
     $imageContainerHTML = "<div class='card-tile__image-container'>$imageHTML</div>";
-  }  
+  }
 
   $cardsHTML .= "<div class='card-tile'>
     $imageContainerHTML

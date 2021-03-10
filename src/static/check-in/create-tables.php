@@ -1,14 +1,15 @@
 <?php
 
-include_once "check-in/conn.php";
+include_once 'check-in/conn.php';
 
-function createTable($table_name, $table_schema) {
+function createTable($table_name, $table_schema)
+{
   if ($GLOBALS['conn']->query("DESCRIBE $table_name")) {
     echo "Table \"$table_name\" already exists";
   } else {
-    $sql = "CREATE TABLE " . $table_name . $table_schema;
+    $sql = 'CREATE TABLE ' . $table_name . $table_schema;
 
-    if ($GLOBALS['conn']->query($sql) === TRUE) {
+    if ($GLOBALS['conn']->query($sql) === true) {
       echo "Table \"$table_name\" was created";
     } else {
       echo "Something went wrong, table \"$table_name\" was not created";
@@ -16,7 +17,8 @@ function createTable($table_name, $table_schema) {
   }
 }
 
-function dropTable($table_name) {
+function dropTable($table_name)
+{
   if (!$GLOBALS['conn']->query("DESCRIBE $table_name")) {
     echo "Table \"$table_name\" does not exist";
   } else {

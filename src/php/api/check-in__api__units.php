@@ -2,11 +2,11 @@
 
 include_once './check-in/get-data.php';
 
-if (isset($_GET["all"])) {
+if (isset($_GET['all'])) {
   echo getUnits();
 }
 
-if (isset($_GET["active"])) {
+if (isset($_GET['active'])) {
   echo getActiveUnits();
 }
 

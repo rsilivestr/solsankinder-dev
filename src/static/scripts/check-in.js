@@ -19,7 +19,7 @@ const SolCheckIn = (() => {
     intervalInput: document.getElementById('ci-interval'),
     districtInput: document.getElementById('ci-district'),
     clinicInput: document.getElementById('ci-clinic'),
-  }
+  };
   // Event submit data
   const FORM_DATA = new FormData();
   // Global districts
@@ -33,9 +33,7 @@ const SolCheckIn = (() => {
     Array.from(dropdowns).forEach((label) => {
       if (label !== target.parentElement) {
         label.classList.remove('ci-dropdown--open');
-        label
-          .querySelector('.ci-dropdown__list')
-          .classList.add('ci-dropdown__list--hidden');
+        label.querySelector('.ci-dropdown__list').classList.add('ci-dropdown__list--hidden');
       }
     });
   };
@@ -63,9 +61,7 @@ const SolCheckIn = (() => {
       input.value = target.textContent;
       input.dataset.id = target.dataset.id;
       // Find previously selected item
-      const previousSelection = dropdown.querySelector(
-        '.ci-dropdown__list-item--selected'
-      );
+      const previousSelection = dropdown.querySelector('.ci-dropdown__list-item--selected');
 
       if (previousSelection) {
         // Remove previous selection
@@ -97,14 +93,14 @@ const SolCheckIn = (() => {
   // Fetch data
   const getUnits = async () => {
     const res = await fetch('../check-in-api/units/?active=1', {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     });
     return await res.json();
   };
 
   const getDistricts = async () => {
     const res = await fetch('../check-in-api/districts/', {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     });
     const data = await res.json();
     // Save as global
@@ -158,9 +154,7 @@ const SolCheckIn = (() => {
     // Clear list
     UI.clinicDrop.innerHTML = '';
     // Fill list
-    getClinics(districtId).then((clinics) =>
-      appendItems('.js-clinic-drop', clinics)
-    );
+    getClinics(districtId).then((clinics) => appendItems('.js-clinic-drop', clinics));
     // Get form elements
     const clinicInput = document.getElementById('ci-clinic');
     const clinicLabel = clinicInput.parentElement;
@@ -257,7 +251,7 @@ const SolCheckIn = (() => {
     const fullYears = fullMonths < 0 ? yearDiff - 1 : yearDiff;
 
     return fullYears;
-  }
+  };
 
   const validateAge = (ageMin, ageMax) => {
     const age = getFullYears(UI.dobInput.value);
@@ -270,20 +264,18 @@ const SolCheckIn = (() => {
 
     errorSpan.textContent = '';
     return false;
-  }
+  };
 
   const navForward = () => {
-      UI.formPage1.classList.remove('ci-form__page--active');
-      UI.formPage2.classList.add('ci-form__page--active');
-      UI.nav.querySelectorAll('button')
-        .forEach(btn => btn.classList.toggle('ci-nav-btn--current'));
+    UI.formPage1.classList.remove('ci-form__page--active');
+    UI.formPage2.classList.add('ci-form__page--active');
+    UI.nav.querySelectorAll('button').forEach((btn) => btn.classList.toggle('ci-nav-btn--current'));
   };
 
   const navBackward = () => {
-      UI.formPage1.classList.add('ci-form__page--active');
-      UI.formPage2.classList.remove('ci-form__page--active');
-      UI.nav.querySelectorAll('button')
-        .forEach(btn => btn.classList.toggle('ci-nav-btn--current'));
+    UI.formPage1.classList.add('ci-form__page--active');
+    UI.formPage2.classList.remove('ci-form__page--active');
+    UI.nav.querySelectorAll('button').forEach((btn) => btn.classList.toggle('ci-nav-btn--current'));
   };
 
   const showNavError = (pageNumber) => {
@@ -298,7 +290,7 @@ const SolCheckIn = (() => {
     navBtn.classList.remove('ci-nav-btn--has-error');
     navBtn.classList.add('ci-nav-btn--is-ok');
     navBtn.firstElementChild.innerHTML = '&#10004;'; // ✔
-  }
+  };
 
   const validatePatientData = () => {
     const nameRE = /^[а-яА-ЯёЁ]{2,}(\-[а-яА-ЯёЁ]{2,})?$/;
@@ -328,7 +320,7 @@ const SolCheckIn = (() => {
     );
     FORM_DATA.set('patient_dob', UI.dobInput.value);
     FORM_DATA.set('patient_phone', UI.telInput.value.trim());
-    
+
     console.log(UI.familyNameInput.value);
   };
 
@@ -362,9 +354,7 @@ const SolCheckIn = (() => {
     if ('' === input.value) {
       input.classList.add('invalid');
       error.textContent = 'Поле не должно быть пустым';
-    } else if (
-      !DISTRICTS.find((el) => el[1].toLowerCase() === input.value.toLowerCase())
-    ) {
+    } else if (!DISTRICTS.find((el) => el[1].toLowerCase() === input.value.toLowerCase())) {
       input.classList.add('invalid');
       error.textContent = 'Введите верный район';
     } else {
@@ -373,7 +363,7 @@ const SolCheckIn = (() => {
     }
   };
 
-  const createPDFLink = (url) =>{
+  const createPDFLink = (url) => {
     // Remove existing link
     const existingLink = document.querySelector('.ci-form__pdf-link');
     if (existingLink) existingLink.remove();
@@ -404,17 +394,17 @@ const SolCheckIn = (() => {
   };
 
   const setEventData = () => {
-      FORM_DATA.set('unit_id', UI.unitInput.dataset.id);
-      FORM_DATA.set('date_id', UI.dateInput.dataset.id);
-      FORM_DATA.set('interval_id', UI.intervalInput.dataset.id);
-      FORM_DATA.set('district_id', UI.districtInput.dataset.id);
-      FORM_DATA.set('clinic_id', UI.clinicInput.dataset.id);
+    FORM_DATA.set('unit_id', UI.unitInput.dataset.id);
+    FORM_DATA.set('date_id', UI.dateInput.dataset.id);
+    FORM_DATA.set('interval_id', UI.intervalInput.dataset.id);
+    FORM_DATA.set('district_id', UI.districtInput.dataset.id);
+    FORM_DATA.set('clinic_id', UI.clinicInput.dataset.id);
   };
 
   const updateMessage = (status, message) => {
     UI.message.className = `ci-form__message ci-form__message--type_${status}`;
     UI.message.textContent = message;
-  }
+  };
 
   const formSubmit = async () => {
     const eventOk = validateEventData();
@@ -443,16 +433,14 @@ const SolCheckIn = (() => {
           const UIlink = createPDFLink(ticketURL);
           UI.form.appendChild(UIlink);
         }
-      }  
+      }
     }
   };
 
   const handleDistrictInput = async () => {
     const input = document.getElementById('ci-district');
     // Search for input
-    const chosen = DISTRICTS.find(
-      (el) => el[1].toLowerCase() === input.value.toLowerCase()
-    );
+    const chosen = DISTRICTS.find((el) => el[1].toLowerCase() === input.value.toLowerCase());
     // Set district id
     if (!chosen) {
       clearClinics();
@@ -475,7 +463,6 @@ const SolCheckIn = (() => {
       if (targetBtn.id === 'nav-page-1') {
         navBackward();
       } else {
-
         formNext();
       }
     }
@@ -487,13 +474,11 @@ const SolCheckIn = (() => {
     UI.intervalInput.value = '';
     UI.districtInput.value = '';
     UI.clinicInput.value = '';
-  }
+  };
 
   // LISTENERS
   const addListeners = () => {
-    document.body.addEventListener('mousedown', (e) =>
-      toggleDropdown(e.target)
-    );
+    document.body.addEventListener('mousedown', (e) => toggleDropdown(e.target));
 
     // All dropdowns, fill input on select
     UI.form.addEventListener('mousedown', (e) => fillDropdownInput(e.target));
@@ -501,34 +486,22 @@ const SolCheckIn = (() => {
     // Unit dropdown, fill date on select (and get hours)
     document
       .querySelector('.js-unit-drop')
-      .addEventListener('mousedown', (e) =>
-        getDateByUnit(e.target).then((data) => fillDate(data))
-      );
+      .addEventListener('mousedown', (e) => getDateByUnit(e.target).then((data) => fillDate(data)));
 
     // Districts datalist, fill clinics on select
-    document
-      .getElementById('ci-district')
-      .addEventListener('input', handleDistrictInput);
+    document.getElementById('ci-district').addEventListener('input', handleDistrictInput);
 
-    document
-      .getElementById('ci-district')
-      .addEventListener('change', validateDistrictInput);
+    document.getElementById('ci-district').addEventListener('change', validateDistrictInput);
 
     // Form, prevent submission
-    document
-      .querySelector('.ci-form')
-      .addEventListener('submit', (e) => e.preventDefault());
+    document.querySelector('.ci-form').addEventListener('submit', (e) => e.preventDefault());
 
     // Go next button
-    document
-      .querySelector('#form-next-btn')
-      .addEventListener('click', formNext);
+    document.querySelector('#form-next-btn').addEventListener('click', formNext);
 
     // Submit button
-    document
-      .querySelector('#form-submit-btn')
-      .addEventListener('click', formSubmit);
-    
+    document.querySelector('#form-submit-btn').addEventListener('click', formSubmit);
+
     // Form steps navigation
     UI.nav.addEventListener('click', handleNav);
   };

@@ -6,7 +6,7 @@ foreach ($districts as $d) {
   $DISTRICT_DATALIST .= '<option>' . $d[1] . '</option>';
 }
 // Get form html from file
-$formHTML = file_get_contents("./check-in/form.html");
+$formHTML = file_get_contents('./check-in/form.html');
 // Insert district datalist html
 $formHTML = str_ireplace('<span>DISTRICTS</span>', $DISTRICT_DATALIST, $formHTML);
 

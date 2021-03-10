@@ -1,31 +1,26 @@
 <?php
 
-function validateFio($fio) {
+function validateFio($fio)
+{
   $names = explode(' ', $fio);
   $len = sizeof($names);
   // 2 or more cyrillic letters
   // optional second part divided by dash (Салтыков-Щедрин, Мария-Луиза)
   $re = "/^[\p{L}]{2,}(\-([\p{L}]{2,})?)?$/iu";
-  $ok = TRUE;
+  $ok = true;
   // Check subnames
   foreach ($names as $name) {
     if (!preg_match($re, $name)) {
-      $ok = FALSE;
+      $ok = false;
     }
   }
 
-  return $ok ? $fio : NULL;
+  return $ok ? $fio : null;
 }
 
-function validatePhone($tel) {
-  $symbols = array(
-    '(',
-    ')',
-    '-',
-    '.',
-    ' ',
-    '+',
-  );
+function validatePhone($tel)
+{
+  $symbols = ['(', ')', '-', '.', ' ', '+'];
   // Strip symbols
   $tel = str_replace($symbols, '', $tel);
   // tel can be 7, 10 or 11 digits
@@ -34,7 +29,7 @@ function validatePhone($tel) {
 
   if (!preg_match($re, $tel)) {
     // tel is invalid
-    return NULL;
+    return null;
   } else {
     // tel is valid
     // 7 digits is OK
@@ -50,7 +45,8 @@ function validatePhone($tel) {
   }
 }
 
-function getFullYears($date_string) {
+function getFullYears($date_string)
+{
   $date = new DateTime($date_string);
   $today = new DateTime();
   // Get diffs
@@ -65,11 +61,14 @@ function getFullYears($date_string) {
   return $fullYears;
 }
 
-function validateDob($dob, $ageMin, $ageMax) {
+function validateDob($dob, $ageMin, $ageMax)
+{
   // Get age, full years
   $age = getFullYears($dob);
   // Age is invalid
-  if ($age < $ageMin || $age > $ageMax) return NULL;
+  if ($age < $ageMin || $age > $ageMax) {
+    return null;
+  }
   // Age is valid
   return $dob;
 }
