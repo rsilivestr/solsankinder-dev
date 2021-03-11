@@ -253,9 +253,9 @@ if (!$user->hasRole('check-in')) {
   // Show forms
   $content =
     '
-    <section class="ci-form-panel section section--width_w">
+    <section class="ci-admin-panel section section--width_w">
       <h1>Панель регистратора</h1>
-      <div class="ci-admin-panel">' .
+      <div class="ci-form-panel">' .
     $dbResetForm .
     $addDateForm .
     $showEventsForm .

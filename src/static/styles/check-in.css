@@ -283,16 +283,6 @@
 }
 
 /* Admin panel */
-.ci-admin-panel {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.ci-admin-panel .ci-form {
-  margin: 0;
-}
-
 .ci-form__message .ci-form-panel,
 .check-in-display-panel {
   width: auto;
@@ -302,13 +292,16 @@
 
 /* Admin panel forms */
 .ci-form-panel {
-  display: flex;
-  flex-flow: row nowrap;
   align-items: flex-start;
-  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: space-between;
 }
+
 .ci-form-panel .ci-form {
-  margin: 1.25rem 0.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 /* Admin login button */
