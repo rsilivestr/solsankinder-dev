@@ -34,7 +34,7 @@ foreach ($blogPosts as $blogPost) {
   if ($blogPost->images->count()) {
     $imageHTML = "<img class='post-card__image lazy'
       src='{$blogPost->images->first()}'
-      srcset='{$config->urls->assets}images/4x3.png'
+      srcset='{$config->urls->assets}images/4x3.png 320w'
       data-srcset='$thumb_sm->url 440w, $thumb_lg->url 740w'
       sizes='(max-width: 472px) 440px,
         (max-width: 768px) 740px,

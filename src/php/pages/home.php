@@ -50,7 +50,7 @@ foreach ($page->gallery as $image) {
   $galItemsHTML .= "<li class='glide__slide'
   ><img class='glide__image lazy'
     src='$image->url'
-    srcset='{$config->urls->assets}images/4x3.png'
+    srcset='{$config->urls->assets}images/4x3.png 320w'
     data-srcset='$xs->url 400w, $sm->url 600w, $md->url 800w'
     sizes='(max-width: 424px) 400px,
       (max-width: 624px) 600px,
@@ -60,24 +60,21 @@ foreach ($page->gallery as $image) {
   ></li>";
 }
 
-$content .=
-  "<section class='section section--width_m'>
-  <div class='glide'>
-    <div data-glide-el='track' class='glide__track'>
-      <ul class='glide__slides'>" .
-  $galItemsHTML .
-  "</ul>
+$content .= "<div class='section section--width_m'>
+    <div class='glide'>
+      <div data-glide-el='track' class='glide__track'>
+        <ul class='glide__slides'>$galItemsHTML</ul>
+      </div>
+      <div class='glide__arrows' data-glide-el='controls'>
+        <button class='glide__arrow glide__arrow--left' data-glide-dir='<' aria-label='Листать галерею влево'>
+          <i class='icon-left-big'></i>
+        </button>
+        <button class='glide__arrow glide__arrow--right' data-glide-dir='>' aria-label='Листать галерею вправо'>
+          <i class='icon-right-big'></i>
+        </button>
+      </div>
     </div>
-    <div class='glide__arrows' data-glide-el='controls'>
-      <button class='glide__arrow glide__arrow--left' data-glide-dir='<' aria-label='Листать галерею влево'>
-        <i class='icon-left-big'></i>
-      </button>
-      <button class='glide__arrow glide__arrow--right' data-glide-dir='>' aria-label='Листать галерею вправо'>
-        <i class='icon-right-big'></i>
-      </button>
-    </div>
-  </div>
-</section>";
+  </div>";
 
 /* фото фон 2 */
 $content .= "<div id='home-bg-2' class='home-bg section hide-sm'>
@@ -105,7 +102,7 @@ foreach ($pages->find('template=blog-post, limit=3, sort=-created') as $blogPost
         <a href='$blogPost->url' class='post-card__image-container'>
           <img class='post-card__image lazy'
             src='{$previewImg->url}'
-            srcset='{$config->urls->assets}images/4x3.png'
+            srcset='{$config->urls->assets}images/4x3.png 320w'
             data-srcset='$thumb_sm->url 440w'
             sizes='440px'
             alt='$previewAlt'
@@ -120,23 +117,3 @@ foreach ($pages->find('template=blog-post, limit=3, sort=-created') as $blogPost
 }
 
 $content .= '</div></section>';
-
-/* о санатории, видео */
-// $content .= "<section class='home-about section section--width_m'>
-//   <h2 class='home-about__title'>О санатории</h2>
-//   <div class='home-about__content'>
-//     <div class='home-about__video'>
-//       <iframe
-//         title='Видео о санатории'
-//         class='lazy'
-//         width='560'
-//         height='315'
-//         data-src='https://www.youtube-nocookie.com/embed/WNi9F3brZJM'
-//       ></iframe>
-//     </div>
-//     <div class='home-about__text-content'>
-//       <p class='home-about__desctiption'>СПб ГБУЗ «Детский санаторий «Солнечное» располагается в поселке Солнечное Курортного района Санкт-Петербурга в 33 зданиях и сооружениях на территории 45 гектаров.</p>
-//       <a class='home-about__btn action-btn action-btn--color_blue action-btn--size_s' href='/info/common/about/'>Подробнее</a>
-//     </div>
-//   </div>
-// </section>";
