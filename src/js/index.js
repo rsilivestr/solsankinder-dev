@@ -1,7 +1,6 @@
 import '../scss/index.scss';
 
 const SolSanKinder = (() => {
-  /* Element selectors here */
   const UIselectors = {
     basicGallery: '.basic-gallery',
     header: '.main-header',
@@ -13,25 +12,21 @@ const SolSanKinder = (() => {
     npSubnav: '.np-subnav',
   };
 
-  /* Toggle mobile navigation */
   const toggleMenu = (e) => {
     const btn = e.target.closest(UIselectors.menuBtn);
 
     if (btn) {
       const btnIcon = btn.firstElementChild;
 
-      /* Open navigation menu */
       document.querySelector(UIselectors.navPrimary).classList.toggle('visible');
 
       btnIcon.classList.toggle('icon-menu');
       btnIcon.classList.toggle('icon-cancel');
 
-      /* Initially hide all subnavs */
       document
         .querySelectorAll(UIselectors.npSubnav)
         .forEach((item) => item.classList.remove('visible'));
 
-      /* Reset arrows indicating subnav status */
       document
         .querySelectorAll(UIselectors.npLink)
         .forEach((item) => item.classList.remove('nav-primary__link--subnav-open'));
@@ -40,7 +35,6 @@ const SolSanKinder = (() => {
     }
   };
 
-  /* Toggle navigation sublevels */
   const toggleSubnav = (e) => {
     const link = e.target.closest('.nav-primary__link--has-subnav');
 
@@ -49,34 +43,27 @@ const SolSanKinder = (() => {
 
       const subnav = link.nextElementSibling;
 
-      /* Hide subnavs save for current */
       document.querySelectorAll(UIselectors.npSubnav).forEach((item) => {
         if (item !== subnav) item.classList.remove('visible');
       });
 
-      /* Reset arrows indicating subnav status */
       document.querySelectorAll(UIselectors.npLink).forEach((item) => {
         if (item !== link) item.classList.remove('nav-primary__link--subnav-open');
       });
 
-      /* Toggle current subnav and arrow */
       subnav.classList.toggle('visible');
       link.classList.toggle('nav-primary__link--subnav-open');
     } else if (!e.target.closest(UIselectors.npSubnav)) {
-      /* if not clicked inside a subnav or navigation link */
-      /* Hide all subnavs */
       document
         .querySelectorAll(UIselectors.npSubnav)
         .forEach((item) => item.classList.remove('visible'));
 
-      /* Reset all arrows */
       document
         .querySelectorAll(UIselectors.npLink)
         .forEach((item) => item.classList.remove('nav-primary__link--subnav-open'));
     }
   };
 
-  /* Gallery on basic pages */
   const handleBasicGallery = (e) => {
     const target = e.target;
     const gal = target.closest('.basic-gallery');
@@ -90,7 +77,6 @@ const SolSanKinder = (() => {
     }
   };
 
-  /* toggle low vision mode link click*/
   const toggleLowVision = (e) => {
     e.preventDefault();
 
@@ -104,7 +90,6 @@ const SolSanKinder = (() => {
     })
       .then((res) => res.json())
       .then((data) => {
-        /* Toggle body class and button text without page reload */
         document.body.classList.toggle('low-vision');
         const btnText = document.body.classList.contains('low-vision')
           ? 'обычная версия'
@@ -121,13 +106,11 @@ const SolSanKinder = (() => {
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          /* replace placeholder src (srcset) from an entry's dataset */
           if (entry.target.dataset.srcset) {
             entry.target.srcset = entry.target.dataset.srcset;
           } else {
             entry.target.src = entry.target.dataset.src;
           }
-          /* stop watching for loaded entry */
           observer.unobserve(entry.target);
         }
       });
@@ -135,31 +118,24 @@ const SolSanKinder = (() => {
     { rootMargin: '0px -200px -200px 0px' }
   );
 
-  /* Public method that initializes event listeners */
   const init = () => {
-    /* Navigation menu button click capture */
     document.querySelector(UIselectors.header).addEventListener('click', toggleMenu);
 
-    /* Primary navigation click capture */
     document.body.addEventListener('click', toggleSubnav);
 
-    /* Basic gallery click capture */
     const basicGallery = document.querySelector(UIselectors.basicGallery);
     if (basicGallery) {
       basicGallery.addEventListener('click', handleBasicGallery);
     }
 
-    /* Low vision toggle button click */
     document.querySelector(UIselectors.lowVisionBtn).addEventListener('click', toggleLowVision);
 
-    /* Lazy content loading */
     if (document.querySelector('.lazy')) {
       document.querySelectorAll('.lazy').forEach((lazyItem) => {
         lazyObserver.observe(lazyItem);
       });
     }
 
-    /* Homepage slider initialization */
     if (document.querySelector('.glide')) {
       const homeGlide = new Glide('.glide', {
         type: 'carousel',
@@ -169,7 +145,9 @@ const SolSanKinder = (() => {
           768: { perView: 1 },
           1024: { perView: 2 },
         },
-      }).mount();
+      });
+
+      homeGlide.mount();
     }
   };
 
