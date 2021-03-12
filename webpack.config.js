@@ -6,10 +6,14 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './src/js/index.js',
+  entry: {
+    main: './src/js/index.js',
+    checkin: './src/js/checkin.js',
+    checkinAdmin: './src/js/checkinAdmin.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'scripts/main.[hash].js',
+    filename: 'scripts/[name].[hash].js',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -24,7 +28,7 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/main.[hash].css',
+      filename: 'styles/[name].[hash].css',
       ignoreOrder: false,
     }),
     new ManifestPlugin(),

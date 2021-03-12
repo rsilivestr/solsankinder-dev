@@ -264,5 +264,6 @@ if (!$user->hasRole('check-in')) {
     </section>
     <section class="section section--width_w ci-table-wrap"></section>';
 
-  $content .= '<script src="' . $urls->templates . 'scripts/check-in-admin.js"></script>';
+  $scriptName = $manifest['checkinAdmin.js'];
+  $content .= "<script src='{$config->urls->templates}{$scriptName}'></script>";
 }

@@ -1,3 +1,5 @@
+import '../scss/checkin.scss';
+
 const SolCheckIn = (() => {
   const UI = {
     form: document.querySelector('.ci-form'),

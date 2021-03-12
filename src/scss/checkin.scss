@@ -138,9 +138,6 @@
 
 .ci-dropdown__input {
   padding-right: 2.25rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   cursor: default;
 }
 
@@ -179,7 +176,6 @@
   display: block;
   margin-top: 2.5rem;
   color: white;
-  /* Default background color = info */
   background-color: #006fb0;
 }
 

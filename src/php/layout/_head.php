@@ -8,14 +8,12 @@
 
   <title><?php echo $title; ?></title>
 
-  <!-- Nerp favicon -->
   <link
     rel="icon"
     type="image/svg"
     href="<?php echo $config->urls->assets; ?>images/nerp_plain.svg"
   >
 
-  <!-- Glidejs slider stylesheet -->
   <link
     rel="stylesheet"
     type="text/css"
@@ -29,31 +27,26 @@
       ->templates; ?>styles/fontello.min.css" />
     <!-- Montserrat font CDN -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
-    <!-- Reserved fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Caveat&family=Kelly+Slab&family=Lobster&family=Neucha&family=Pacifico&family=Poiret+One&family=Press+Start+2P&family=Ruslan+Display&family=Underdog&display=swap" rel="stylesheet"> -->
   </noscript>
 
-  <!-- Main stylesheet -->
   <link
     rel="stylesheet"
     type="text/css"
     href="<?php echo $config->urls->templates . $manifest['main.css']; ?>"
   />
 
-  <!-- Check-in stylesheet -->
   <?php
-  $n = $page->template->name;
-  if ('check-in__user-form' === $n || 'check-in__admin-panel' === $n) {
-    echo "<link rel='stylesheet' href='{$config->urls->templates}styles/check-in.css'>";
+  $pageTemplate = $page->template->name;
+  if ('check-in__user-form' === $pageTemplate || 'check-in__admin-panel' === $pageTemplate) {
+    $fileName = $manifest['checkin.css'];
+    echo "<link rel='stylesheet' href='{$config->urls->templates}{$fileName}'>";
   }
   ?>
 
-  <!-- Glidejs slider script -->
   <?php if ($page->template->name === 'home') {
     echo "<script defer src='{$config->urls->templates}scripts/glide.min.js'></script>";
   } ?>
 
-  <!-- Main script -->
   <script defer src="<?php echo $config->urls->templates . $manifest['main.js']; ?>"></script>
 </head>
 
