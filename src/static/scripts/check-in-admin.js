@@ -24,7 +24,7 @@ const SolCheckInAdmin = (() => {
     const table = document.createElement('table');
     table.className = 'ci-table';
     table.id = 'ci-table';
-    // Add thead
+
     table.innerHTML = `
     <thead>
       <th>№</th>
@@ -36,10 +36,10 @@ const SolCheckInAdmin = (() => {
       <th>Район</th>
       <th>Удалить</th>
     </thead>`;
-    // Add tbody
+
     const tbody = document.createElement('tbody');
     table.appendChild(tbody);
-    // Fill tbody
+
     events.forEach((event, index) => {
       const row = document.createElement('tr');
       row.innerHTML = `
@@ -62,30 +62,30 @@ const SolCheckInAdmin = (() => {
 
   const showEvents = async (e) => {
     e.preventDefault();
-    // Get input values
+
     const date = UI.formShowEvents.querySelector('.js-search-date-input').value;
     const intervalId = UI.formShowEvents.querySelector('.js-filter-interval-input').value || '0';
-    // Fetch data
+
     const eventData = await fetchEventData(date, intervalId);
-    // Create table
+
     const tableHTML = createTable(eventData);
-    // Append table
+
     UI.tableWrap.innerHTML = '';
     UI.tableWrap.appendChild(tableHTML);
-    // Go to table
+
     location.href = '#ci-table';
   };
 
   const deleteEvent = async (e) => {
     const target = e.target;
     if (!target.classList.contains('js-delete-event')) return;
-    // Prompt for confirmation
+
     const check = prompt('Для подтверждения введите "удалить"');
     if ('удалить' !== check) return;
-    // Append id to request body
+
     const body = new FormData();
     body.append('id', target.dataset.id);
-    // Send request
+
     const res = await fetch('../check-in-api/delete-event/', {
       method: 'POST',
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -95,7 +95,6 @@ const SolCheckInAdmin = (() => {
     const data = await res.json();
 
     if ('success' === data.status) {
-      // Update table
       target.closest('tr').remove();
     } else {
       console.log(data.message);

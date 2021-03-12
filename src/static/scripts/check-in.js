@@ -1,5 +1,4 @@
 const SolCheckIn = (() => {
-  // UI elements
   const UI = {
     form: document.querySelector('.ci-form'),
     clinicDrop: document.querySelector('.js-clinic-drop'),
@@ -20,16 +19,14 @@ const SolCheckIn = (() => {
     districtInput: document.getElementById('ci-district'),
     clinicInput: document.getElementById('ci-clinic'),
   };
-  // Event submit data
+
   const FORM_DATA = new FormData();
-  // Global districts
+
   let DISTRICTS;
 
-  // Dropdown behaviour
   const closeDropdowns = (target) => {
-    // Select all dropdowns
     const dropdowns = document.getElementsByClassName('ci-dropdown');
-    // Close all except clicked
+
     Array.from(dropdowns).forEach((label) => {
       if (label !== target.parentElement) {
         label.classList.remove('ci-dropdown--open');
@@ -53,28 +50,25 @@ const SolCheckIn = (() => {
   };
 
   const fillDropdownInput = (target) => {
-    // If target is a list item
     if (target.classList.contains('ci-dropdown__list-item')) {
       const dropdown = target.closest('.ci-dropdown');
       const input = dropdown.querySelector('.ci-dropdown__input');
-      // Set value and data-id
+
       input.value = target.textContent;
       input.dataset.id = target.dataset.id;
-      // Find previously selected item
+
       const previousSelection = dropdown.querySelector('.ci-dropdown__list-item--selected');
 
       if (previousSelection) {
-        // Remove previous selection
         previousSelection.classList.remove('ci-dropdown__list-item--selected');
       }
-      // Add selection to current element
+
       target.classList.add('ci-dropdown__list-item--selected');
-      // Clear error message
+
       dropdown.querySelector('.ci-form__error').textContent = '';
     }
   };
 
-  // Fill dropdown ul with items
   const appendItems = (listSelector, items, dataAttributes = null) => {
     items.forEach((item, index) => {
       const li = document.createElement('li');
@@ -90,7 +84,6 @@ const SolCheckIn = (() => {
     });
   };
 
-  // Fetch data
   const getUnits = async () => {
     const res = await fetch('../check-in-api/units/?active=1', {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -103,7 +96,7 @@ const SolCheckIn = (() => {
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
     });
     const data = await res.json();
-    // Save as global
+
     DISTRICTS = data;
     return data;
   };
@@ -151,16 +144,15 @@ const SolCheckIn = (() => {
   };
 
   const fillClinics = async (districtId) => {
-    // Clear list
     UI.clinicDrop.innerHTML = '';
-    // Fill list
+
     getClinics(districtId).then((clinics) => appendItems('.js-clinic-drop', clinics));
-    // Get form elements
+
     const clinicInput = document.getElementById('ci-clinic');
     const clinicLabel = clinicInput.parentElement;
-    // Clear input field
+
     clinicInput.value = '';
-    // Togle classes
+
     clinicInput.classList.remove('ci-form__input--disabled');
     clinicLabel.classList.remove('ci-form__label--disabled');
   };
@@ -177,62 +169,50 @@ const SolCheckIn = (() => {
   };
 
   const fillDate = (data) => {
-    // convert date to RU locale
     const dateRU = new Date(data[1]).toLocaleDateString('RU');
     const dateId = data[0];
-    // Get input element
+
     const dateInput = document.getElementById('ci-date');
-    // set input value, data-id
     dateInput.value = dateRU;
     dateInput.dataset.id = dateId;
-    // Enable input
     dateInput.classList.remove('ci-form__input--disabled');
-    // fill intervals
+
     getIntervalsById(dateId).then((intervals) => fillIntervals(intervals));
   };
 
   const fillIntervals = (intervals) => {
-    // Change interval input styles
     const intervalInput = document.getElementById('ci-interval');
     intervalInput.classList.remove('ci-form__input--disabled');
-    // Change interval label styles
+
     const intervalLabel = intervalInput.parentElement;
     intervalLabel.classList.remove('ci-form__label--disabled');
-    // remove previous dropdown items
+
     document.querySelector('.js-interval-drop').innerHTML = '';
-    // add new items
+
     appendItems('.js-interval-drop', intervals);
-    // clear input and make it active
+
     intervalInput.value = '';
     intervalInput.classList.remove('ci-dropdown__input--disabled');
   };
 
   const validateInput = (input, re) => {
-    // const input = label.querySelector('.ci-form__input');
     const inputValue = input.value.trim();
     const error = input.nextElementSibling;
 
-    // Correct input, no error
     let errorMessage = '';
 
     if ('' === inputValue) {
-      // Input field is empty
       errorMessage = 'Поле не должно быть пустым';
     } else if (!re.test(inputValue)) {
-      // Wrong input, error
       errorMessage = 'Поле заполнено не корректно';
     }
 
     if (errorMessage) {
-      // Show message
       input.classList.add('invalid');
       error.textContent = errorMessage;
-      // error.classList.remove('hidden');
     } else {
-      // Hide message
       input.classList.remove('invalid');
       error.textContent = '';
-      // error.classList.add('hidden');
     }
     return !!errorMessage;
   };
@@ -242,11 +222,11 @@ const SolCheckIn = (() => {
 
     const date = new Date(dateString);
     const today = new Date();
-    // Get diffs
+
     const dayDiff = today.getDate() - date.getDate();
     const monthDiff = today.getMonth() - date.getMonth();
     const yearDiff = today.getFullYear() - date.getFullYear();
-    // Get full months
+
     const fullMonths = dayDiff < 0 ? monthDiff - 1 : monthDiff;
     const fullYears = fullMonths < 0 ? yearDiff - 1 : yearDiff;
 
@@ -325,13 +305,10 @@ const SolCheckIn = (() => {
   };
 
   const formNext = () => {
-    // Validation status
     const ok = validatePatientData();
 
     if (ok) {
-      // Save to FORM_DATA
       setPatientData();
-      // Go to the next page
       navForward();
     }
   };
@@ -364,7 +341,6 @@ const SolCheckIn = (() => {
   };
 
   const createPDFLink = (url) => {
-    // Remove existing link
     const existingLink = document.querySelector('.ci-form__pdf-link');
     if (existingLink) existingLink.remove();
 
@@ -411,11 +387,9 @@ const SolCheckIn = (() => {
     const patientOk = validatePatientData();
 
     if (eventOk) {
-      // Save event to FORM_DATA
       setEventData();
 
       if (patientOk) {
-        // All data should be valid at that point
         const res = await fetch('../check-in-api/register/', {
           method: 'POST',
           headers: {
@@ -426,9 +400,9 @@ const SolCheckIn = (() => {
 
         const data = await res.json();
         const { status, message, ticketURL } = data;
-        // Update message
+
         updateMessage(status, message);
-        // Append / update PDF link
+
         if (ticketURL) {
           const UIlink = createPDFLink(ticketURL);
           UI.form.appendChild(UIlink);
@@ -439,27 +413,22 @@ const SolCheckIn = (() => {
 
   const handleDistrictInput = async () => {
     const input = document.getElementById('ci-district');
-    // Search for input
     const chosen = DISTRICTS.find((el) => el[1].toLowerCase() === input.value.toLowerCase());
-    // Set district id
+
     if (!chosen) {
       clearClinics();
     } else {
       const id = chosen[0];
-      // Save id for submit
       input.dataset.id = id;
-      // Fill clinics
       fillClinics(id);
     }
   };
 
-  // Navigation
   const handleNav = (e) => {
     const targetBtn = e.target.closest('.ci-nav-btn');
     const currentBtn = UI.nav.querySelector('.ci-nav-btn--current');
 
     if (targetBtn !== null && targetBtn !== currentBtn) {
-      // Navigate to page
       if (targetBtn.id === 'nav-page-1') {
         navBackward();
       } else {
@@ -476,37 +445,24 @@ const SolCheckIn = (() => {
     UI.clinicInput.value = '';
   };
 
-  // LISTENERS
   const addListeners = () => {
     document.body.addEventListener('mousedown', (e) => toggleDropdown(e.target));
 
-    // All dropdowns, fill input on select
     UI.form.addEventListener('mousedown', (e) => fillDropdownInput(e.target));
 
-    // Unit dropdown, fill date on select (and get hours)
     document
       .querySelector('.js-unit-drop')
       .addEventListener('mousedown', (e) => getDateByUnit(e.target).then((data) => fillDate(data)));
 
-    // Districts datalist, fill clinics on select
     document.getElementById('ci-district').addEventListener('input', handleDistrictInput);
-
     document.getElementById('ci-district').addEventListener('change', validateDistrictInput);
-
-    // Form, prevent submission
     document.querySelector('.ci-form').addEventListener('submit', (e) => e.preventDefault());
-
-    // Go next button
     document.querySelector('#form-next-btn').addEventListener('click', formNext);
-
-    // Submit button
     document.querySelector('#form-submit-btn').addEventListener('click', formSubmit);
 
-    // Form steps navigation
     UI.nav.addEventListener('click', handleNav);
   };
 
-  // Module exports
   return {
     init: () => {
       clearEventInputs();

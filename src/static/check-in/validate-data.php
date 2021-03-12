@@ -8,7 +8,7 @@ function validateFio($fio)
   // optional second part divided by dash (Салтыков-Щедрин, Мария-Луиза)
   $re = "/^[\p{L}]{2,}(\-([\p{L}]{2,})?)?$/iu";
   $ok = true;
-  // Check subnames
+
   foreach ($names as $name) {
     if (!preg_match($re, $name)) {
       $ok = false;
@@ -31,13 +31,9 @@ function validatePhone($tel)
     // tel is invalid
     return null;
   } else {
-    // tel is valid
-    // 7 digits is OK
     if (strlen($tel === 10)) {
-      // Append leading 7
       $tel = substr_replace($tel, '7', 0, 0);
     } elseif (11 === strlen($tel) && '8' === $tel[0]) {
-      // Change leading 8 with 7
       $tel[0] = '7';
     }
 
@@ -49,13 +45,13 @@ function getFullYears($date_string)
 {
   $date = new DateTime($date_string);
   $today = new DateTime();
-  // Get diffs
+
   $dayDiff = $today->format('d') - $date->format('d');
   $monthDiff = $today->format('m') - $date->format('m');
   $yearDiff = $today->format('Y') - $date->format('Y');
-  // Get full months
+
   $fullMonths = $dayDiff < 0 ? $monthDiff - 1 : $monthDiff;
-  // Get full years
+
   $fullYears = $fullMonths < 0 ? $yearDiff - 1 : $yearDiff;
 
   return $fullYears;
@@ -63,12 +59,11 @@ function getFullYears($date_string)
 
 function validateDob($dob, $ageMin, $ageMax)
 {
-  // Get age, full years
   $age = getFullYears($dob);
-  // Age is invalid
+
   if ($age < $ageMin || $age > $ageMax) {
     return null;
   }
-  // Age is valid
+
   return $dob;
 }

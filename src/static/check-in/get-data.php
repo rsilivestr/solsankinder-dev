@@ -62,7 +62,6 @@ function getDateByUnit($unit_id = null)
 
 function getIntervals()
 {
-  // get all intervals
   $sql = 'SELECT id, start_time, end_time FROM ci_intervals';
   $res = $GLOBALS['conn']->query($sql)->fetch_all();
 
@@ -152,7 +151,6 @@ function getEvents($date, $interval_id)
     WHERE ci_dates.ci_date = ?";
 
   if ('0' !== $interval_id) {
-    // Add interval condition
     $sql .= ' AND ci_intervals.id = ?';
   }
 
@@ -160,7 +158,6 @@ function getEvents($date, $interval_id)
 
   $stmt = $GLOBALS['conn']->prepare($sql);
 
-  // Bind parameters as needed
   if ('0' !== $interval_id) {
     $stmt->bind_param('si', $date, $interval_id);
   } else {

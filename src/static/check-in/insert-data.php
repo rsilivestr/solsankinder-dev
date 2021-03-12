@@ -6,7 +6,6 @@ include_once 'make-pdf.php';
 
 function insertSpots($date, $maxSpotsArray)
 {
-  // get date id
   $sql = 'SELECT id FROM ci_dates WHERE ci_date = ?';
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param('s', $date);
@@ -16,7 +15,6 @@ function insertSpots($date, $maxSpotsArray)
 
   $dateId = $resDateId->fetch_row()[0];
 
-  // get active interval ids
   $sql = 'SELECT id FROM ci_intervals WHERE is_active = 1';
   $resIntervals = $GLOBALS['conn']->query($sql)->fetch_all(MYSQLI_NUM);
 
@@ -25,9 +23,7 @@ function insertSpots($date, $maxSpotsArray)
     array_push($intervalIds, $row[0]);
   }
 
-  // for each active interval id
   foreach ($intervalIds as $index => $ivlId) {
-    // check existing spots
     $sql = "SELECT id FROM ci_spots
       WHERE date_id = ?
       AND interval_id = ?";
@@ -39,7 +35,6 @@ function insertSpots($date, $maxSpotsArray)
     $stmt->close();
 
     if (0 === $match) {
-      // insert spots
       $sql = "INSERT INTO ci_spots
         (date_id, interval_id, total, available)
         VALUES (?, ?, ?, ?)";
@@ -83,7 +78,6 @@ function makeUnitInactive($id)
 
 function insertDate($newDate, $unitIdsArray, $maxSpotsArray)
 {
-  // check if that date already exists
   $sql = 'SELECT id FROM ci_dates WHERE ci_date = ?';
   $stmt = $GLOBALS['conn']->prepare($sql);
   $stmt->bind_param('s', $newDate);
@@ -91,12 +85,10 @@ function insertDate($newDate, $unitIdsArray, $maxSpotsArray)
   $res = $stmt->get_result();
   $stmt->close();
 
-  // return if date already exists
   if ($res->num_rows > 0) {
     return '{ "status": "info", "message": "That date exists." }';
   }
 
-  // check if any of the units are already active, return if it is
   foreach ($unitIdsArray as $unitId) {
     $isActive = checkUnitActive($unitId);
 
@@ -105,7 +97,6 @@ function insertDate($newDate, $unitIdsArray, $maxSpotsArray)
     }
   }
 
-  // insert date
   $sql = "INSERT INTO ci_dates
     (ci_date, unit_ids, is_active)
     VALUES (?, ?, 1)";
@@ -116,7 +107,6 @@ function insertDate($newDate, $unitIdsArray, $maxSpotsArray)
   $stmt->close();
 
   $dateId = $GLOBALS['conn']->query('SELECT LAST_INSERT_ID()')->fetch_row()[0];
-  // Make units active
   foreach ($unitIdsArray as $unitId) {
     makeUnitActive($dateId, $unitId);
   }
@@ -126,7 +116,6 @@ function insertDate($newDate, $unitIdsArray, $maxSpotsArray)
   return '{ "status": "success", "message": "Date was added." }';
 }
 
-// update date: set active = 0
 function closeDate($date)
 {
   $formattedDate = (new DateTime($date))->format('Y-m-d');
@@ -142,7 +131,6 @@ function closeDate($date)
   $stmt->close();
 
   if (1 === $res) {
-    // Get units that were active on that date
     $sql = 'SELECT unit_ids FROM ci_dates WHERE ci_date = ?';
     $stmt = $GLOBALS['conn']->prepare($sql);
     $stmt->bind_param('s', $formattedDate);
@@ -150,9 +138,7 @@ function closeDate($date)
     $res = $stmt->get_result()->fetch_row();
     $stmt->close();
 
-    // Convert unit_ids string into an array
     $unitIds = explode(',', $res[0]);
-    // Deactivate those units
     foreach ($unitIds as $unitId) {
       makeUnitInactive($unitId);
     }
@@ -169,18 +155,14 @@ function insertPatient($fio = null, $phone = null, $dob = null)
   $vPhone = validatePhone($phone);
   $vDob = validateDob($dob, 1, 17);
 
-  // return on empty params
   if (null === $vFio) {
     return -2;
-    // return '{ "status": "error", "message": "Ошибка валидации ФИО" }';
   } elseif (null === $vPhone) {
     return -3;
-    // return '{ "status": "error", "message": "Ошибка валидации телефона" }';
   } elseif (null === $vDob) {
     return -4;
-    // return '{ "status": "error", "message": "Ошибка валидации даты рождения" }';
   }
-  // search patient
+
   $sql = "SELECT id FROM patients
     WHERE LOWER(fio) = LOWER(?) AND dob = ?";
 
@@ -188,14 +170,12 @@ function insertPatient($fio = null, $phone = null, $dob = null)
   $stmt->bind_param('ss', $vFio, $vDob);
   $stmt->execute();
 
-  // get id of existing patient
   $res = $stmt->get_result();
   $id_existing = $res->fetch_row()[0];
 
   $stmt->close();
 
   if (!$res->num_rows > 0) {
-    // if patient does not exist, add new patient
     $sql = 'INSERT INTO patients (fio, phone, dob) VALUES (?, ?, ?)';
 
     $stmt = $GLOBALS['conn']->prepare($sql);
@@ -215,7 +195,6 @@ function getEventData($id = null)
   if (!$id) {
     return;
   }
-  // Get patient fio, check-in date, start & end times by event id
   $sql = "SELECT ci_events.event_id,
       patients.fio,
       ci_dates.ci_date,
@@ -254,7 +233,6 @@ function fillSpot($date_id, $interval_id)
 function insertEvent($eventData = null)
 {
   if (null == $eventData) {
-    // Send error message if some data is missing
     return '{ "status": "error", "message": "Ошибка отправки запроса" }';
   } elseif (0 == $eventData['patient_id']) {
     return '{ "status": "error", "message": "Ошибка в id пациента" }';
@@ -269,7 +247,7 @@ function insertEvent($eventData = null)
   } elseif (0 == $eventData['clinic_id']) {
     return '{ "status": "error", "message": "Ошибка в id клиники" }';
   }
-  // check if event exists
+
   $sql = 'SELECT event_id FROM ci_events WHERE patient_id = ? AND date_id = ?';
 
   $stmt = $GLOBALS['conn']->prepare($sql);
@@ -291,7 +269,7 @@ function insertEvent($eventData = null)
       '"
     }';
   }
-  // Insert event data into ci_events
+
   $sql = "INSERT INTO ci_events
     (patient_id, date_id, interval_id, unit_id, clinic_id)
     VALUES (?, ?, ?, ?, ?)";
@@ -311,7 +289,6 @@ function insertEvent($eventData = null)
   $id_inserted = $GLOBALS['conn']->query('SELECT LAST_INSERT_ID()')->fetch_row()[0];
 
   if (0 === $id_inserted) {
-    // Data was not inserted
     return '{
       "status": "error",
       "message": "Ошибка при создании события"
@@ -321,12 +298,9 @@ function insertEvent($eventData = null)
   // All looks good
   // Fill spot
   fillSpot($eventData['date_id'], $eventData['interval_id']);
-  // Get data for PDF
   $event_data = getEventData($id_inserted);
-  // Make PDF, get its url
   $ticketURL = makePDF($event_data);
 
-  // Send positive response
   return '{
     "status": "success",
     "message": "Событие зарегистрировано",
@@ -354,7 +328,6 @@ function freeSpot($id)
 
 function deleteEvent($id)
 {
-  // Free spot BEFORE event deletion
   freeSpot($id);
 
   $sql = 'DELETE FROM ci_events WHERE event_id = ?';
@@ -366,7 +339,6 @@ function deleteEvent($id)
   $stmt->close();
 
   if (-1 === $res) {
-    // -1 indicates that the query has returned an error
     return '{
       "status": "error",
       "message": "Событие не удалено"
@@ -377,7 +349,6 @@ function deleteEvent($id)
       "message": "Событие удалено"
     }';
   }
-  // Something went wrong
   return '{
     "status": "error",
     "message": "Что-то не так"

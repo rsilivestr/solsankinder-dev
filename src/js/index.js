@@ -132,7 +132,7 @@ const SolSanKinder = (() => {
         }
       });
     },
-    { rootMargin: '0px 0px 0px 0px' }
+    { rootMargin: '0px -200px -200px 0px' }
   );
 
   /* Public method that initializes event listeners */
