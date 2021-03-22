@@ -5,7 +5,6 @@ $content = "<article class='section section--width_m blog-post'>
   $page->body
   <p class='blog-post__date'>$page->postDate</p>";
 
-// галерея
 if ($page->renderGallery && $page->images->count()) {
   $content .= "<div class='basic-gallery'>
     <div class='gallery-thumbs'>";

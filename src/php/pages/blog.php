@@ -14,7 +14,6 @@ $pagination = $blogPosts->renderPager([
   'nextItemClass ' => 'pager-nav__item--next',
   'previousItemClass' => 'pager-nav__item--prev',
   'separatorItemClass' => 'pager-nav__item--separator',
-  // 'listMarkup' => "<ul class='MarkupPagerNav pager-nav'>{out}</ul>",
   'itemMarkup' => "<li class='pager-nav__item {class}' aria-label='{aria-label}'>{out}</li>",
   'linkMarkup' => "<a class='pager-nav__link' href='{url}'>{out}</a>",
 ]);

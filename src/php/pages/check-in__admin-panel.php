@@ -5,67 +5,62 @@ include_once './check-in/autofill-tables.php';
 include_once './check-in/get-data.php';
 include_once './check-in/insert-data.php';
 
-// POST actions
+// Reset tables
 if (isset($_POST['password'])) {
-  if (
-    !password_verify(
-      $_POST['password'],
-      '$2y$10$/Z7qAz6Ax0Vbbo8F6b5//u3T4HS2A2ScVSV1KGADnZ3UPTYfZz4BS'
-    )
-  ) {
-    // Password is wrong: redirect to warning
+  $passwordHash = '$2y$10$/Z7qAz6Ax0Vbbo8F6b5//u3T4HS2A2ScVSV1KGADnZ3UPTYfZz4BS';
+
+  $isPasswordCorrect = password_verify($_POST['password'], $passwordHash);
+
+  if (!$isPasswordCorrect) {
     header('Location: ?success=0');
     return;
-  } else {
-    // Password is right:
-    // Reset tables according to POSTed checkboxes
-    if (isset($_POST['districts'])) {
-      dropTable('districts');
-      createTable('districts', $districtSchema);
-      fillDistrictsTable($districts);
-    }
-
-    if (isset($_POST['clinics'])) {
-      dropTable('clinics');
-      createTable('clinics', $clinicSchema);
-      fillClinicsTable();
-    }
-
-    if (isset($_POST['units'])) {
-      dropTable('units');
-      createTable('units', $unitSchema);
-      fillUnitsTable();
-    }
-
-    if (isset($_POST['ci_dates'])) {
-      dropTable('ci_dates');
-      createTable('ci_dates', $dateSchema);
-    }
-
-    if (isset($_POST['ci_intervals'])) {
-      dropTable('ci_intervals');
-      createTable('ci_intervals', $intervalSchema);
-      fillIntervalsTable();
-    }
-
-    if (isset($_POST['ci_spots'])) {
-      dropTable('ci_spots');
-      createTable('ci_spots', $spotSchema);
-    }
-
-    if (isset($_POST['patients'])) {
-      dropTable('patients');
-      createTable('patients', $patientSchema);
-    }
-
-    if (isset($_POST['ci_events'])) {
-      dropTable('ci_events');
-      createTable('ci_events', $eventSchema);
-    }
-
-    // Redirect to success message
-    header('Location: ?success=1');
   }
+
+  if (isset($_POST['districts'])) {
+    dropTable('districts');
+    createTable('districts', $districtSchema);
+    fillDistrictsTable($districts);
+  }
+
+  if (isset($_POST['clinics'])) {
+    dropTable('clinics');
+    createTable('clinics', $clinicSchema);
+    fillClinicsTable();
+  }
+
+  if (isset($_POST['units'])) {
+    dropTable('units');
+    createTable('units', $unitSchema);
+    fillUnitsTable();
+  }
+
+  if (isset($_POST['ci_dates'])) {
+    dropTable('ci_dates');
+    createTable('ci_dates', $dateSchema);
+  }
+
+  if (isset($_POST['ci_intervals'])) {
+    dropTable('ci_intervals');
+    createTable('ci_intervals', $intervalSchema);
+    fillIntervalsTable();
+  }
+
+  if (isset($_POST['ci_spots'])) {
+    dropTable('ci_spots');
+    createTable('ci_spots', $spotSchema);
+  }
+
+  if (isset($_POST['patients'])) {
+    dropTable('patients');
+    createTable('patients', $patientSchema);
+  }
+
+  if (isset($_POST['ci_events'])) {
+    dropTable('ci_events');
+    createTable('ci_events', $eventSchema);
+  }
+
+  header('Location: ?success=1');
 }
 
 // Insert new date
@@ -91,7 +86,6 @@ if ($_POST['close_date']) {
 $dbResetForm = '
 <form class="ci-form" id="reset-tables-form" method="POST">
   <h2 class="ci-form__heading">Сбросить базу данных</h2>
-
   <label class="ci-form__label mt-8">
     <input type="checkbox" name="districts"> districts
   </label>
@@ -118,12 +112,15 @@ $dbResetForm = '
   </label>
   <br />
   <div>
-    <label><span class="ci-form__label-text">Пароль</span><input class="ci-form__input" name="password" type="password"></label>
+    <label>
+      <span class="ci-form__label-text">Пароль</span>
+      <input class="ci-form__input" name="password" type="password">
+    </label>
     <input class="ci-form__button" type="submit" value="Сбросить">
   </div>
 </form>';
 
-// Get units for the next form, generate options list
+// Get units
 $units = json_decode(getUnits());
 $unitsHTML = '';
 foreach ($units as $unit) {
