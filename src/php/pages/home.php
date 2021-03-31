@@ -1,10 +1,16 @@
 <?php namespace ProcessWire;
 
+$content = '';
+
 /* ссылка на форму регистрации */
-$content = "<div class='section section--width_m register-section ta_center'>
-  <a class='action-btn action-btn--color_blue' href='/check-in-form'>Записаться на заезд</a>
+$content .= "<div class='section section--width_m register-section ta_center'>
+<a class='action-btn action-btn--color_blue' href='/check-in-form'>Записаться на заезд</a>
 </div>";
 
+/* буннер гусуслуг */
+$content .= file_get_contents('./gu-widget.html');
+
+/* главрач */
 $content .= "<section class='section section--width_m section--justified section--font_cursive'>
   <h1>Добро пожаловать в санаторий «Солнечное»</h1>
   {$page->body}
