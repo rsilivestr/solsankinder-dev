@@ -42,7 +42,8 @@
   ?>
 
   <?php if ($page->template->name === 'home') {
-    echo "<script defer src='{$config->urls->templates}scripts/glide.min.js'></script>";
+    $homeScriptUrl = $config->urls->templates . $manifest['home.js'];
+    echo "<script defer src='$homeScriptUrl'></script>";
   } ?>
 
   <script defer src="<?php echo $config->urls->templates . $manifest['main.js']; ?>"></script>

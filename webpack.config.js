@@ -8,6 +8,7 @@ module.exports = {
   mode: 'production',
   entry: {
     main: './src/js/index.js',
+    home: './src/js/home.js',
     checkin: './src/js/checkin.js',
     checkinAdmin: './src/js/checkinAdmin.js',
   },
