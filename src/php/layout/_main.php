@@ -16,9 +16,23 @@ if (isset($_POST['lowVision'])) {
 
 // if not an api call show content
 if (!$config->ajax) {
+  echo '<!DOCTYPE html><html lang="ru">';
+
   include '_head.php';
 
-  echo $content;
+  $bodyClass = $page->template->name;
+  $bodyClass .= $isLowVisionActive && ' low-vision';
+  echo "<body class='$bodyClass'>";
+
+  include '_header.php';
+
+  include '_bread.php';
+
+  echo "<main class='main'>$content</main>";
 
   include '_foot.php';
+
+  include '_scripts.php';
+
+  echo '</body></html>';
 }
