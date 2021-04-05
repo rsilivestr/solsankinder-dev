@@ -1,5 +1,4 @@
 <div class="section">
-  <script src="https://pos.gosuslugi.ru/bin/script.min.js"></script>
   <style>
     #js-show-iframe-wrapper {
       position: relative;
@@ -125,6 +124,7 @@
       justify-content: center;
     }
   </style>
+
   <div id="js-show-iframe-wrapper">
     <div class="pos-banner-fluid bf-2">
       <div class="bf-2__decor">
@@ -150,6 +150,9 @@
       </div>
     </div>
   </div>
+
+  <script src="https://pos.gosuslugi.ru/bin/script.min.js"></script>
+
   <script>
     (function () {
       'use strict';
@@ -222,7 +225,7 @@
           });
         };
       function changePosBannerOnResize() {
-        var e = document.documentElement,
+        var e = document.getElementById('js-show-iframe-wrapper'),
           t = _objectSpread({}, posOptionsInitial),
           o = document.getElementById('js-show-iframe-wrapper'),
           n = o ? o.offsetWidth : document.body.offsetWidth;
@@ -260,6 +263,7 @@
         });
     })();
   </script>
+
   <script>
     Widget('https://pos.gosuslugi.ru/form', 220030);
   </script>
