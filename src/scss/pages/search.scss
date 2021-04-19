@@ -1,10 +1,11 @@
 @use 'ScssUtil/forward' as *;
+@use 'ScssBlocks/action-btn';
 
 .search-form {
   display: flex;
   flex-flow: row nowrap;
   margin-bottom: 3rem;
-  border: 1px solid #ccc;
+  gap: 1rem;
 
   &__input,
   &__submit {
@@ -15,17 +16,15 @@
 
   &__input {
     flex: 9 5 auto;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
   }
 
   &__submit {
-    flex: 1 1 auto;
-    min-width: 90px;
-    background-color: $yellow-vivid;
-    cursor: pointer;
+    @extend .action-btn;
+    @extend .action-btn--color_blue;
 
-    &:hover {
-      background-color: $yellow-darker;
-    }
+    flex: 1 1 auto;
   }
 }
 

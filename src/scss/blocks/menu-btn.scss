@@ -1,25 +1,22 @@
 @use 'ScssUtil/forward' as *;
 
-$btnRad: 2rem;
+$btnRadius: 2rem;
 
 .menu-btn {
   position: fixed;
-  top: 0.75rem;
+  top: 0;
   right: 0.75rem;
-  width: $btnRad * 2;
-  height: $btnRad * 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  background: #ff4500;
-  border: 2px solid #333;
-  border-radius: $btnRad;
+  padding: 0.25rem;
+  background-color: transparent;
+  color: #fff;
   z-index: 10;
 
   &__icon {
     padding: 0;
-    font-size: $btnRad * 1.125;
+    font-size: 2rem;
   }
 
   @include media('>=tablet') {

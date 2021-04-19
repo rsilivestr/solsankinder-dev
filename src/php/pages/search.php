@@ -10,7 +10,6 @@ $content = "<section class='section section--width_m'>
 			type='text'
 			name='query'
 			class='search-form__input'
-			placeholder='Что ищем?'
 			value='$formValue'
 		/>
 		<button type='submit' class='search-form__submit'>Найти</button>
