@@ -1,5 +1,9 @@
 <?php include_once './check-in/get-data.php';
 
+$content = "<div class='section section--width_m'>
+  $page->body
+</div>";
+
 $DISTRICT_DATALIST = '';
 $districts = json_decode(getDistricts());
 foreach ($districts as $d) {
