@@ -2,7 +2,7 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin: ManifestPlugin } = require('webpack-manifest-plugin');
 
 module.exports = {
   mode: 'production',
@@ -23,8 +23,7 @@ module.exports = {
         { from: 'src/static', to: path.resolve(__dirname, 'dist') },
         {
           from: 'src/php/**/*',
-          to: path.resolve(__dirname, 'dist'),
-          flatten: true,
+          to: path.resolve(__dirname, 'dist/[name][ext]'),
         },
       ],
     }),
@@ -65,13 +64,14 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: (loader) => [
-                require('postcss-sort-media-queries')({
-                  sort: 'mobile-first',
-                }),
-                require('postcss-preset-env')(),
-              ],
+              postcssOptions: {
+                plugins: [
+                  require('postcss-sort-media-queries')({
+                    sort: 'mobile-first',
+                  }),
+                  require('autoprefixer'),
+                ],
+              },
             },
           },
           'sass-loader',
