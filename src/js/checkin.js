@@ -183,21 +183,21 @@ const SolCheckIn = (() => {
   };
 
   const fillIntervals = (intervals) => {
-    const intervalInput = document.getElementById('ci-interval');
-    intervalInput.classList.remove('ci-form__input--disabled');
+    const input = UI.intervalInput;
+    input.classList.remove('ci-form__input--disabled');
 
-    const intervalLabel = intervalInput.parentElement;
-    intervalLabel.classList.remove('ci-form__label--disabled');
+    const label = input.parentElement;
+    label.classList.remove('ci-form__label--disabled');
 
     document.querySelector('.js-interval-drop').innerHTML = '';
 
     appendItems('.js-interval-drop', intervals);
 
-    intervalInput.value = '';
-    intervalInput.classList.remove('ci-dropdown__input--disabled');
+    input.value = '';
+    input.classList.remove('ci-dropdown__input--disabled');
   };
 
-  const validateInput = (input, re) => {
+  const validateInput = (input, regExp) => {
     const inputValue = input.value.trim();
     const error = input.nextElementSibling;
 
@@ -205,7 +205,7 @@ const SolCheckIn = (() => {
 
     if ('' === inputValue) {
       errorMessage = 'Поле не должно быть пустым';
-    } else if (!re.test(inputValue)) {
+    } else if (!regExp.test(inputValue)) {
       errorMessage = 'Поле заполнено не корректно';
     }
 
@@ -276,7 +276,8 @@ const SolCheckIn = (() => {
 
   const validatePatientData = () => {
     const nameRE = /^[а-яА-ЯёЁ]{2,}(\-[а-яА-ЯёЁ]{2,})?$/;
-    const telRE = /^((\+?7|8)?(-|\.|\s|\s?\()?(\d{3})(-|\.|\s|\)\s?)?)?\d{3}[-\.\s]?\d{2}[-\.\s]?\d{2}$/;
+    const telRE =
+      /^((\+?7|8)?(-|\.|\s|\s?\()?(\d{3})(-|\.|\s|\)\s?)?)?\d{3}[-\.\s]?\d{2}[-\.\s]?\d{2}$/;
 
     const fnErr = validateInput(UI.familyNameInput, nameRE);
     const gnErr = validateInput(UI.givenNameInput, nameRE);
@@ -327,7 +328,7 @@ const SolCheckIn = (() => {
   };
 
   const validateDistrictInput = () => {
-    const input = document.getElementById('ci-district');
+    const input = UI.districtInput;
     const error = input.parentElement.querySelector('.ci-form__error');
 
     if ('' === input.value) {
