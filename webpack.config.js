@@ -14,7 +14,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'scripts/[name].[hash].js',
+    publicPath: '',
+    filename: 'scripts/[name].[contenthash].js',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -28,10 +29,10 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[hash].css',
+      filename: 'styles/[name].[contenthash].css',
       ignoreOrder: false,
     }),
-    new ManifestPlugin(),
+    new ManifestPlugin({ basePath: '' }),
   ],
   module: {
     rules: [
