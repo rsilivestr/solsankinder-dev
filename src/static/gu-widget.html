@@ -13,8 +13,8 @@
       </div>
       <div class="bf-2__content">
         <div class="bf-2__description">
-          <span class="bf-2__text">Не убран мусор, яма на дороге, не горит фонарь?</span
-          ><span class="bf-2__text bf-2__text_small"
+          <span class="bf-2__text">Не убран снег, яма на дороге, не горит фонарь?</span>
+          <span class="bf-2__text bf-2__text_small"
             >Столкнулись с проблемой&nbsp;— сообщите о ней!</span
           >
         </div>
@@ -76,7 +76,8 @@
           'decor-grid-column': 'initial',
           'decor-grid-row': 'initial',
           'decor-padding': '30px 30px 0 30px',
-          'bg-url': 'url("/site/assets/images/gu-widget/bg-small.svg")',
+          'bg-url':
+            "url('https://pos.gosuslugi.ru/bin/banner-fluid/2/banner-fluid-bg-2-small.svg')",
           'bg-position': 'calc(10% + 64px) calc(100% - 20px)',
           'bg-size': 'cover',
           'content-padding': '0 30px 30px 30px',
@@ -98,7 +99,7 @@
           });
         };
       function changePosBannerOnResize() {
-        var e = document.getElementById('js-show-iframe-wrapper'),
+        var e = document.documentElement,
           t = _objectSpread({}, posOptionsInitial),
           o = document.getElementById('js-show-iframe-wrapper'),
           n = o ? o.offsetWidth : document.body.offsetWidth;
@@ -106,7 +107,7 @@
           (t['slogan-font-size'] = '24px'), (t['logo-wrap-padding'] = '30px 50px 30px 70px');
         if (n > 500)
           (t['grid-template-columns'] = 'min-content 1fr'),
-            t['grid-template-rows'],
+            (t['grid-template-rows'] = '100%'),
             (t['decor-grid-column'] = '2'),
             (t['decor-grid-row'] = '1'),
             (t['decor-padding'] = '30px 30px 30px 0'),
@@ -118,7 +119,8 @@
             (t['logo-wrap-border-radius'] = '80px 0 0 0');
         if (n > 585) t['bg-position'] = '0% calc(100% - 6px)';
         if (n > 800)
-          (t['bg-url'] = 'url("/site/assets/images/gu-widget/bg.svg")'),
+          (t['bg-url'] =
+            "url('https://pos.gosuslugi.ru/bin/banner-fluid/2/banner-fluid-bg-2.svg')"),
             (t['bg-position'] = '0% center');
         if (n > 1020)
           (t['slogan-font-size'] = '32px'),
@@ -128,15 +130,13 @@
       }
       changePosBannerOnResize(),
         window.addEventListener('resize', changePosBannerOnResize),
-        (window.onpagehide = function () {
+        (window.onunload = function () {
           var e = document.documentElement;
           window.removeEventListener('resize', changePosBannerOnResize),
             removeStyles(posOptionsInitial, e);
         });
     })();
-  </script>
 
-  <script>
-    Widget('https://pos.gosuslugi.ru/form', 220030);
+    Widget('https://pos.gosuslugi.ru/form', 232246);
   </script>
 </div>

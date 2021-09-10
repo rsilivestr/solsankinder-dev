@@ -35,6 +35,34 @@
 #js-show-iframe-wrapper .pos-banner-fluid .pos-banner-btn_2:active {
   background: #2a63ad;
 }
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
 @font-face {
   font-family: LatoWebLight;
   src: url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Light.woff2) format('woff2'),
@@ -58,6 +86,66 @@
     url(https://pos.gosuslugi.ru/bin/fonts/Lato/fonts/Lato-Bold.ttf) format('truetype');
   font-style: normal;
   font-weight: 400;
+}
+@font-face {
+  font-family: RobotoWebLight;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Light.woff2) format('woff2'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Light.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Light.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: RobotoWebRegular;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Regular.woff2) format('woff2'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Regular.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: RobotoWebBold;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Bold.woff2) format('woff2'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Bold.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Roboto/Roboto-Bold.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: ScadaWebRegular;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Regular.woff2) format('woff2'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Regular.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Regular.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: ScadaWebBold;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Bold.woff2) format('woff2'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Bold.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Scada/Scada-Bold.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: Geometria;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.eot);
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.eot?#iefix)
+      format('embedded-opentype'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria.ttf) format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Geometria-ExtraBold;
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.eot);
+  src: url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.eot?#iefix)
+      format('embedded-opentype'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.woff) format('woff'),
+    url(https://pos.gosuslugi.ru/bin/fonts/Geometria/Geometria-ExtraBold.ttf) format('truetype');
+  font-weight: 800;
+  font-style: normal;
 }
 #js-show-iframe-wrapper .bf-2 {
   position: relative;
@@ -95,6 +183,7 @@
   font-family: LatoWebBold, sans-serif;
   font-size: var(--pos-banner-fluid-2__slogan-font-size);
   line-height: var(--pos-banner-fluid-2__slogan-line-height);
+  color: #fff;
 }
 #js-show-iframe-wrapper .bf-2__content {
   padding: var(--pos-banner-fluid-2__content-padding);
@@ -109,6 +198,7 @@
   font-size: 24px;
   line-height: 32px;
   font-family: LatoWebBold, sans-serif;
+  color: #fff;
 }
 #js-show-iframe-wrapper .bf-2__text_small {
   margin-bottom: 0;
