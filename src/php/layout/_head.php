@@ -42,6 +42,10 @@
   ?>
 
   <?php if ($page->template->name === 'home') {
+    echo '<style>';
+    echo file_get_contents('./gu-styles.css');
+    echo '</style>';
+
     $homeScriptUrl = $config->urls->templates . $manifest['home.js'];
     echo "<script defer src='$homeScriptUrl'></script>";
   } ?>
