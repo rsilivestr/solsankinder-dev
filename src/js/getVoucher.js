@@ -49,11 +49,10 @@ const SolVoucher = (() => {
 
   const setFormData = () => {
     FORM_DATA.set(
-      'patient_fio',
+      'fio',
       `${UI.familyNameInput.value.trim()} ${UI.givenNameInput.value.trim()} ${UI.patrNameInput.value.trim()}`
     );
-    FORM_DATA.set('patient_dob', UI.dobInput.value);
-    FORM_DATA.set('patient_phone', UI.telInput.value.trim());
+    FORM_DATA.set('phone', UI.telInput.value.trim());
   };
 
   const validateFormData = () => {
@@ -103,10 +102,10 @@ const SolVoucher = (() => {
   };
 
   const clearInputs = () => {
-    UI.familyNameInput.value = '';
-    UI.givenNameInput.value = '';
-    UI.patrNameInput.value = '';
-    UI.telInput.value = '';
+    UI.familyNameInput.value = 'ли';
+    UI.givenNameInput.value = 'ян';
+    UI.patrNameInput.value = 'ильич';
+    UI.telInput.value = '89219999999';
     UI.pdaInput.checked = false;
   };
 

@@ -372,10 +372,10 @@ function insertApplicant($fio, $phone)
   $sql = 'INSERT INTO applicants (fio, phone) VALUES (?, ?)';
 
   $stmt = $GLOBALS['conn']->prepare($sql);
-  $stmt->bind_param('ss', $vFio, $vDob);
+  $stmt->bind_param('ss', $vFio, $vPhone);
   $stmt->execute();
   $stmt->close();
 
-  $id_inserted = $GLOBALS['conn']->query('SELECT LAST_INSERT_ID()')->fetch_row()[0];
-  return $id_inserted;
+  $id = $GLOBALS['conn']->query('SELECT LAST_INSERT_ID()')->fetch_row()[0];
+  return $id;
 }

@@ -2,8 +2,8 @@
 
 include_once './check-in/insert-data.php';
 
-$fio = $_POST['patient_fio'];
-$phone = $_POST['patient_phone'];
+$fio = $_POST['fio'];
+$phone = $_POST['phone'];
 
 $applicantId = insertApplicant($fio, $phone);
 
