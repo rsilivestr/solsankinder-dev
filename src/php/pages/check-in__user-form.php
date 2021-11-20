@@ -9,7 +9,7 @@ $content = "
 $DISTRICT_DATALIST = '';
 $districts = json_decode(getDistricts());
 foreach ($districts as $d) {
-  $DISTRICT_DATALIST .= '<option>' . $d[1] . '</option>';
+  $DISTRICT_DATALIST .= "<option>{$d[1]}</option>";
 }
 
 $formHTML = file_get_contents('./check-in/form.html');
