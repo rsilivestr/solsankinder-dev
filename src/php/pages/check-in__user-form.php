@@ -1,8 +1,10 @@
 <?php include_once './check-in/get-data.php';
 
-$content = "<div class='section section--width_m'>
+$content = "
+<section class='section section--width_m'>
   $page->body
-</div>";
+  <h3>Нет путёвки? <a href='/get-voucher'>Оставить заявку</a></h3>
+</section>";
 
 $DISTRICT_DATALIST = '';
 $districts = json_decode(getDistricts());
