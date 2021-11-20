@@ -60,6 +60,17 @@ if (isset($_POST['password'])) {
     createTable('ci_events', $eventSchema);
   }
 
+  $applicantSchema = "(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fio VARCHAR(128) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+  )";
+
+  if (isset($_POST['applicants'])) {
+    dropTable('applicants');
+    createTable('applicants', $applicantSchema);
+  }
+
   header('Location: ?success=1');
 }
 
@@ -109,6 +120,9 @@ $dbResetForm = '
   </label>
   <label class="ci-form__label mt-8">
     <input type="checkbox" name="ci_events"> ci_events
+  </label>
+  <label class="ci-form__label mt-8">
+    <input type="checkbox" name="applicants"> applicants
   </label>
   <br />
   <div>
@@ -243,6 +257,7 @@ if (!$user->hasRole('check-in')) {
     <section class='ci-admin-panel section section--width_w'>
       <h1>Панель регистратора</h1>
       <div class='ci-form-panel'>
+        {$dbResetForm}
         {$addDateForm}
         {$showEventsForm}
         {$closeEventForm}
