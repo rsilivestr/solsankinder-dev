@@ -157,9 +157,11 @@ function insertPatient($fio = null, $phone = null, $dob = null)
 
   if (null === $vFio) {
     return -2;
-  } elseif (null === $vPhone) {
+  }
+  if (null === $vPhone) {
     return -3;
-  } elseif (null === $vDob) {
+  }
+  if (null === $vDob) {
     return -4;
   }
 
@@ -353,4 +355,27 @@ function deleteEvent($id)
     "status": "error",
     "message": "Что-то не так"
   }';
+}
+
+function insertApplicant($fio, $phone)
+{
+  $vFio = validateFio($fio);
+  $vPhone = validatePhone($phone);
+
+  if ($vFio === null) {
+    return -1;
+  }
+  if ($vPhone === null) {
+    return -2;
+  }
+
+  $sql = 'INSERT INTO applicants (fio, phone) VALUES (?, ?)';
+
+  $stmt = $GLOBALS['conn']->prepare($sql);
+  $stmt->bind_param('ss', $vFio, $vDob);
+  $stmt->execute();
+  $stmt->close();
+
+  $id_inserted = $GLOBALS['conn']->query('SELECT LAST_INSERT_ID()')->fetch_row()[0];
+  return $id_inserted;
 }

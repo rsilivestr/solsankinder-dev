@@ -17,15 +17,12 @@ $patientId = insertPatient($fio, $phone, $dob);
 switch ($patientId) {
   case -4:
     return '{ "status": "error", "message": "Ошибка валидации даты рождения" }';
-    break;
 
   case -3:
     return '{ "status": "error", "message": "Ошибка валидации телефона" }';
-    break;
 
   case -2:
     return '{ "status": "error", "message": "Ошибка валидации ФИО" }';
-    break;
 
   default:
     // Compose event data
@@ -40,7 +37,6 @@ switch ($patientId) {
 
     // Register check-in event
     echo insertEvent($eventData);
-    break;
 }
 
 $GLOBALS['conn']->close();
