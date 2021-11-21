@@ -60,6 +60,11 @@ const SolCheckInAdmin = (() => {
     return table;
   };
 
+  const scrollToTable = () => {
+    const { top } = UI.tableWrap.getBoundingClientRect();
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
+
   const showEvents = async (e) => {
     e.preventDefault();
 
@@ -73,7 +78,7 @@ const SolCheckInAdmin = (() => {
     UI.tableWrap.innerHTML = '';
     UI.tableWrap.appendChild(tableHTML);
 
-    location.href = '#ci-table';
+    scrollToTable();
   };
 
   const deleteEvent = async (e) => {
