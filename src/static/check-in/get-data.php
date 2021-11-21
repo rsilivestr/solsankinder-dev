@@ -170,3 +170,10 @@ function getEvents($date, $interval_id)
 
   return json_encode($res);
 }
+
+function getApplicants()
+{
+  $sql = 'SELECT id, fio, phone FROM applicants';
+  $res = $GLOBALS['conn']->query($sql)->fetch_all(MYSQLI_ASSOC);
+  return json_encode($res);
+}
