@@ -102,10 +102,10 @@ const SolVoucher = (() => {
   };
 
   const clearInputs = () => {
-    UI.familyNameInput.value = 'ли';
-    UI.givenNameInput.value = 'ян';
-    UI.patrNameInput.value = 'ильич';
-    UI.telInput.value = '89219999999';
+    UI.familyNameInput.value = '';
+    UI.givenNameInput.value = '';
+    UI.patrNameInput.value = '';
+    UI.telInput.value = '';
     UI.pdaInput.checked = false;
   };
 
