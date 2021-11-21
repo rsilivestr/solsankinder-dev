@@ -114,8 +114,6 @@ const SolCheckInAdmin = (() => {
     UI.tableWrap.innerHTML = '';
     UI.tableWrap.appendChild(tableHTML);
 
-    scrollToTable();
-
     const { top } = UI.tableWrap.getBoundingClientRect();
     window.scrollTo({ top, behavior: 'smooth' });
   };
