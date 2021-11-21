@@ -243,7 +243,7 @@ $closeEventForm = "
 </form>";
 
 $showApplicantsForm = '
-<form class="ci-form" id="show-applicants" method="POST">
+<form class="ci-form" id="show-applicants-form" method="POST">
   <h2 class="ci-form__heading">Заявки на путевку</h2>
   <input type="hidden" value="show-applicants" />
   <input class="ci-form__button" type="submit" value="Показать" />

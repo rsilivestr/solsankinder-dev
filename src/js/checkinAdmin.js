@@ -1,5 +1,6 @@
 const SolCheckInAdmin = (() => {
   const UI = {
+    applicantsForm: document.getElementById('show-applicants-form'),
     eventsForm: document.getElementById('show-events-form'),
     tableWrap: document.querySelector('.ci-table-wrap'),
   };
@@ -13,6 +14,17 @@ const SolCheckInAdmin = (() => {
       method: 'POST',
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
       body: formData,
+    });
+
+    const data = await res.json();
+
+    return data;
+  };
+
+  const fetchApplicants = async () => {
+    const res = await fetch('../check-in-api/applicants', {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
     });
 
     const data = await res.json();
@@ -35,7 +47,8 @@ const SolCheckInAdmin = (() => {
         <th>Интервал</th>
         <th>Район</th>
         <th>Удалить</th>
-      </thead>`;
+      </thead>
+    `;
 
     const tbody = document.createElement('tbody');
     table.appendChild(tbody);
@@ -68,7 +81,41 @@ const SolCheckInAdmin = (() => {
     return table;
   };
 
-  const scrollToTable = () => {
+  const createApplicantsTable = (applicants) => {
+    const table = document.createElement('table');
+    table.className = 'ci-table';
+    table.id = 'ci-table';
+
+    table.innerHTML = `
+      <thead>
+        <th>№</th>
+        <th>ФИО</th>
+        <th>Телефон</th>
+      </thead>
+    `;
+
+    const tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+
+    applicants.forEach(({ fio, phone }, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${fio}</td>
+        <td>${phone}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    return table;
+  };
+
+  const populateTable = (tableHTML) => {
+    UI.tableWrap.innerHTML = '';
+    UI.tableWrap.appendChild(tableHTML);
+
+    scrollToTable();
+
     const { top } = UI.tableWrap.getBoundingClientRect();
     window.scrollTo({ top, behavior: 'smooth' });
   };
@@ -79,13 +126,19 @@ const SolCheckInAdmin = (() => {
     const date = UI.eventsForm.querySelector('.js-search-date-input').value;
     const intervalId = UI.eventsForm.querySelector('.js-filter-interval-input').value || '0';
 
-    const eventData = await fetchEvents(date, intervalId);
-    const tableHTML = createEventTable(eventData);
+    const events = await fetchEvents(date, intervalId);
+    const tableHTML = createEventTable(events);
 
-    UI.tableWrap.innerHTML = '';
-    UI.tableWrap.appendChild(tableHTML);
+    populateTable(tableHTML);
+  };
 
-    scrollToTable();
+  const showApplicants = async (e) => {
+    e.preventDefault();
+
+    const applicants = await fetchApplicants();
+    const tableHTML = createApplicantsTable(applicants);
+
+    populateTable(tableHTML);
   };
 
   const deleteEvent = async (e) => {
@@ -115,6 +168,7 @@ const SolCheckInAdmin = (() => {
 
   return {
     init: () => {
+      UI.applicantsForm.addEventListener('submit', showApplicants);
       UI.eventsForm.addEventListener('submit', showEvents);
       UI.tableWrap.addEventListener('click', deleteEvent);
     },
