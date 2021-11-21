@@ -242,6 +242,14 @@ $closeEventForm = "
   <input class='ci-form__button' type='submit' value='Закрыть'>
 </form>";
 
+$showApplicantsForm = '
+<form class="ci-form" id="show-applicants" method="POST">
+  <h2 class="ci-form__heading">Заявки на путевку</h2>
+  <input type="hidden" value="show-applicants" />
+  <input class="ci-form__button" type="submit" value="Показать" />
+</form>
+';
+
 // Page render starts here
 if (!$user->hasRole('check-in')) {
   // User is not authorized to view this page
@@ -257,10 +265,10 @@ if (!$user->hasRole('check-in')) {
     <section class='ci-admin-panel section section--width_w'>
       <h1>Панель регистратора</h1>
       <div class='ci-form-panel'>
-        {$dbResetForm}
         {$addDateForm}
         {$showEventsForm}
         {$closeEventForm}
+        {$showApplicantsForm}
       </div>
     </section>
     <section class='section section--width_w ci-table-wrap'></section>";
