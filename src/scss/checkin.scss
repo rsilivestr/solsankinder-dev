@@ -257,9 +257,15 @@
 
 /* Admin table */
 .ci-table {
-  margin: 3rem auto 0;
+  width: 100%;
+  margin: 3rem 0 0;
   text-align: left;
   border-collapse: collapse;
+
+  @media (min-width: 768px) {
+    width: auto;
+    min-width: 720px;
+  }
 }
 
 .ci-table th,
@@ -283,25 +289,43 @@
 }
 
 /* Admin panel */
-.ci-form__message .ci-form-panel,
-.check-in-display-panel {
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 /* Admin panel forms */
 .ci-form-panel {
-  align-items: flex-start;
   display: flex;
-  flex-flow: row wrap;
-  gap: 1rem;
-  justify-content: space-between;
+  flex-flow: column nowrap;
+  gap: 6rem 2rem;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template:
+      'addDate showEvents' auto
+      'addDate closeEvent' auto
+      'addDate showApplicants' auto
+      / 1fr 1fr;
+  }
+}
+
+#add-date-form {
+  grid-area: addDate;
+}
+
+#show-events-form {
+  grid-area: showEvents;
+}
+
+#close-events-form {
+  grid-area: closeEvents;
+}
+
+#show-applicants-form {
+  grid-area: showApplicants;
 }
 
 .ci-form-panel .ci-form {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 /* Admin login button */

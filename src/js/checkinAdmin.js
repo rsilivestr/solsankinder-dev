@@ -115,7 +115,8 @@ const SolCheckInAdmin = (() => {
     UI.tableWrap.appendChild(tableHTML);
 
     const { top } = UI.tableWrap.getBoundingClientRect();
-    window.scrollTo({ top, behavior: 'smooth' });
+
+    window.scrollBy({ top, behavior: 'smooth' });
   };
 
   const showEvents = async (e) => {
