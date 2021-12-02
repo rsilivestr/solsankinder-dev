@@ -21,7 +21,10 @@ if (!$config->ajax) {
   include '_head.php';
 
   $bodyClass = $page->template->name;
-  $bodyClass .= $isLowVisionActive && ' low-vision';
+  if ($isLowVisionActive) {
+    $bodyClass .= ' low-vision';
+  }
+
   echo "<body class='$bodyClass'>";
 
   include '_header.php';

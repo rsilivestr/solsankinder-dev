@@ -35,7 +35,11 @@
 
   <?php
   $pageTemplate = $page->template->name;
-  if ('check-in__user-form' === $pageTemplate || 'check-in__admin-panel' === $pageTemplate) {
+  $isCheckIn =
+    $pageTemplate === 'check-in__user-form' ||
+    $pageTemplate === 'check-in__admin-panel' ||
+    $pageTemplate === 'check-in__get-voucher';
+  if ($isCheckIn) {
     $fileName = $manifest['checkin.css'];
     echo "<link rel='stylesheet' href='{$config->urls->templates}{$fileName}'>";
   }
