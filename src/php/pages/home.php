@@ -2,10 +2,13 @@
 
 $content = '';
 
-/* ссылка на форму регистрации */
-$content .= "<div class='section section--width_m register-section ta_center'>
-<a class='action-btn action-btn--color_blue' href='/check-in-form'>Записаться на заезд</a>
-</div>";
+/* ссылки на запись и путёвку */
+$content .= "
+  <div class='section section--width_m home-register ta_center'>
+    <a class='action-btn action-btn--color_magenta' href='/check-in-form'>Записаться на заезд</a>
+    <a class='action-btn action-btn--color_blue' href='/get-voucher'>Если нет путёвки</a>
+  </div>
+";
 
 /* главрач */
 $content .= "<section class='section section--width_m section--justified section--font_cursive'>
