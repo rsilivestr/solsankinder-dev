@@ -303,8 +303,6 @@ const SolCheckIn = (() => {
     );
     FORM_DATA.set('patient_dob', UI.dobInput.value);
     FORM_DATA.set('patient_phone', UI.telInput.value.trim());
-
-    console.log(UI.familyNameInput.value);
   };
 
   const formNext = () => {
@@ -395,9 +393,7 @@ const SolCheckIn = (() => {
       if (patientOk) {
         const res = await fetch('../check-in-api/register/', {
           method: 'POST',
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-          },
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
           body: FORM_DATA,
         });
 

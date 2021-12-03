@@ -11,6 +11,7 @@ module.exports = {
     home: './src/js/home.js',
     checkin: './src/js/checkin.js',
     checkinAdmin: './src/js/checkinAdmin.js',
+    getVoucher: './src/js/getVoucher.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

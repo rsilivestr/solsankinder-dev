@@ -60,6 +60,17 @@ if (isset($_POST['password'])) {
     createTable('ci_events', $eventSchema);
   }
 
+  $applicantSchema = "(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fio VARCHAR(128) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+  )";
+
+  if (isset($_POST['applicants'])) {
+    dropTable('applicants');
+    createTable('applicants', $applicantSchema);
+  }
+
   header('Location: ?success=1');
 }
 
@@ -110,6 +121,9 @@ $dbResetForm = '
   <label class="ci-form__label mt-8">
     <input type="checkbox" name="ci_events"> ci_events
   </label>
+  <label class="ci-form__label mt-8">
+    <input type="checkbox" name="applicants"> applicants
+  </label>
   <br />
   <div>
     <label>
@@ -124,93 +138,86 @@ $dbResetForm = '
 $units = json_decode(getUnits());
 $unitsHTML = '';
 foreach ($units as $unit) {
-  $unitsHTML .=
-    '
-    <label class="ci-form__label mt-8">
-      <input type="checkbox" name="add_date_unit[]" value="' .
-    $unit[0] .
-    '">
-      ' .
-    $unit[1] .
-    '
-    </label>';
+  $unitValue = $unit[0];
+  $unitLabel = $unit[1];
+  $unitsHTML .= "
+    <label class='ci-form__label mt-8'>
+      <input type='checkbox' name='add_date_unit[]' value='{$unitValue}'>
+      {$unitLabel}
+    </label>";
 }
 
 // Get intervals
 $intervals = json_decode(getIntervals());
 $intervalInputsHTML = '';
 foreach ($intervals as $ivl) {
-  $intervalInputsHTML .=
-    '
-  <label class="ci-form__label">
-    <span class="ci-form__label-text">Мест на ' .
-    substr($ivl[1], 0, 5) .
-    ' - ' .
-    substr($ivl[2], 0, 5) .
-    '</span>
-    <input class="ci-form__input" type="number" name="add_date_spots[]" value="40">
-  </label>';
+  $intervalStart = substr($ivl[1], 0, 5);
+  $intervalEnd = substr($ivl[2], 0, 5);
+  $intervalInputsHTML .= "
+  <label class='ci-form__label'>
+    <span class='ci-form__label-text'>Мест на {$intervalStart} - {$intervalEnd}</span>
+    <input class='ci-form__input' type='number' name='add_date_spots[]' value='40'>
+  </label>";
 }
 
 // Add new event date
-$addDateForm =
-  '
-<form class="ci-form" method="POST" id="add-date-form">
-  <h2 class="ci-form__heading">Добавить заезд</h2>
+$addDateForm = "
+<form class='ci-form' method='POST' id='add-date-form'>
+  <h2 class='ci-form__heading'>Добавить заезд</h2>
 
-  <label class="ci-form__label" style="margin-bottom: 2rem">
-    <span class="ci-form__label-text">Дата</span>
-    <input class="ci-form__input" type="date" name="add_date">
-  </label>' .
-  $unitsHTML .
-  $intervalInputsHTML .
-  '<input class="ci-form__button" type="submit" value="Добавить">
-</form>';
+  <label class='ci-form__label' style='margin-bottom: 2rem'>
+    <span class='ci-form__label-text'>Дата</span>
+    <input class='ci-form__input' type='date' name='add_date'>
+  </label>
+
+  {$unitsHTML}
+  {$intervalInputsHTML}
+
+  <input class='ci-form__button' type='submit' value='Добавить'>
+</form>";
 
 // Make all event dates list
 $eventDatesDatalist = '';
 $eventDates = json_decode(getAllDates());
 foreach ($eventDates as $date) {
   $ru_date = (new DateTime($date[1]))->format('d.m.Y');
-  $eventDatesDatalist .= '<option>' . $ru_date . '</option>';
+
+  $eventDatesDatalist .= "<option>{$ru_date}</option>";
 }
 
 // Create interval option list
 $intervalOptionsHTML = '';
 foreach ($intervals as $option) {
-  $intervalOptionsHTML .=
-    '<option value="' .
-    $option[0] .
-    '">' .
-    substr($option[1], 0, 5) .
-    ' - ' .
-    substr($option[2], 0, 5) .
-    '</option>';
+  $optionValue = $option[0];
+  $intervalStart = substr($option[1], 0, 5);
+  $intervalEnd = substr($option[2], 0, 5);
+
+  $intervalOptionsHTML .= "<option value='{$optionValue}'>{$intervalStart} - {$intervalEnd}</option>";
 }
+
 // Show registered events on certain date
-$showEventsForm =
-  '
-<form class="ci-form" id="show-events-form" method="POST">
-  <h2 class="ci-form__heading">Показать записи за дату</h2>
+$showEventsForm = "
+<form class='ci-form' id='show-events-form' method='POST'>
+  <h2 class='ci-form__heading'>Показать записи за дату</h2>
 
-  <label class="ci-form__label">
-    <span class="ci-form__label-text">Дата</span>
-    <input class="ci-form__input js-search-date-input" type="text" name="show_date" list="event-dates-list">
-    <datalist id="event-dates-list">' .
-  $eventDatesDatalist .
-  '</datalist>
+  <label class='ci-form__label'>
+    <span class='ci-form__label-text'>Дата</span>
+    <input class='ci-form__input js-search-date-input' type='text' name='show_date' list='event-dates-list'>
+    <datalist id='event-dates-list'>
+      {$eventDatesDatalist}
+    </datalist>
   </label>
 
-  <label class="ci-form__label">
-    <span class="ci-form__label-text">Интервал</span>
-    <select class="ci-form__input js-filter-interval-input">
-      <option selected value="">Выберите интервал</option>' .
-  $intervalOptionsHTML .
-  '</select>
+  <label class='ci-form__label'>
+    <span class='ci-form__label-text'>Интервал</span>
+    <select class='ci-form__input js-filter-interval-input'>
+      <option selected value=''>Выберите интервал</option>'
+      {$intervalOptionsHTML}
+    </select>
   </label>
 
-  <input class="ci-form__button" type="submit" value="Показать">
-</form>';
+  <input class='ci-form__button' type='submit' value='Показать'>
+</form>";
 
 // Make active event dates list
 $activeDatesHTML = '';
@@ -221,21 +228,27 @@ foreach ($activeDates as $date) {
 }
 
 // Close active event by date
-$closeEventForm =
-  '
-<form class="ci-form" id="close-event-form" method="POST">
-  <h2 class="ci-form__heading">Закрыть заезд на дату</h2>
+$closeEventForm = "
+<form class='ci-form' id='close-event-form' method='POST'>
+  <h2 class='ci-form__heading'>Закрыть заезд на дату</h2>
 
-  <label class="ci-form__label">
-    <span class="ci-form__label-text">Дата</span>
-    <select class="ci-form__input" type="text" name="close_date">
-      <option selected value=""></option>' .
-  $activeDatesHTML .
-  '</select>
+  <label class='ci-form__label'>
+    <span class='ci-form__label-text'>Дата</span>
+    <select class='ci-form__input' type='text' name='close_date'>
+      <option selected value=''></option>
+        {$activeDatesHTML}
+    </select>
   </label>
+  <input class='ci-form__button' type='submit' value='Закрыть'>
+</form>";
 
-  <input class="ci-form__button" type="submit" value="Закрыть">
-</form>';
+$showApplicantsForm = '
+<form class="ci-form" id="show-applicants-form" method="POST">
+  <h2 class="ci-form__heading">Заявки на путевку</h2>
+  <input type="hidden" value="show-applicants" />
+  <input class="ci-form__button" type="submit" value="Показать" />
+</form>
+';
 
 // Page render starts here
 if (!$user->hasRole('check-in')) {
@@ -248,18 +261,17 @@ if (!$user->hasRole('check-in')) {
     </section>';
 } else {
   // Show forms
-  $content =
-    '
-    <section class="ci-admin-panel section section--width_w">
+  $content = "
+    <section class='ci-admin-panel section section--width_w'>
       <h1>Панель регистратора</h1>
-      <div class="ci-form-panel">' .
-    $dbResetForm .
-    $addDateForm .
-    $showEventsForm .
-    $closeEventForm .
-    '</div>
+      <div class='ci-form-panel'>
+        {$addDateForm}
+        {$showEventsForm}
+        {$closeEventForm}
+        {$showApplicantsForm}
+      </div>
     </section>
-    <section class="section section--width_w ci-table-wrap"></section>';
+    <section class='section section--width_w ci-table-wrap'></section>";
 
   $scriptName = $manifest['checkinAdmin.js'];
   $content .= "<script src='{$config->urls->templates}{$scriptName}'></script>";

@@ -7,7 +7,7 @@ function createTable($table_name, $table_schema)
   if ($GLOBALS['conn']->query("DESCRIBE $table_name")) {
     echo "Table \"$table_name\" already exists";
   } else {
-    $sql = 'CREATE TABLE ' . $table_name . $table_schema;
+    $sql = "CREATE TABLE {$table_name} {$table_schema}";
 
     if ($GLOBALS['conn']->query($sql) === true) {
       echo "Table \"$table_name\" was created";
@@ -82,4 +82,10 @@ $eventSchema = "(
   interval_id INT NOT NULL,
   unit_id INT NOT NULL,
   clinic_id INT NOT NULL
+)";
+
+$applicantSchema = "(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fio VARCHAR(128) NOT NULL,
+  phone VARCHAR(20) NOT NULL
 )";
