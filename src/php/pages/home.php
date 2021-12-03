@@ -6,7 +6,7 @@ $content = '';
 $content .= "
   <div class='section section--width_m home-register ta_center'>
     <a class='action-btn action-btn--color_magenta' href='/check-in-form'>Записаться на заезд</a>
-    <a class='action-btn action-btn--color_blue' href='/get-voucher'>Если нет путёвки</a>
+    <a class='action-btn action-btn--color_blue' href='/get-voucher'>Подать заявку</a>
   </div>
 ";
 
