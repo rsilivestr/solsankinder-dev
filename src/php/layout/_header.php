@@ -12,8 +12,10 @@ $headerClass .= $isHomepage ? ' main-header--home' : '';
     <!-- Logo -->
     <img
       class="nav-primary__logo"
-      src='<?php echo $config->urls->assets; ?>images/logo_plain.svg'
+      src="<?php echo $config->urls->assets; ?>images/logo_plain.svg"
       alt="Лого санатория"
+      width="61.65"
+      height="52"
     >
     <!-- Navlinks -->
     <?php
