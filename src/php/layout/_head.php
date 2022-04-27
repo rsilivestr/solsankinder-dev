@@ -18,14 +18,9 @@
     href="<?php echo $config->urls->templates; ?>styles/glide.core.min.css"
   >
 
-  <!-- Styles which normally are inserted by javascript -->
-  <noscript>
-    <!-- Icon font stylesheet -->
-    <link rel="stylesheet" type="text/css" href="<?php echo $config->urls
-      ->templates; ?>styles/fontello.min.css" />
-    <!-- Montserrat font CDN -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" >
-  </noscript>
+  <link rel="stylesheet" type="text/css" href="<?php echo $config->urls
+    ->templates; ?>styles/fontello.min.css" />
+  <link rel="stylesheet" href="<?php echo $config->urls->templates; ?>styles/montserrat.css">
 
   <link
     rel="stylesheet"
