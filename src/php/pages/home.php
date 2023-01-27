@@ -5,8 +5,8 @@ $content = '';
 /* ссылки на запись и путёвку */
 $content .= "
   <div class='section section--width_m home-register ta_center'>
-    <a class='action-btn action-btn--color_magenta' href='/check-in-form'>Записаться на заезд</a>
-    <a class='action-btn action-btn--color_blue' href='/get-voucher'>Подать заявку</a> 
+    <a class='action-btn action-btn--color_magenta' href='/check-in-form'>Регистрация на заезд</a>
+    <a class='action-btn action-btn--color_blue' href='/get-voucher'>Стать кандидатом</a> 
   </div>
 ";
 

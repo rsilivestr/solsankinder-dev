@@ -3,7 +3,6 @@
 $content = "
 <section class='section section--width_m'>
   $page->body
-  <h3>Нет путёвки? <a href='/get-voucher'>Оставить заявку</a></h3>
 </section>";
 
 $DISTRICT_DATALIST = '';
