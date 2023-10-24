@@ -5,8 +5,8 @@ $content = '';
 /* ссылки на запись и путёвку */
 $content .= "
   <div class='section section--width_m home-register ta_center'>
-    <a class='action-btn action-btn--color_magenta' href='/check-in-form'>Записаться на заезд</a>
-    <a class='action-btn action-btn--color_blue' href='/get-voucher'>Подать заявку</a>
+    <a class='action-btn action-btn--color_magenta' href='/check-in-form'>Регистрация на заезд</a>
+    <!-- <a class='action-btn action-btn--color_blue' href='/get-voucher'>Стать кандидатом</a> -->
   </div>
 ";
 
@@ -40,7 +40,7 @@ $content .= "<section class='section section--width_m'>
 
 /* фото фон 1 */
 $content .= "<div id='home-bg-1' class='home-bg section hide-sm'>
-  <a class='action-btn action-btn--size_s action-btn--color_blue' href='http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews'>
+  <a class='action-btn action-btn--size_s action-btn--color_blue' href='https://anketa.minzdrav.gov.ru/healthResort/2fbb3ed2-a991-4d3e-94fd-f5ad0a03cf17/8edda0a6-1e14-4609-84ef-03c97d96e682'>
     Анкета оценки качества оказания услуг
   </a>
 </div>";

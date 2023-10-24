@@ -22,7 +22,7 @@
       ><a
         class="footer-officials__banner"
         id="ban_poll"
-        href="http://anketa.rosminzdrav.ru/staticmojustank/9211#reviews"
+        href="https://anketa.minzdrav.gov.ru/healthResort/2fbb3ed2-a991-4d3e-94fd-f5ad0a03cf17/8edda0a6-1e14-4609-84ef-03c97d96e682"
         aria-label="Баннер анкеты оценки качества оказанных услуг"
       ></a
       ><a
